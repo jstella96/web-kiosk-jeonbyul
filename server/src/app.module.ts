@@ -7,6 +7,7 @@ import { FoodsModule } from './foods/foods.module';
 import { OrderModule } from './order/order.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 @Module({
   imports: [
@@ -23,6 +24,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         database: configService.get('DATABASE'),
         entities: [],
         synchronize: true,
+        namingStrategy: new SnakeNamingStrategy(),
+        autoLoadEntities: true,
+        dropSchema: true,
       }),
       inject: [ConfigService],
     }),
