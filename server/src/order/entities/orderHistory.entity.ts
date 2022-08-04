@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { OrderItem } from './orderItem.entity';
 
 @Entity('ORDER_HISTORY_TB')
 export class OrderHistory {
@@ -17,7 +19,7 @@ export class OrderHistory {
   @Column({ type: 'decimal' })
   totalPrice: number;
 
-  //여기 enum은 어떨까요
+  //여기 enum은 어떨까요 확정
   @Column({ type: 'char', length: 5 })
   payment: number;
 
@@ -29,4 +31,7 @@ export class OrderHistory {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.orderHistory)
+  orderItems: OrderItem[];
 }

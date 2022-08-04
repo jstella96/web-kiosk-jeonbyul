@@ -22,11 +22,9 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         username: configService.get('USERNAME'),
         password: configService.get('PASSWORD'),
         database: configService.get('DATABASE'),
-        entities: [],
-        synchronize: true,
+        synchronize: true, //프로덕션에서는 사용하면 안됨.
         namingStrategy: new SnakeNamingStrategy(),
         autoLoadEntities: true,
-        dropSchema: true,
       }),
       inject: [ConfigService],
     }),

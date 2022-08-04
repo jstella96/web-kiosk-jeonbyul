@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { Food } from './entities/food.entity';
+import { FoodsRepository } from './foods.repository';
 
 @Injectable()
 export class FoodsService {
-  find() {}
+  constructor(private readonly foodRepository: FoodsRepository) {}
+  getAllFoods() {
+    return this.foodRepository.getAllFoods();
+  }
 
-  findAll(): Food[] {
-    return null;
+  getFood(id) {
+    return this.foodRepository.getFood(id);
   }
 }

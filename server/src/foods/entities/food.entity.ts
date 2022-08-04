@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from 'src/categories/entities/categories.entity';
+import { OrderItem } from 'src/order/entities/orderItem.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 
 @Entity('FOOD_TB')
 export class Food {
@@ -16,4 +24,10 @@ export class Food {
 
   @Column({ type: 'decimal' })
   basePrice: number;
+
+  @ManyToOne(() => Category, (category) => category.foods)
+  category: Category;
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.food)
+  orderItems: OrderItem[];
 }
