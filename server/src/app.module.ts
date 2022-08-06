@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { OptionsModule } from './options/options.module';
 import { FoodsModule } from './foods/foods.module';
@@ -13,7 +11,6 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }), //
     TypeOrmModule.forRootAsync({
-      //module 내 순서 보장 x ,
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
@@ -25,6 +22,8 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         synchronize: true, //프로덕션에서는 사용하면 안됨.
         namingStrategy: new SnakeNamingStrategy(),
         autoLoadEntities: true,
+        //dropSchema: true,
+
       }),
       inject: [ConfigService],
     }),
@@ -33,7 +32,5 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     FoodsModule,
     OrderModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

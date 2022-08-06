@@ -28,7 +28,6 @@ export class OptionsService {
         return acc;
       }, {});
     }
-
     return option;
   }
 }

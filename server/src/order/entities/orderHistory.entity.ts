@@ -21,7 +21,7 @@ export class OrderHistory {
 
   //여기 enum은 어떨까요 확정
   @Column({ type: 'char', length: 5 })
-  payment: number;
+  payment: string;
 
   @Column({ type: 'tinyint', default: 0 })
   cancel: number;
@@ -34,4 +34,13 @@ export class OrderHistory {
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.orderHistory)
   orderItems: OrderItem[];
+  
+  static create({ totalPrice, payment, orderNum }) {
+    const orderHistory = new OrderHistory();
+    orderHistory.totalPrice = totalPrice;
+    orderHistory.payment = payment;
+    orderHistory.orderNum = orderNum;
+    return orderHistory;
+  }
+
 }

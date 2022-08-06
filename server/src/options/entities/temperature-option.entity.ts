@@ -1,23 +1,14 @@
 import { Food } from 'src/foods/entities/food.entity';
-import {
-  Entity,
-  Column,
-  PrimaryColumn,
-  OneToOne,
-  JoinColumn,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity('TEMPERATURE_OPTION_TB')
 export class TemperatureOption {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ nullable: true })
+  @Column({ type: 'int', primary: true })
   foodId: number;
 
-  @OneToOne(() => Food) // specify inverse side as a second parameter
-  @JoinColumn()
+  @OneToOne(() => Food)
+  @JoinColumn({ name: 'food_id', referencedColumnName: 'id' })
+
   food: Food;
 
   @Column({ type: 'decimal', nullable: true })
