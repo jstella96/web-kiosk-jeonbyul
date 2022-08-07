@@ -1,14 +1,12 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 
 import Router from './Router';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Router></Router>
-      </header>
+      <Router></Router>
     </div>
   );
 }

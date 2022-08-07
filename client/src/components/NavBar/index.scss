@@ -1,0 +1,44 @@
+@import '../../assets/style/colors';
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  .navbar-item-container {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    font-size: calc(10px + 2vmin);
+  }
+  .navbar-item-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .navbar-line {
+    margin-top: 10px;
+    display: inline-block;
+    height: 5px;
+    background-color: $color-gray;
+    position: relative;
+  }
+  button {
+    color: $color-primary;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: none;
+    width: 20%;
+    position: relative;
+  }
+  .naver-item__active::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: -15px;
+    z-index: 10;
+    height: 5px;
+    width: 100%;
+    background: $color-primary;
+  }
+  .navbar-right-arrow {
+    text-align: right;
+  }
+}

@@ -1,0 +1,21 @@
+@import '../../assets/style/colors';
+
+.footer {
+  padding: 10px;
+  width: 100%;
+  background-color: $color-black;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  &-button {
+    font-weight: 700;
+    padding: 5px;
+    color: $color-white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span {
+      margin-left: 10px;
+    }
+  }
+}
