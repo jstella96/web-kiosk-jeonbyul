@@ -3,42 +3,25 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0.8rem 0;
   .navbar-item-container {
     display: grid;
-    grid-template-columns: 1fr 10fr 1fr;
-    font-size: calc(10px + 2vmin);
+    grid-template-columns: 1fr 8fr 1fr;
+    font-size: 1rem;
   }
-  .navbar-item-wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
-  .navbar-line {
-    margin-top: 10px;
-    display: inline-block;
-    height: 5px;
-    background-color: $color-gray;
-    position: relative;
-  }
-  button {
-    color: $color-primary;
-    font-size: 1.4rem;
-    font-weight: 700;
-    border: none;
-    width: 20%;
-    position: relative;
-  }
-  .naver-item__active::after {
-    content: '';
-    position: absolute;
-    left: 0px;
-    bottom: -15px;
-    z-index: 10;
-    height: 5px;
-    width: 100%;
-    background: $color-primary;
-  }
-  .navbar-right-arrow {
+  .right-arrow {
+    padding-right: 1rem;
     text-align: right;
+  }
+  .left-arrow {
+    padding-left: 1rem;
+  }
+  .arrow-button {
+    stroke: $color-gray;
+    cursor: pointer;
+  }
+  .arrow-button:hover {
+    stroke-opacity: 0.6;
+    stroke: $color-primary;
   }
 }

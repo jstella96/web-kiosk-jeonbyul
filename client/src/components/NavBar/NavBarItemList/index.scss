@@ -1,0 +1,21 @@
+@import '../../../assets/style/colors';
+
+.navbar-item-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.navbar-item-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+.navbar-item-list {
+  transition: all 1s;
+  button {
+    color: $color-primary;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: none;
+    width: 25%;
+    position: relative;
+  }
+}

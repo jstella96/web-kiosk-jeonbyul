@@ -5,10 +5,10 @@ import './index.scss';
 import NavBar from '../NavBar';
 import Footer from '../Footer';
 import Cart from '../ Cart';
-const Main = () => {
+const Main = ({ categories }) => {
   return (
     <div className="main">
-      <NavBar></NavBar>
+      <NavBar categories={categories}></NavBar>
       <FoodList></FoodList>
       <Cart></Cart>
       <Footer></Footer>

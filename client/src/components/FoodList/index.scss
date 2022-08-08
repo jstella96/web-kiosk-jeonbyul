@@ -1,14 +1,16 @@
 @import '../../assets/style/colors';
 
-.foodList {
+.foodlist {
   padding: 20px 40px;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   overflow: scroll;
 }
-
-.foodList-item {
+.foodlist::-webkit-scrollbar {
+  display: none;
+}
+.foodlist-item {
   margin: 1rem;
   height: 20vh;
   color: $color-primary;

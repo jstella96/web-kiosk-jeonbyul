@@ -1,29 +1,52 @@
 import './index.scss';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ReactComponent as LeftArrow } from '../../assets/icon/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/icon/right.svg';
+import NavBarItemList from './NavBarItemList';
+import NavBarLine from './NavBarLine';
 
-const NavBar = ({ onButtonClick }) => {
+const MaxItem = 4;
+const NavBar = ({ categories }) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  let nowStartIndex = useRef(0);
+
+  //코드 리팩토링!
+  const changeSelectedIndex = (nextIndex) => () => {
+    const categoriesLen = categories.length;
+    if (nextIndex < 0 || categoriesLen - 1 < nextIndex) return;
+    if (nextIndex - nowStartIndex.current === MaxItem) {
+      if (nextIndex === categoriesLen - 1 && categoriesLen % 2 === 1) {
+        nowStartIndex.current = nowStartIndex.current + 1;
+      } else {
+        nowStartIndex.current = nowStartIndex.current + 2;
+      }
+    } else if (nextIndex < nowStartIndex.current) {
+      if (nextIndex === 0 && categoriesLen % 2 === 1) {
+        nowStartIndex.current = nowStartIndex.current - 1;
+      } else {
+        nowStartIndex.current = nowStartIndex.current - 2;
+      }
+    }
+    setSelectedIndex(nextIndex);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-item-container">
-        <div className="navbar-left-arrow">
-          <LeftArrow width="20" height="20" />
+        <div className="left-arrow arrow-button">
+          <LeftArrow width="20" height="20" onClick={changeSelectedIndex(selectedIndex - 1)} />
         </div>
-        <div className="navbar-item-wrapper">
-          <button>커피</button>
-          <button className="naver-item__active">에이드</button>
-          <button>마카롱</button>
-          <button>케이크</button>
-        </div>
-        <div className="navbar-right-arrow">
-          <RightArrow width="20" height="20" />
+        <NavBarItemList
+          categories={categories}
+          selectedIndex={nowStartIndex.current}
+          changeSelectedIndex={changeSelectedIndex}
+        />
+        <div className="right-arrow arrow-button">
+          <RightArrow width="20" height="20" onClick={changeSelectedIndex(selectedIndex + 1)} />
         </div>
       </div>
-      <div className="navbar-line">
-        <div></div>
-      </div>
+      <NavBarLine selectedIndex={selectedIndex - nowStartIndex.current} />
     </nav>
   );
 };

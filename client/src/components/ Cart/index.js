@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import './index.scss';
 
 const Cart = ({ onButtonClick }) => {
-  const [foodList, setFoodList] = useState(
-    Array.from({ length: 11 }, () => {})
-  );
   return (
     <div className="cart">
       <div className="cart-main">
