@@ -5,7 +5,7 @@ import Main from './components/Main';
 
 function Router() {
   const [isTakeOut, setIsTakeOut] = useState();
-  const [page, setPage] = useState('main');
+  const [page, setPage] = useState('home');
   const [categories, setCategories] = useState([]);
   const [foodByCategory, setFoodByCategory] = useState([]);
 
@@ -28,11 +28,17 @@ function Router() {
     setPage('main');
   };
 
+  const changePage = (page) => () => {
+    setPage(page);
+  };
+
   if (page === 'home') {
     return <Home onButtonClick={onButtonClick}></Home>;
   }
   if (page === 'main') {
-    return <Main categories={categories} foodByCategory={foodByCategory}></Main>;
+    return (
+      <Main changePage={changePage} categories={categories} foodByCategory={foodByCategory}></Main>
+    );
   }
 }
 

@@ -6,7 +6,7 @@ import NavBar from '../NavBar';
 import Footer from '../Footer';
 import Cart from '../ Cart';
 import FoodListContainer from '../FoodList/FoodListContainer';
-const Main = ({ categories, foodByCategory }) => {
+const Main = ({ categories, foodByCategory, changePage }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
@@ -18,7 +18,7 @@ const Main = ({ categories, foodByCategory }) => {
       />
       <FoodListContainer foodByCategory={foodByCategory} selectedIndex={selectedIndex} />
       <Cart />
-      <Footer />
+      <Footer changePage={changePage} />
     </div>
   );
 };

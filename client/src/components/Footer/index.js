@@ -4,13 +4,10 @@ import { ReactComponent as Search } from '../../assets/icon/search.svg';
 
 import './index.scss';
 
-const Footer = ({ onButtonClick }) => {
-  const [foodList, setFoodList] = useState(
-    Array.from({ length: 11 }, () => {})
-  );
+const Footer = ({ changePage }) => {
   return (
     <div className="footer">
-      <button className="footer-button">
+      <button className="footer-button" onClick={changePage('home')}>
         <Exit />
         <span>나가기</span>
       </button>
