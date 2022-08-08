@@ -2,19 +2,21 @@ import React, { useEffect, useRef } from 'react';
 import './index.scss';
 
 const NavBarItemList = ({ categories, selectedIndex, changeSelectedIndex }) => {
-  const navBarItemListEl = useRef(null);
-
-  useEffect(() => {
-    const interval = navBarItemListEl.current.querySelector('button')?.clientWidth;
-    if (!interval) return;
-    navBarItemListEl.current.style.transform = `translateX(${-interval * selectedIndex}px)`;
-  });
+  const buttonRef = useRef(null);
+  const interval = buttonRef.current?.clientWidth;
 
   return (
     <div className="navbar-item-wrapper">
-      <div className="navbar-item-list" ref={navBarItemListEl}>
+      <div
+        className="navbar-item-list"
+        style={{ transform: `translateX(${-interval * selectedIndex}px)` }}
+      >
         {categories.map((category, index) => (
-          <button key={category.id} onClick={changeSelectedIndex(index)}>
+          <button
+            {...(index === 0 ? { ref: buttonRef } : {})}
+            key={category.id}
+            onClick={changeSelectedIndex(index)}
+          >
             {category.name}
           </button>
         ))}

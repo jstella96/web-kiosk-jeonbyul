@@ -50,3 +50,225 @@ export const requestGetCategories = async () => {
 
   return data;
 };
+
+export const requestGetFoods = async () => {
+  // const response = await axios.get(`${baseURL}/category`);
+  // return response.data;
+  const data = [
+    {
+      id: 1,
+      name: '커피',
+      foods: [
+        {
+          id: 1,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 2,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 3,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 2,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 4,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 2,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 5,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 6,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 7,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 2,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 8,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 2,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 9,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 10,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 11,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 2,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 12,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 2,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        }
+      ]
+    },
+
+    {
+      id: 2,
+      name: '주스',
+      foods: [
+        {
+          id: 1,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 2,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        }
+      ]
+    },
+
+    {
+      id: 3,
+      name: '디저트',
+      foods: [
+        {
+          id: 1,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 2,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        }
+      ]
+    },
+
+    {
+      id: 4,
+      name: '마카롱',
+      foods: [
+        {
+          id: 1,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 2,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        }
+      ]
+    },
+    {
+      id: 5,
+      name: '케이크',
+      foods: [
+        {
+          id: 1,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        },
+        {
+          id: 2,
+          name: '콜드블루',
+          basePrice: 2000,
+          categoryId: 1,
+          imgUrl: 'https://www.ediya.com/files/menu/IMG_1649842079840.png',
+          star: true
+        }
+      ]
+    },
+
+    {
+      id: 6,
+      name: '브라우니',
+      foods: []
+    },
+    {
+      id: 7,
+      name: '스콘',
+      foods: []
+    },
+    {
+      id: 8,
+      name: '슈크림',
+      foods: []
+    },
+    {
+      id: 9,
+      name: '쇼콜라',
+      foods: []
+    }
+  ];
+  return data;
+};

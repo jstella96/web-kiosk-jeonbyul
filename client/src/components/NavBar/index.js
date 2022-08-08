@@ -7,8 +7,7 @@ import NavBarItemList from './NavBarItemList';
 import NavBarLine from './NavBarLine';
 
 const MaxItem = 4;
-const NavBar = ({ categories }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+const NavBar = ({ categories, selectedIndex, setSelectedIndex }) => {
   let nowStartIndex = useRef(0);
 
   //코드 리팩토링!

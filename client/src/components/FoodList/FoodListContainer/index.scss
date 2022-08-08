@@ -1,0 +1,14 @@
+@import '../../../assets/style/colors';
+.foodlist-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.foodlist-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.foodlist-wrapper {
+  display: flex;
+  transition: all 0.4s;
+}

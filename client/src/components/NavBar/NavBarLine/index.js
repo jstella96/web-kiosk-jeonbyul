@@ -3,15 +3,15 @@ import './index.scss';
 
 const NavBarLine = ({ selectedIndex }) => {
   const selectedLineEl = useRef(null);
-
-  useEffect(() => {
-    const interval = selectedLineEl.current.clientWidth;
-    selectedLineEl.current.style.transform = `translateX(${interval * selectedIndex}px)`;
-  });
+  const interval = selectedLineEl.current?.clientWidth;
 
   return (
     <div className="navbar-line">
-      <div ref={selectedLineEl} className="navbar-line__select"></div>
+      <div
+        ref={selectedLineEl}
+        style={{ transform: `translateX(${interval * selectedIndex}px)` }}
+        className="navbar-line__select"
+      ></div>
     </div>
   );
 };
