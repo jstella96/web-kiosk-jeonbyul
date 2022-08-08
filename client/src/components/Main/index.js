@@ -8,6 +8,7 @@ import Cart from '../ Cart';
 import FoodListContainer from '../FoodList/FoodListContainer';
 const Main = ({ categories, foodByCategory }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+
   return (
     <div className="main">
       <NavBar

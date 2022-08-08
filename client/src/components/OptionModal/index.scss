@@ -1,0 +1,83 @@
+@import '../../assets/style/colors';
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal > section {
+  width: 90%;
+  max-width: 40rem;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: $color-white;
+  display: grid;
+  grid-template-rows: 8fr 1fr;
+}
+.modal.openModal {
+  display: flex;
+  align-items: center;
+}
+main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.food-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 15rem;
+  }
+  .food-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .food-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  button {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+}
+
+.food-option-select {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  div {
+    padding: 0.4rem;
+    text-align: center;
+  }
+}
+.food-option-count {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  button {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 1rem;
+  }
+}
+
+.food-option-wrapper {
+  button {
+    padding: 0.4rem;
+    width: 4rem;
+    margin-right: 0.4rem;
+    border-radius: 1rem;
+    background-color: $color-gray;
+  }
+}
