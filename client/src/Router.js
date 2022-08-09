@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { requestGetCategories, requestGetFoods } from './api/api';
 import Home from './components/Home';
 import Main from './components/Main';
+import Order from './components/Order';
+import Payment from './components/Payment';
+import Receipt from './components/Receipt';
 
 function Router() {
   const [isTakeOut, setIsTakeOut] = useState();
@@ -39,6 +42,15 @@ function Router() {
     return (
       <Main changePage={changePage} categories={categories} foodByCategory={foodByCategory}></Main>
     );
+  }
+  if (page === 'order') {
+    return <Order changePage={changePage} />;
+  }
+  if (page === 'payment') {
+    return <Payment changePage={changePage} />;
+  }
+  if (page === 'receipt') {
+    return <Receipt changePage={changePage} />;
   }
 }
 

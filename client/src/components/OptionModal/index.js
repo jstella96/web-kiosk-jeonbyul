@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.scss';
 
 const OptionModal = ({ isOpen, close, food }) => {
@@ -43,9 +43,9 @@ const OptionModal = ({ isOpen, close, food }) => {
             </div>
           </div>
         </main>
-        <footer>
+        <footer className="option-modal-footer">
           <button onClick={close}> 닫기 </button>
-          <button> 주문하기</button>
+          <button onClick={close}> 주문하기</button>
         </footer>
       </section>
     </div>

@@ -17,7 +17,7 @@ const Main = ({ categories, foodByCategory, changePage }) => {
         setSelectedIndex={setSelectedIndex}
       />
       <FoodListContainer foodByCategory={foodByCategory} selectedIndex={selectedIndex} />
-      <Cart />
+      <Cart changePage={changePage} />
       <Footer changePage={changePage} />
     </div>
   );

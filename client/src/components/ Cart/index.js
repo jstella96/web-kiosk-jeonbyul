@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './index.scss';
 
-const Cart = ({ onButtonClick }) => {
+const Cart = ({ changePage }) => {
   return (
     <div className="cart">
       <div className="cart-main">
@@ -38,7 +38,7 @@ const Cart = ({ onButtonClick }) => {
       </div>
       <div className="cart-button">
         <button>전체취소</button>
-        <button>주문취소</button>
+        <button onClick={changePage('order')}>주문하기</button>
       </div>
     </div>
   );
