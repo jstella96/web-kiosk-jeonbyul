@@ -9,6 +9,7 @@
   background-color: $color-gray;
 }
 .cart-item {
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   background-color: $color-white;
@@ -68,13 +69,17 @@
     background-color: $color-primary;
   }
 }
+
+.cart-item-wrapper {
+  display: flex;
+}
+
 .cart-item-menu {
   display: flex;
-
+  width: 100%;
   img {
     width: 4rem;
   }
-
   .cart-item-name {
     font-size: 1.3rem;
     font-weight: 600;
@@ -83,8 +88,10 @@
     color: $color-black;
   }
   .cart-item-option {
+    display: flex;
+    flex-direction: column;
     background-color: $color-blue-dark;
-    padding: 0px 10px;
+    padding: 0.5rem;
     border-radius: 10px;
     font-weight: 800;
     color: $color-black;

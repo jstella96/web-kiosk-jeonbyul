@@ -1,9 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { convertOptionKeyToLabel } from '../../utils/option';
+import FoodCount from '../FoodCount';
 import './index.scss';
+import OptionSelect from './OptionSelect';
 
-const OptionModal = ({ isOpen, close, food }) => {
-  //const { open, close, header } = props;
-  console.log(isOpen);
+const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, putInCart }) => {
+  const convertedTemperatureOptions = convertOptionKeyToLabel(temperatureOptions, 'temprature');
+  const convertedSizeOptions = convertOptionKeyToLabel(sizeOptions, 'size');
+
+  const [selectedTemperatureIdx, setSelectedTemperatureIdx] = useState(0);
+  const [selectedSizeIdx, setSelectedSizeIdx] = useState(0);
+  const [count, setCount] = useState(1);
+
+  const closeModal = () => {
+    setCount(1);
+    close();
+  };
+  const submit = () => {
+    const newCartItem = {
+      food,
+      count,
+      sizeOption: convertedSizeOptions[selectedSizeIdx],
+      temperatureOption: convertedTemperatureOptions[selectedTemperatureIdx]
+    };
+    putInCart(newCartItem);
+    close();
+  };
+
   return (
     <div className={isOpen ? 'openModal modal' : 'modal'}>
       <section>
@@ -17,35 +40,24 @@ const OptionModal = ({ isOpen, close, food }) => {
             <span className="food-price">{food.basePrice} 원</span>
           </div>
           <div className="food-option-select">
-            <div className="food-option-temperature">
-              <span> 온도 </span>
-              <div className="food-option-wrapper">
-                <button> ICE +500 </button>
-                <button> HOT </button>
-              </div>
-            </div>
-            <div className="food-option-size">
-              <span> 사이즈 </span>
-              <div className="food-option-wrapper">
-                <button> s + 7000 </button>
-                <button> m </button>
-                <button> l </button>
-              </div>
-            </div>
-            <div className="food-option-count">
-              <span> 카운트 </span>
-
-              <div className="count-control">
-                <button> - </button>
-                <span> 5 </span>
-                <button> + </button>
-              </div>
-            </div>
+            <OptionSelect
+              label={'온도'}
+              options={convertedTemperatureOptions}
+              selectedIdx={selectedTemperatureIdx}
+              setSelectedIdx={setSelectedTemperatureIdx}
+            ></OptionSelect>
+            <OptionSelect
+              label={'사이즈'}
+              options={convertedSizeOptions}
+              selectedIdx={selectedSizeIdx}
+              setSelectedIdx={setSelectedSizeIdx}
+            ></OptionSelect>
+            <FoodCount count={count} setCount={setCount}></FoodCount>
           </div>
         </main>
         <footer className="option-modal-footer">
-          <button onClick={close}> 닫기 </button>
-          <button onClick={close}> 주문하기</button>
+          <button onClick={closeModal}> 닫기 </button>
+          <button onClick={submit}> 담기 </button>
         </footer>
       </section>
     </div>
