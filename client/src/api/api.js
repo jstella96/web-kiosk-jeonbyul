@@ -272,3 +272,23 @@ export const requestGetFoods = async () => {
   ];
   return data;
 };
+
+export const requestGetOption = async () => {
+  return {
+    size: {
+      1: {
+        s: 0,
+        l: 500
+      },
+      2: {
+        s: 0,
+        m: 400,
+        l: 1000
+      }
+    },
+    temperature: {
+      1: { h: 0, c: 0 },
+      2: { c: 500 }
+    }
+  };
+};

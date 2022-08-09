@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 
-import Router from './Router';
+import Router from './Router/Router.js';
 
 function App() {
   return (

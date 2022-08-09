@@ -20,14 +20,14 @@ const OptionModal = ({ isOpen, close, food }) => {
             <div className="food-option-temperature">
               <span> 온도 </span>
               <div className="food-option-wrapper">
-                <button> ICE </button>
+                <button> ICE +500 </button>
                 <button> HOT </button>
               </div>
             </div>
             <div className="food-option-size">
               <span> 사이즈 </span>
               <div className="food-option-wrapper">
-                <button> s </button>
+                <button> s + 7000 </button>
                 <button> m </button>
                 <button> l </button>
               </div>

@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { requestGetCategories, requestGetFoods } from './api/api';
-import Home from './components/Home';
-import Main from './components/Main';
-import Order from './components/Order';
-import Payment from './components/Payment';
-import Receipt from './components/Receipt';
+import React, { useEffect, useState, createContext } from 'react';
+import { requestGetCategories, requestGetFoods, requestGetOption } from '../api/api';
+import Home from '../pages/Home';
+import Main from '../pages/Main';
+import Order from '../pages/Order';
+import Payment from '../pages/Payment';
+import Receipt from '../pages/Receipt';
 
 function Router() {
   const [isTakeOut, setIsTakeOut] = useState();
   const [page, setPage] = useState('home');
   const [categories, setCategories] = useState([]);
   const [foodByCategory, setFoodByCategory] = useState([]);
+  const [optionByFood, setOptionByFood] = useState({});
 
   const fetchAndSetCategories = async () => {
     const categoriesData = await requestGetCategories();
@@ -40,7 +41,12 @@ function Router() {
   }
   if (page === 'main') {
     return (
-      <Main changePage={changePage} categories={categories} foodByCategory={foodByCategory}></Main>
+      <Main
+        optionByFood={optionByFood}
+        changePage={changePage}
+        categories={categories}
+        foodByCategory={foodByCategory}
+      ></Main>
     );
   }
   if (page === 'order') {
