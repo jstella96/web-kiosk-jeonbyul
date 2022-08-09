@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import OptionContext from '../../../contexts/option';
-import { useFoodListContainerState } from '../../../hooks/useFoodListContainerState';
-import OptionModal from '../../OptionModal';
-import FoodList from '../FoodList';
+import OptionContext from 'contexts/option';
+import OptionModal from 'components/Modal/OptionModal';
+import FoodList from 'components/List/FoodList';
 import './index.scss';
 
 const FoodListContainer = ({ foodByCategory, selectedIndex, putCartItem }) => {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import FoodList from '../../components/FoodList/FoodList';
+import FoodList from 'components/List/FoodList';
 
 import './index.scss';
-import NavBar from '../../components/NavBar';
-import Footer from '../../components/Footer';
-import Cart from '../../components/ Cart';
-import FoodListContainer from '../../components/FoodList/FoodListContainer';
+import NavBar from 'components/NavBar/NavBar';
+import Footer from 'components/Footer';
+import Cart from 'components/ Cart';
+import FoodListContainer from 'components/List/FoodListContainer';
 const Main = ({ categories, foodByCategory, changePage }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [cartItem, setCartItem] = useState([]);

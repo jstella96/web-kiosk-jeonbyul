@@ -1,10 +1,10 @@
 import './index.scss';
 
 import React, { useRef, useState } from 'react';
-import { ReactComponent as LeftArrow } from '../../assets/icon/left.svg';
-import { ReactComponent as RightArrow } from '../../assets/icon/right.svg';
-import NavBarItemList from './NavBarItemList';
-import NavBarLine from './NavBarLine';
+import { ReactComponent as LeftArrow } from 'assets/icon/left.svg';
+import { ReactComponent as RightArrow } from 'assets/icon/right.svg';
+import NavBarItemList from 'components/NavBar/NavBarItemList';
+import NavBarLine from 'components/NavBar/NavBarLine';
 
 const MaxItem = 4;
 const NavBar = ({ categories, selectedIndex, setSelectedIndex }) => {

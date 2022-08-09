@@ -1,10 +1,10 @@
 import React, { useEffect, useState, createContext } from 'react';
-import { requestGetCategories, requestGetFoods, requestGetOption } from '../api/api';
-import Home from '../pages/Home';
-import Main from '../pages/Main';
-import Order from '../pages/Order';
-import Payment from '../pages/Payment';
-import Receipt from '../pages/Receipt';
+import { requestGetCategories, requestGetFoods, requestGetOption } from 'api/api';
+import Home from 'pages/Home';
+import Main from 'pages/Main';
+import Order from 'pages/Order';
+import Payment from 'pages/Payment';
+import Receipt from 'pages/Receipt';
 
 function Router() {
   const [isTakeOut, setIsTakeOut] = useState();

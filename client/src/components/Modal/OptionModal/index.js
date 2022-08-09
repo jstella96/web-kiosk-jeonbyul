@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { convertOptionKeyToLabel } from '../../utils/option';
-import FoodCount from '../FoodCount';
+import { convertOptionKeyToLabel } from 'utils/option';
+import FoodCount from 'components/common/FoodCount';
 import './index.scss';
-import OptionSelect from './OptionSelect';
+import OptionSelect from 'components/Modal/OptionSelect';
 
 const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, putInCart }) => {
   const convertedTemperatureOptions = convertOptionKeyToLabel(temperatureOptions, 'temprature');

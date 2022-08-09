@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ReactComponent as Exit } from '../../assets/icon/exit.svg';
-import { ReactComponent as Search } from '../../assets/icon/search.svg';
+import { ReactComponent as Exit } from 'assets/icon/exit.svg';
+import { ReactComponent as Search } from 'assets/icon/search.svg';
 
 import './index.scss';
 

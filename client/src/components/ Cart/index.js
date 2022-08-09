@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FoodCount from '../FoodCount';
+import FoodCount from 'components/common/FoodCount';
 
 import './index.scss';
 
