@@ -3,11 +3,10 @@
 .food-count {
   padding: 0.6rem;
   width: 100%;
-  align-items: center;
 }
 .food-count-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   button {
     font-size: 1.2rem;

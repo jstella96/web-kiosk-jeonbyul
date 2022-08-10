@@ -1,5 +1,13 @@
+import OrderItem from 'components/OrderItem';
+import { useCartItems, useCartItemsDispatch } from 'store/CartItemsContext';
 import './index.scss';
 const Order = ({ changePage }) => {
+  const cartItemDispatch = useCartItemsDispatch();
+  const { cartItems, totalPrice } = useCartItems();
+  const changeCartItemCount = (nextCount, index) => {
+    cartItemDispatch({ type: 'changeCount', nextCount, index });
+  };
+
   return (
     <div className="order">
       <header className="order-header">
@@ -8,45 +16,13 @@ const Order = ({ changePage }) => {
           <span>주문 내역</span>을 확인해주세요
         </h1>
       </header>
-      <main>
-        <div className="order-item-list">
-          <div className="order-item">
-            <img
-              className="order-item-img"
-              src="https://www.ediya.com/files/menu/IMG_1649842079840.png"
-            />
-            <div className="order-item-detail">
-              <h2 className="order-item-name">카페라떼</h2>
-              <span className="order-item-price"> ₩ 3,000</span>
-              <div className="order-count-control">
-                <button> - </button>
-                <span> 5 </span>
-                <button> + </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="order-item-list">
-          <div className="order-item">
-            <img
-              className="order-item-img"
-              src="https://www.ediya.com/files/menu/IMG_1649842079840.png"
-            />
-            <div className="order-item-detail">
-              <h2 className="order-item-name">카페라떼</h2>
-              <span className="order-item-price"> ₩ 3,000</span>
-              <div className="order-count-control">
-                <button> - </button>
-                <span> 5 </span>
-                <button> + </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <main className="order-item-list">
+        {cartItems.map((item, index) => (
+          <OrderItem setCount={changeCartItemCount} orderItem={item} index={index} />
+        ))}
       </main>
-
       <button className="order-button" onClick={changePage('payment')}>
-        <span>₩ 7,000</span>
+        <span>₩ {totalPrice.toLocaleString()}</span>
         <span> 결제하기</span>
       </button>
     </div>

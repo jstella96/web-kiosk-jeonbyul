@@ -3,13 +3,13 @@ import FoodCount from 'components/common/FoodCount';
 
 import './index.scss';
 
-const CartOptionTag = ({ option }) => {
+const OptionTag = ({ option }) => {
   if (!option) return <></>;
   return (
-    <span className="cart-item-option">
+    <span className="option-tag">
       <span>{option.label}</span>
-      <span>+{option.additionalAmount}</span>
+      <span>+{option.additionalPrice}</span>
     </span>
   );
 };
-export default CartOptionTag;
+export default OptionTag;

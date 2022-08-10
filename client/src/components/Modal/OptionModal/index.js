@@ -17,8 +17,8 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food }) =
 
   const initOption = () => {
     setCount(1);
-    setSelectedSizeIdx(1);
-    setSelectedTemperatureIdx(1);
+    setSelectedSizeIdx(0);
+    setSelectedTemperatureIdx(0);
   };
 
   const closeModal = () => {

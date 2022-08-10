@@ -1,6 +1,6 @@
 import React from 'react';
 import FoodCount from 'components/common/FoodCount';
-import CartOptionTag from '../CartOptionTag';
+import OptionTag from 'components/common/OptionTag';
 import './index.scss';
 
 const CartItem = ({ cartItem, index, setCount, deleteCartItem }) => {
@@ -16,8 +16,8 @@ const CartItem = ({ cartItem, index, setCount, deleteCartItem }) => {
       ></img>
       <h2 className="cart-item-name">{food.name}</h2>
       <div className="cart-item-option-wrapper">
-        <CartOptionTag option={sizeOption}></CartOptionTag>
-        <CartOptionTag option={temperatureOption}></CartOptionTag>
+        <OptionTag option={sizeOption}></OptionTag>
+        <OptionTag option={temperatureOption}></OptionTag>
       </div>
       <div className="cart-item-footer">
         <FoodCount count={count} setCount={setCount} index={index} />

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { OptionContext } from 'store/OptionContext';
 import OptionModal from 'components/Modal/OptionModal';
-import FoodList from 'components/List/FoodList';
+import FoodList from 'components/FoodList/FoodList';
 import './index.scss';
 
 const FoodListContainer = ({ foodByCategory, selectedIndex }) => {

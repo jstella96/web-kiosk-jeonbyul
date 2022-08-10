@@ -5,6 +5,7 @@ import Main from 'pages/Main';
 import Order from 'pages/Order';
 import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
+import { useCartItemsDispatch } from 'store/CartItemsContext';
 
 function Router() {
   const [isTakeOut, setIsTakeOut] = useState();
@@ -12,7 +13,7 @@ function Router() {
   const [categories, setCategories] = useState([]);
   const [foodByCategory, setFoodByCategory] = useState([]);
   const [optionByFood, setOptionByFood] = useState({});
-
+  const cartItemDispatch = useCartItemsDispatch();
   const fetchAndSetCategories = async () => {
     const categoriesData = await requestGetCategories();
     setCategories(categoriesData);
@@ -37,6 +38,7 @@ function Router() {
   };
 
   if (page === 'home') {
+    cartItemDispatch({ type: 'clean' });
     return <Home onButtonClick={onButtonClick}></Home>;
   }
   if (page === 'main') {

@@ -15,7 +15,7 @@ export const convertOptionKeyToLabel = (options, type) => {
   const convertedOptions = optionKeys.reduce((acc, currKey) => {
     const label = LABEL_MAP[currKey];
     if (!label) return acc;
-    acc.push({ label: label, additionalAmount: options[currKey], key: currKey });
+    acc.push({ label: label, additionalPrice: options[currKey], key: currKey });
     return acc;
   }, []);
   return convertedOptions;

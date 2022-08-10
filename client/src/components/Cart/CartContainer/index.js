@@ -5,7 +5,7 @@ import CartItem from '../CartItem';
 import { useCartItems, useCartItemsDispatch } from 'store/CartItemsContext';
 
 const CartContainer = ({ changePage }) => {
-  const cartItems = useCartItems();
+  const { cartItems, totalPrice, totalCount } = useCartItems();
   const cartItemDispatch = useCartItemsDispatch();
 
   const deleteCartItem = (index) => {
@@ -20,18 +20,6 @@ const CartContainer = ({ changePage }) => {
     cartItemDispatch({ type: 'clean' });
   };
 
-  const totalCount = cartItems.reduce((acc, curr) => {
-    return (acc += curr?.count);
-  }, 0);
-
-  const totalAcount = cartItems.reduce((acc, curr) => {
-    const temperatureAdditionalAmount = curr?.temperatureOption?.additionalAmount || 0;
-    const sizeAdditionalAmount = curr?.sizeOption?.additionalAmount || 0;
-    const basePrice = curr?.food.basePrice || 0;
-    const total = basePrice + temperatureAdditionalAmount + sizeAdditionalAmount;
-    return acc + total * curr.count;
-  }, 0);
-
   return (
     <div className="cart">
       <div className="cart-main">
@@ -41,7 +29,7 @@ const CartContainer = ({ changePage }) => {
             <span className="item-count">{totalCount}</span>
           </div>
           <div className="cart-header-item">
-            <span>총 주문금액 ₩ {totalAcount.toLocaleString()}</span>
+            <span>총 주문금액 ₩ {totalPrice.toLocaleString()}</span>
           </div>
         </div>
         <div className="cart-item-wrapper">

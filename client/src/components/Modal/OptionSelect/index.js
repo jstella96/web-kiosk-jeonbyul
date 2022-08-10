@@ -14,7 +14,7 @@ const OptionSelect = ({ options = [], selectedIdx, setSelectedIdx }) => {
           className={selectedIdx === index ? 'food-option__selected' : ''}
         >
           <span>{option.label}</span>
-          <span>+{option.additionalAmount}</span>
+          <span>+{option.additionalPrice}</span>
         </button>
       ))}
     </div>

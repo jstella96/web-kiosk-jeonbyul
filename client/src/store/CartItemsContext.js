@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useMemo, useReducer } from 'react';
 
 const CartItemsContext = createContext(null);
 
@@ -7,8 +7,24 @@ const CartItemsDispatchContext = createContext(null);
 export function CartItemsProvider({ children }) {
   const [cartItems, dispatch] = useReducer(cartItemsReducer, initialCartItems);
 
+  const totalCount = useMemo(() => {
+    return cartItems.reduce((acc, curr) => {
+      return (acc += curr?.count);
+    }, 0);
+  }, [cartItems]);
+
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((acc, curr) => {
+      const temperatureAdditionalPrice = curr?.temperatureOption?.additionalPrice || 0;
+      const sizeAdditionalPrice = curr?.sizeOption?.additionalPrice || 0;
+      const basePrice = curr?.food.basePrice || 0;
+      const total = basePrice + temperatureAdditionalPrice + sizeAdditionalPrice;
+      return acc + total * curr.count;
+    }, 0);
+  }, [cartItems]);
+
   return (
-    <CartItemsContext.Provider value={cartItems}>
+    <CartItemsContext.Provider value={{ cartItems, totalCount, totalPrice }}>
       <CartItemsDispatchContext.Provider value={dispatch}>
         {children}
       </CartItemsDispatchContext.Provider>

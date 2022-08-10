@@ -17,42 +17,8 @@
   }
 }
 .order-item-list {
-  display: flex;
-  flex-direction: rows;
-  width: 100%;
+  overflow: scroll;
 }
-.order-item {
-  margin-bottom: 1rem;
-  padding: 1.4rem;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  border: 1px solid $color-primary;
-  img {
-    width: 5rem;
-    margin: auto;
-    object-fit: cover;
-  }
-  .order-item-detail {
-    width: 70%;
-    .order-item-name {
-      font-size: 1.4rem;
-      margin-bottom: 0.2rem;
-    }
-    .order-item-price {
-      font-size: 1rem;
-    }
-    .order-count-control {
-      button {
-        width: 30%;
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin: 0 1rem;
-      }
-    }
-  }
-}
-
 //footer
 .order-button {
   padding: 1rem;
