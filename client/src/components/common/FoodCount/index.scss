@@ -1,0 +1,26 @@
+@import 'assets/style/colors';
+
+.food-count {
+  padding: 0.6rem;
+  width: 100%;
+  align-items: center;
+}
+.food-count-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 1rem;
+    border: 1px solid $color-primary;
+    width: 1.4rem;
+    border-radius: 0.7rem;
+  }
+  button:hover {
+    background-color: $color-gray;
+  }
+  span {
+    font-size: 1.5rem;
+  }
+}

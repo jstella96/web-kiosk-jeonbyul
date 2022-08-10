@@ -12,8 +12,13 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, put
   const [selectedSizeIdx, setSelectedSizeIdx] = useState(0);
   const [count, setCount] = useState(1);
 
-  const closeModal = () => {
+  const initOption = () => {
     setCount(1);
+    setSelectedSizeIdx(1);
+    setSelectedTemperatureIdx(1);
+  };
+  const closeModal = () => {
+    initOption();
     close();
   };
   const submit = () => {
@@ -24,6 +29,7 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, put
       temperatureOption: convertedTemperatureOptions[selectedTemperatureIdx]
     };
     putInCart(newCartItem);
+    initOption();
     close();
   };
 
@@ -39,7 +45,8 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, put
             <h2 className="food-name">{food.name}</h2>
             <span className="food-price">{food.basePrice} 원</span>
           </div>
-          <div className="food-option-select">
+
+          <div className="food-option-container">
             <OptionSelect
               label={'온도'}
               options={convertedTemperatureOptions}

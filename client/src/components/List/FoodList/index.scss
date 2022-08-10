@@ -8,6 +8,24 @@
   flex-basis: 100%;
   flex-shrink: 0;
 }
+@media (max-width: 767px) {
+  .foodlist {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .foodlist {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .foodlist {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
 .foodlist::-webkit-scrollbar {
   display: none;
 }

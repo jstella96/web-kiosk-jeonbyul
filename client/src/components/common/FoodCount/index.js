@@ -7,8 +7,8 @@ const FoodCount = ({ count = 0, setCount, idx = 0 }) => {
   };
 
   return (
-    <div className="food-option-count">
-      <div className="count-control">
+    <div className="food-count">
+      <div className="food-count-wrapper">
         <button onClick={updateCount(count - 1)}> - </button>
         <span>{count}</span>
         <button onClick={updateCount(count + 1)}> + </button>

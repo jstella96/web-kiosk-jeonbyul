@@ -1,5 +1,23 @@
-.food-option__selected {
-  color: red;
+@import 'assets/style/colors';
+
+.food-option-wrapper {
+  display: flex;
+
+  justify-content: center;
+  button {
+    display: flex;
+    justify-content: space-between;
+    width: 7rem;
+    padding: 0.6em;
+    margin: 0.6rem;
+    border-radius: 0.8rem;
+    border: 1px solid $color-primary;
+    font-weight: 600;
+    span:nth-child(2) {
+    }
+  }
 }
-.food-option-container {
+
+.food-option__selected {
+  background-color: $color-gray;
 }

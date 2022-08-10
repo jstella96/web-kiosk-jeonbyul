@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import FoodCount from 'components/common/FoodCount';
 
 import './index.scss';
+import CartItem from '../CartItem';
 
-const Cart = ({ changePage, cartItem = [], deleteCartItem, updateCartItem }) => {
+const CartContainer = ({ changePage, cartItem = [], deleteCartItem, updateCartItem }) => {
   const totalCount = cartItem.reduce((acc, curr) => {
     return (acc += curr?.count);
   }, 0);
@@ -39,38 +40,13 @@ const Cart = ({ changePage, cartItem = [], deleteCartItem, updateCartItem }) => 
           </div>
         </div>
         <div className="cart-item-wrapper">
-          {cartItem.map(({ food, count, sizeOption, temperatureOption }, index) => (
-            <div className="cart-item" key={food.id}>
-              <button className="cart-item-remove" onClick={deleteCartItem(index)}>
-                x
-              </button>
-              <div className="cart-item-menu">
-                <img
-                  src="https://www.ediya.com/files/menu/IMG_1649842079840.png"
-                  className="cart-item-image"
-                ></img>
-                <div>
-                  <h2 className="cart-item-name">{food.name}</h2>
-                  {sizeOption ? (
-                    <span className="cart-item-option">
-                      <span>{sizeOption.label}</span>
-                      <span>+{sizeOption.additionalAmount}</span>
-                    </span>
-                  ) : (
-                    <></>
-                  )}
-                  {temperatureOption ? (
-                    <span className="cart-item-option">
-                      <span>{temperatureOption.label}</span>
-                      <span>+{temperatureOption.additionalAmount}</span>
-                    </span>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </div>
-              <FoodCount count={count} setCount={changeCount} idx={index} />
-            </div>
+          {cartItem.map((cartItem, index) => (
+            <CartItem
+              cartItem={cartItem}
+              deleteCartItem={deleteCartItem}
+              changeCount={changeCount}
+              index={index}
+            />
           ))}
         </div>
       </div>
@@ -81,4 +57,4 @@ const Cart = ({ changePage, cartItem = [], deleteCartItem, updateCartItem }) => 
     </div>
   );
 };
-export default Cart;
+export default CartContainer;

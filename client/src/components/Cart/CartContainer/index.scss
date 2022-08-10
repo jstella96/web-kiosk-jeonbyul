@@ -2,31 +2,14 @@
 
 .cart {
   height: 100%;
+  width: 100vw;
 }
 .cart-main {
   height: 70%;
-  padding: 1.2rem;
+  padding: 1rem;
   background-color: $color-gray;
 }
-.cart-item {
-  margin-right: 1rem;
-  display: flex;
-  flex-direction: column;
-  background-color: $color-white;
-  padding: 1.2rem;
-  margin-top: 0.8rem;
-  width: 14rem;
-  position: relative;
-  .cart-item-remove {
-    width: 1rem;
-    background-color: $color-primary;
-    border-radius: 0.5rem;
-    position: absolute;
-    right: -0.3rem;
-    top: -0.3rem;
-    color: $color-white;
-  }
-}
+
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -72,28 +55,12 @@
 
 .cart-item-wrapper {
   display: flex;
+  width: 100%;
+  /* 가로 스크롤 */
+  overflow: auto;
+  white-space: nowrap;
 }
 
-.cart-item-menu {
-  display: flex;
-  width: 100%;
-  img {
-    width: 4rem;
-  }
-  .cart-item-name {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.2rem;
-    margin-top: 0.3rem;
-    color: $color-black;
-  }
-  .cart-item-option {
-    display: flex;
-    flex-direction: column;
-    background-color: $color-blue-dark;
-    padding: 0.5rem;
-    border-radius: 10px;
-    font-weight: 800;
-    color: $color-black;
-  }
+.cart-item-wrapper::-webkit-scrollbar {
+  display: none;
 }
