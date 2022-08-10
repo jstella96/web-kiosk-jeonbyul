@@ -1,0 +1,13 @@
+@import 'assets/style/colors';
+.cart-item-option {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.4rem 0.4rem 0.4rem 0rem;
+  background-color: $color-blue-dark;
+  width: 5.6rem;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  font-weight: 800;
+  color: $color-black;
+}

@@ -1,11 +1,10 @@
 import React from 'react';
 import './index.scss';
 
-const OptionSelect = ({ label, options = [], selectedIdx, setSelectedIdx }) => {
+const OptionSelect = ({ options = [], selectedIdx, setSelectedIdx }) => {
   const updateIdx = (index) => () => {
     setSelectedIdx(index);
   };
-
   return (
     <div className="food-option-wrapper">
       {options.map((option, index) => (

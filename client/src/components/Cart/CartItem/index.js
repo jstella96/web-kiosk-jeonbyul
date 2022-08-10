@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FoodCount from 'components/common/FoodCount';
-
+import CartOptionTag from '../CartOptionTag';
 import './index.scss';
 
-const CartItem = ({ cartItem, deleteCartItem, changeCount, index }) => {
+const CartItem = ({ cartItem, index, setCount, deleteCartItem }) => {
   const { food, count, sizeOption, temperatureOption } = cartItem;
   return (
     <div className="cart-item-container" key={food.id}>
-      <button className="cart-item-remove" onClick={deleteCartItem(index)}>
+      <button className="cart-item-remove" onClick={() => deleteCartItem(index)}>
         x
       </button>
       <img
@@ -16,25 +16,11 @@ const CartItem = ({ cartItem, deleteCartItem, changeCount, index }) => {
       ></img>
       <h2 className="cart-item-name">{food.name}</h2>
       <div className="cart-item-option-wrapper">
-        {sizeOption ? (
-          <span className="cart-item-option">
-            <span>{sizeOption.label}</span>
-            <span>+{sizeOption.additionalAmount}</span>
-          </span>
-        ) : (
-          <></>
-        )}
-        {temperatureOption ? (
-          <span className="cart-item-option">
-            <span>{temperatureOption.label}</span>
-            <span>+{temperatureOption.additionalAmount}</span>
-          </span>
-        ) : (
-          <></>
-        )}
+        <CartOptionTag option={sizeOption}></CartOptionTag>
+        <CartOptionTag option={temperatureOption}></CartOptionTag>
       </div>
       <div className="cart-item-footer">
-        <FoodCount count={count} setCount={changeCount} idx={index} />
+        <FoodCount count={count} setCount={setCount} index={index} />
       </div>
     </div>
   );

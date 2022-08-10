@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import OptionContext from 'contexts/option';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { OptionContext } from 'store/OptionContext';
 import OptionModal from 'components/Modal/OptionModal';
 import FoodList from 'components/List/FoodList';
 import './index.scss';
 
-const FoodListContainer = ({ foodByCategory, selectedIndex, putCartItem }) => {
+const FoodListContainer = ({ foodByCategory, selectedIndex }) => {
+  const options = useContext(OptionContext);
   const foodListRef = useRef(null);
   const interval = foodListRef.current?.clientWidth;
   const [isOptionModalOpen, setIsOptionMadalOpen] = useState(false);
@@ -14,13 +15,11 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, putCartItem }) => {
     setIsOptionMadalOpen(true);
     setSelectedFood(food);
   };
+
   const closeOptionModal = () => {
     setIsOptionMadalOpen(false);
   };
 
-  const putInCart = (food) => {
-    putCartItem(food);
-  };
   return (
     <div className="foodlist-container">
       <div
@@ -36,18 +35,13 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, putCartItem }) => {
           />
         ))}
       </div>
-      <OptionContext.Consumer>
-        {(options) => (
-          <OptionModal
-            sizeOptions={options.size[selectedFood.id] || {}}
-            temperatureOptions={options.temperature[selectedFood.id] || {}}
-            isOpen={isOptionModalOpen}
-            close={closeOptionModal}
-            food={selectedFood}
-            putInCart={putInCart}
-          />
-        )}
-      </OptionContext.Consumer>
+      <OptionModal
+        sizeOptions={options.size[selectedFood.id] || {}}
+        temperatureOptions={options.temperature[selectedFood.id] || {}}
+        isOpen={isOptionModalOpen}
+        close={closeOptionModal}
+        food={selectedFood}
+      />
     </div>
   );
 };

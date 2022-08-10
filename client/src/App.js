@@ -3,7 +3,8 @@ import './App.scss';
 
 import Router from './Router/Router.js';
 import { requestGetOption } from './api/api';
-import OptionContext from './contexts/option';
+import OptionStore from 'store/OptionContext';
+import { CartItemsProvider } from 'store/CartItemsContext';
 
 function App() {
   const [optionByFood, setOptionByFood] = useState({});
@@ -17,11 +18,12 @@ function App() {
 
   return (
     <div className="App">
-      <OptionContext.Provider value={optionByFood}>
-        <Router></Router>
-      </OptionContext.Provider>
+      <CartItemsProvider>
+        <OptionStore>
+          <Router></Router>
+        </OptionStore>
+      </CartItemsProvider>
     </div>
   );
 }
-
 export default App;

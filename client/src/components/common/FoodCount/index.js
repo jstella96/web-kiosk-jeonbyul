@@ -1,9 +1,9 @@
 import './index.scss';
 
-const FoodCount = ({ count = 0, setCount, idx = 0 }) => {
+const FoodCount = ({ count = 0, setCount, index = 0 }) => {
   const updateCount = (newCount) => () => {
     if (newCount < 1) return;
-    setCount(newCount, idx);
+    setCount(newCount, index);
   };
 
   return (

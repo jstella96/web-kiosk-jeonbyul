@@ -3,8 +3,11 @@ import { convertOptionKeyToLabel } from 'utils/option';
 import FoodCount from 'components/common/FoodCount';
 import './index.scss';
 import OptionSelect from 'components/Modal/OptionSelect';
+import { useCartItems, useCartItemsDispatch } from 'store/CartItemsContext';
 
-const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, putInCart }) => {
+const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food }) => {
+  const cartItemsDispatch = useCartItemsDispatch();
+
   const convertedTemperatureOptions = convertOptionKeyToLabel(temperatureOptions, 'temprature');
   const convertedSizeOptions = convertOptionKeyToLabel(sizeOptions, 'size');
 
@@ -17,10 +20,12 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, put
     setSelectedSizeIdx(1);
     setSelectedTemperatureIdx(1);
   };
+
   const closeModal = () => {
     initOption();
     close();
   };
+
   const submit = () => {
     const newCartItem = {
       food,
@@ -28,7 +33,10 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, put
       sizeOption: convertedSizeOptions[selectedSizeIdx],
       temperatureOption: convertedTemperatureOptions[selectedTemperatureIdx]
     };
-    putInCart(newCartItem);
+    cartItemsDispatch({
+      type: 'add',
+      cartItem: newCartItem
+    });
     initOption();
     close();
   };
@@ -48,13 +56,11 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food, put
 
           <div className="food-option-container">
             <OptionSelect
-              label={'온도'}
               options={convertedTemperatureOptions}
               selectedIdx={selectedTemperatureIdx}
               setSelectedIdx={setSelectedTemperatureIdx}
             ></OptionSelect>
             <OptionSelect
-              label={'사이즈'}
               options={convertedSizeOptions}
               selectedIdx={selectedSizeIdx}
               setSelectedIdx={setSelectedSizeIdx}
