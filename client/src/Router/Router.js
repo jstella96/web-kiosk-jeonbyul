@@ -9,6 +9,7 @@ import { useCartItemsDispatch } from 'store/CartItemsContext';
 
 function Router() {
   const [isTakeOut, setIsTakeOut] = useState();
+  const [paymentMethod, setPaymentMethod] = useState();
   const [page, setPage] = useState('home');
   const [categories, setCategories] = useState([]);
   const [foodByCategory, setFoodByCategory] = useState([]);
