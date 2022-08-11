@@ -7,6 +7,7 @@ import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
 import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
 
+
 function Router({ categories, foodByCategory }) {
   const [orderNum, setOrderNum] = useState();
   const [page, setPage] = useState('home');

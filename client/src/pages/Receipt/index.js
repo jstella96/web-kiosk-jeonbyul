@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import './index.scss';
+
 const Receipt = ({ changePage, orderNum }) => {
   console.log(orderNum);
+
   const countRef = useRef(null);
 
   const printCount = () => {
@@ -10,7 +12,9 @@ const Receipt = ({ changePage, orderNum }) => {
       countRef.current.innerHTML = current;
       if (current === 0) {
         clearInterval(timerId);
+
         changePage('home')();
+
         return;
       }
       current--;
@@ -20,7 +24,9 @@ const Receipt = ({ changePage, orderNum }) => {
   };
   useEffect(() => {
     printCount();
+
   }, []);
+
 
   return (
     <div className="receipt">
