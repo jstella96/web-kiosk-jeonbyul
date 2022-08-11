@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3010';
+const baseURL = process.env.REACT_APP_BACK_BASE_URL;
 
 export const requestGetCategories = async () => {
   const response = await axios.get(`${baseURL}/categories`);
