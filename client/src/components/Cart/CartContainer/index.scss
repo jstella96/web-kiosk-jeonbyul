@@ -5,7 +5,7 @@
   width: 100vw;
 }
 .cart-main {
-  height: 70%;
+  height: 80%;
   padding: 1rem;
   background-color: $color-gray;
 }
@@ -14,36 +14,25 @@
   display: flex;
   justify-content: space-between;
   color: $color-black;
-  font-weight: 600;
-  font-size: 1.3rem;
+  font-weight: 700;
+  font-size: 1.2rem;
   .item-count {
     background-color: $color-primary;
     color: $color-white;
-    padding: 0 1.5rem;
-    border-radius: 1rem;
-  }
-}
-
-.cart-item-control {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  button {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0 1rem;
+    padding: 0.1rem 1.2rem;
+    border-radius: 0.2rem;
+    font-size: 1rem;
   }
 }
 
 .cart-button {
-  height: 30%;
   display: flex;
+  height: 20%;
   button {
-    padding: 1.2rem;
     flex: 1 1 40%;
     color: $color-white;
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 700;
   }
   button:nth-child(1) {
     background-color: $color-black-light;

@@ -8,7 +8,7 @@ const FoodList = ({ foods, openOptionModal }, ref) => {
         <div key={food.id} className="foodlist-item" onClick={openOptionModal(food)}>
           <img src={food.imgUrl}></img>
           <h2 className="foodlist-item-name">{food.name}</h2>
-          <span className="foodlist-item-price">{food.basePrice}원</span>
+          <span className="foodlist-item-price">{(+food.basePrice).toLocaleString()}원</span>
         </div>
       ))}
     </div>

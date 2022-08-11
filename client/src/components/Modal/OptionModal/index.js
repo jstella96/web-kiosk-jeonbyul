@@ -46,10 +46,7 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food }) =
       <section>
         <main>
           <div className="food-detail">
-            <img
-              className="food-img"
-              src="https://www.ediya.com/files/menu/IMG_1649842079840.png"
-            />
+            <img className="food-img" src={food.imgUrl} />
             <h2 className="food-name">{food.name}</h2>
             <span className="food-price">{food.basePrice} 원</span>
           </div>

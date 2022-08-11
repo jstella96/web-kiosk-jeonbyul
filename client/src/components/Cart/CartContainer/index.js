@@ -35,7 +35,7 @@ const CartContainer = ({ changePage }) => {
             <span className="item-count">{totalCount}</span>
           </div>
           <div className="cart-header-item">
-            <span>총 주문금액 ₩ {totalPrice.toLocaleString()}</span>
+            <span>총 주문금액 ₩ {totalPrice}</span>
           </div>
         </div>
         <div className="cart-item-wrapper">

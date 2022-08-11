@@ -9,7 +9,7 @@ const Receipt = ({ changePage, orderNum, payInfo }) => {
   }, []);
 
   const displayCount = () => {
-    let currentCount = 5;
+    let currentCount = 10;
 
     const print = () => {
       if (countRef.current) countRef.current.innerText = currentCount;
@@ -31,21 +31,25 @@ const Receipt = ({ changePage, orderNum, payInfo }) => {
   return (
     <div className="receipt">
       <main className="receipt_content">
-        <div className="receipt_icon">큰 아이콘</div>
-        <h2 className="receipt_ordernum">
-          주문번호 <span>{orderNum}</span>
-        </h2>
-        <span>주문이 완료되었습니다</span>
-        <div>결제 수단 : {payInfo.method === 'cash' ? '현금' : '카드'}</div>
-        <div>결제 금액 : {payInfo.totalPrice}</div>
-        {payInfo.method === 'cash' ? (
-          <div>
-            <span>투입 금액 : {payInfo.input}</span>
-            <span>거스름돈 : {payInfo.input - payInfo.totalPrice}</span>{' '}
+        <div className="receipt_icon">
+          <img src="https://cdn.icon-icons.com/icons2/2493/PNG/512/coffee_bar_icon_150224.png" />
+        </div>
+
+        <div className="receipt-detail">
+          <div className="receipt_ordernum">
+            주문 번호 : <span>{orderNum}</span>
           </div>
-        ) : (
-          <></>
-        )}
+          <div>결제 수단 : {payInfo.method === 'cash' ? '현금' : '카드'}</div>
+          <div>결제 금액 : {payInfo.totalPrice.toLocaleString()}원</div>
+          {payInfo.method === 'cash' ? (
+            <>
+              <div>투입 금액 : {payInfo.input}</div>
+              <div>거스름돈 : {payInfo.input - payInfo.totalPrice}</div>{' '}
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
       </main>
       <footer className="receipt_footer">
         <span className="receipt_footer-text">

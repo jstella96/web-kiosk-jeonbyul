@@ -31,7 +31,6 @@
 }
 .foodlist-item {
   margin: 1rem;
-  height: 20vh;
   color: $color-primary;
   font-weight: 700;
   display: flex;
@@ -42,14 +41,15 @@
     object-fit: cover;
   }
   &-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: block;
     text-align: center;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.6rem;
   }
   &-price {
     display: block;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: center;
+    font-weight: 400;
   }
 }

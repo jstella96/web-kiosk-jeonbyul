@@ -13,7 +13,7 @@
   width: 90%;
   max-width: 40rem;
   margin: 0 auto;
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
   background-color: $color-white;
   display: grid;
   grid-template-rows: 8fr 1fr;
@@ -38,10 +38,12 @@ main {
   .food-name {
     font-size: 1.8rem;
     font-weight: 600;
+    margin-bottom: 0.4rem;
   }
   .food-price {
     font-size: 1.1rem;
     font-weight: 600;
+    margin-bottom: 0.6rem;
   }
 }
 .option-modal-footer {

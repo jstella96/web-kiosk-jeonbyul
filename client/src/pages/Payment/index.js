@@ -50,7 +50,7 @@ const PaymentMethod = ({ changePage, setOrderNum, setPayInfo }) => {
   return (
     <div className="payment">
       <header className="payment_header">
-        <button onClick={changePage('main')}>뒤로가기 아이콘</button>
+        <button onClick={changePage('main')}>뒤로가기</button>
         <h1>
           <span>결제 방법</span>을 확인해주세요
         </h1>

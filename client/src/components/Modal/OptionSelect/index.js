@@ -7,16 +7,20 @@ const OptionSelect = ({ options = [], selectedIdx, setSelectedIdx }) => {
   };
   return (
     <div className="food-option-wrapper">
-      {options.map((option, index) => (
-        <button
-          onClick={updateIdx(index)}
-          key={index}
-          className={selectedIdx === index ? 'food-option__selected' : ''}
-        >
-          <span>{option.label}</span>
-          <span>+{option.additionalPrice}</span>
-        </button>
-      ))}
+      {options.map((option, index) =>
+        option.additionalPrice ? (
+          <button
+            onClick={updateIdx(index)}
+            key={index}
+            className={selectedIdx === index ? 'food-option__selected' : ''}
+          >
+            <span>{option.label}</span>
+            <span>+{+option.additionalPrice.toLocaleString()}원</span>
+          </button>
+        ) : (
+          <></>
+        )
+      )}
     </div>
   );
 };

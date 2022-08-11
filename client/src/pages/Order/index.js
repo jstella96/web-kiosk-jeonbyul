@@ -14,7 +14,7 @@ const Order = ({ changePage }) => {
   return (
     <div className="order">
       <header className="order-header">
-        <button onClick={changePage('main')}>뒤로가기 아이콘</button>
+        <button onClick={changePage('main')}>뒤로가기</button>
         <h1>
           <span>주문 내역</span>을 확인해주세요
         </h1>

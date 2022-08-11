@@ -24,12 +24,27 @@ main {
   flex-direction: center;
   align-items: center;
 }
-footer {
+.cash-footer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-color: $color-black;
   color: $color-white;
+  padding-right: 1rem;
   div {
     margin-left: 1rem;
   }
 }
 .cash-select-button {
   display: flex;
+  button {
+    border: 1px solid $color-black;
+    border-radius: 0.2rem;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  button:hover {
+    background-color: $color-gray-light;
+  }
 }

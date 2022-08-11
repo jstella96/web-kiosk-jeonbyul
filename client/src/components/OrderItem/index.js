@@ -15,20 +15,24 @@ const OrderItem = ({ orderItem, index, setCount }) => {
 
   return (
     <div className="order-item">
-      <img
-        className="order-item-img"
-        src="https://www.ediya.com/files/menu/IMG_1649842079840.png"
-      />
+      <img className="order-item-img" src={food.imgUrl} />
       <div className="order-item-detail">
-        <h2 className="order-item-name">{food.name}</h2>
-        <span className="order-item-price"> ₩ {itemTotalPrice}</span>
+        <div className="order-item-top">
+          <h2 className="order-item-name">
+            {food.name}
+            <span className="order-item-price"> ₩ {itemTotalPrice.toLocaleString()}</span>
+          </h2>
 
-        <div className="opder-item-option">
-          <OptionTag option={temperatureOption} />
-          <OptionTag option={sizeOption} />
+          <div className="opder-item-option">
+            <OptionTag option={temperatureOption} />
+            <OptionTag option={sizeOption} />
+          </div>
         </div>
-
-        <FoodCount count={count} setCount={setCount} index={index} />
+        <div className="order-item-bottom">
+          <div className="order-food-count">
+            <FoodCount count={count} setCount={setCount} index={index} />
+          </div>
+        </div>
       </div>
     </div>
   );

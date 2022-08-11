@@ -3,18 +3,18 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   .navbar-item-container {
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .right-arrow {
-    padding-right: 1rem;
+    padding-right: 0.8rem;
     text-align: right;
   }
   .left-arrow {
-    padding-left: 1rem;
+    padding-left: 0.8rem;
   }
   .arrow-button {
     stroke: $color-gray;

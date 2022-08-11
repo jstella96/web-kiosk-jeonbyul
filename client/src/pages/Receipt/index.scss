@@ -1,11 +1,23 @@
 @import 'assets/style/colors';
-.receipt {
-  margin: 5rem 3rem;
+
+.receipt-detail {
+  display: flex;
+  flex-direction: column;
+  div {
+    margin: 0.4rem;
+    font-weight: 700;
+  }
 }
 .receipt_icon {
-  padding: 10rem;
-  background-color: $color-gray;
   margin-bottom: 3rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+
+  img {
+    margin: auto;
+    width: 80%;
+  }
 }
 .receipt_content {
   font-size: 1.2rem;
