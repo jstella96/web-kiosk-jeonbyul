@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './index.scss';
 
-const CashModal = ({ isOpen, totalPrice = 10000, order }) => {
+const CashModal = ({ isOpen, totalPrice, order }) => {
   const [sum, setSum] = useState(0);
   if (sum >= +totalPrice) {
     order('cash', sum);

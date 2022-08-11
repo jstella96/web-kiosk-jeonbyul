@@ -21,6 +21,11 @@ const CartContainer = ({ changePage }) => {
     cartItemsDispatch({ type: 'clean' });
   };
 
+  const tryOrder = () => {
+    if (cartItems.length === 0) return;
+    changePage('order')();
+  };
+
   return (
     <div className="cart">
       <div className="cart-main">
@@ -47,7 +52,7 @@ const CartContainer = ({ changePage }) => {
       </div>
       <div className="cart-button">
         <button onClick={cleanCartItems}>전체취소</button>
-        <button onClick={changePage('order')}>주문하기</button>
+        <button onClick={tryOrder}>주문하기</button>
       </div>
     </div>
   );

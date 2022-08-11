@@ -4,7 +4,7 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  overflow: scroll;
+  overflow: hidden;
   flex-basis: 100%;
   flex-shrink: 0;
 }

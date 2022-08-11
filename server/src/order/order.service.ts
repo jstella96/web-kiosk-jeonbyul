@@ -56,6 +56,7 @@ export class OrderService {
       );
 
       await queryRunner.commitTransaction();
+      await queryRunner.release();
       return nextOrderNum;
     } catch (err) {
       await queryRunner.rollbackTransaction();
