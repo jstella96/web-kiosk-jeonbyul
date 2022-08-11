@@ -1,3 +1,4 @@
+import CashModal from 'components/Modal/CashModal';
 import OrderItem from 'components/OrderItem';
 import { useCartItems } from 'hooks/useCartItems';
 import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';

@@ -1,0 +1,35 @@
+@import 'assets/style/colors';
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal > section {
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: $color-white;
+}
+.modal.openModal {
+  display: flex;
+  align-items: center;
+}
+main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+}
+footer {
+  color: $color-white;
+  div {
+    margin-left: 1rem;
+  }
+}
+.cash-select-button {
+  display: flex;
+}

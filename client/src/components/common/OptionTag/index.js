@@ -4,7 +4,7 @@ import FoodCount from 'components/common/FoodCount';
 import './index.scss';
 
 const OptionTag = ({ option }) => {
-  if (!option) return <></>;
+  if (!option || !option.additionalPrice) return <></>;
   return (
     <span className="option-tag">
       <span>{option.label}</span>
