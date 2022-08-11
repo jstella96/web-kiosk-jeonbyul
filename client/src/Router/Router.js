@@ -7,11 +7,10 @@ import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
 import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
 
-
 function Router({ categories, foodByCategory }) {
   const [orderNum, setOrderNum] = useState();
   const [page, setPage] = useState('home');
-
+  const [payInfo, setPayInfo] = useState({ method: '', input: 0, totalPrice: 0 });
   const { cartItemsDispatch } = useCartItemsDispatch();
 
   const changePage = (page) => () => {
@@ -20,6 +19,7 @@ function Router({ categories, foodByCategory }) {
 
   if (page === 'home') {
     cartItemsDispatch({ type: 'clean' });
+
     return <Home changePage={changePage}></Home>;
   }
   if (page === 'main') {
@@ -31,10 +31,10 @@ function Router({ categories, foodByCategory }) {
     return <Order changePage={changePage} />;
   }
   if (page === 'payment') {
-    return <Payment changePage={changePage} setOrderNum={setOrderNum} />;
+    return <Payment changePage={changePage} setOrderNum={setOrderNum} setPayInfo={setPayInfo} />;
   }
   if (page === 'receipt') {
-    return <Receipt changePage={changePage} orderNum={orderNum} />;
+    return <Receipt payInfo={payInfo} changePage={changePage} orderNum={orderNum} />;
   }
 }
 

@@ -4,8 +4,7 @@ import OptionModal from 'components/Modal/OptionModal';
 import FoodList from 'components/FoodList/FoodList';
 import './index.scss';
 
-
-const FoodListContainer = ({ foodByCategory, selectedIndex }) => {
+const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) => {
   const options = useOptions();
   const foodListRef = useRef(null);
   const foodListWrapperRef = useRef(null);
