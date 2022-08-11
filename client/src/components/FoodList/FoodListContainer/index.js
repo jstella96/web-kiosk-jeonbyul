@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { OptionContext } from 'store/OptionContext';
+import OptionContext, { useOptions } from 'context/optionContext';
 import OptionModal from 'components/Modal/OptionModal';
 import FoodList from 'components/FoodList/FoodList';
 import './index.scss';
 
 const FoodListContainer = ({ foodByCategory, selectedIndex }) => {
-  const options = useContext(OptionContext);
+  const options = useOptions();
   const foodListRef = useRef(null);
   const interval = foodListRef.current?.clientWidth;
   const [isOptionModalOpen, setIsOptionMadalOpen] = useState(false);

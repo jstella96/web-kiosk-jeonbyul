@@ -5,61 +5,35 @@ import Main from 'pages/Main';
 import Order from 'pages/Order';
 import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
-import { useCartItemsDispatch } from 'store/CartItemsContext';
+import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
 
-function Router() {
-  const [isTakeOut, setIsTakeOut] = useState();
-  const [paymentMethod, setPaymentMethod] = useState();
+function Router({ categories, foodByCategory }) {
+  const [orderNum, setOrderNum] = useState();
   const [page, setPage] = useState('home');
-  const [categories, setCategories] = useState([]);
-  const [foodByCategory, setFoodByCategory] = useState([]);
-  const [optionByFood, setOptionByFood] = useState({});
-  const cartItemDispatch = useCartItemsDispatch();
-  const fetchAndSetCategories = async () => {
-    const categoriesData = await requestGetCategories();
-    setCategories(categoriesData);
-  };
-  const fetchAndSetFoods = async () => {
-    const foodByCategory = await requestGetFoods();
-    setFoodByCategory(foodByCategory);
-  };
 
-  useEffect(() => {
-    fetchAndSetCategories();
-    fetchAndSetFoods();
-  }, []);
-
-  const onButtonClick = (isTakeOut) => () => {
-    setIsTakeOut(isTakeOut);
-    setPage('main');
-  };
+  const { cartItemsDispatch } = useCartItemsDispatch();
 
   const changePage = (page) => () => {
     setPage(page);
   };
 
   if (page === 'home') {
-    cartItemDispatch({ type: 'clean' });
-    return <Home onButtonClick={onButtonClick}></Home>;
+    cartItemsDispatch({ type: 'clean' });
+    return <Home changePage={changePage}></Home>;
   }
   if (page === 'main') {
     return (
-      <Main
-        optionByFood={optionByFood}
-        changePage={changePage}
-        categories={categories}
-        foodByCategory={foodByCategory}
-      ></Main>
+      <Main changePage={changePage} categories={categories} foodByCategory={foodByCategory}></Main>
     );
   }
   if (page === 'order') {
     return <Order changePage={changePage} />;
   }
   if (page === 'payment') {
-    return <Payment changePage={changePage} />;
+    return <Payment changePage={changePage} setOrderNum={setOrderNum} />;
   }
   if (page === 'receipt') {
-    return <Receipt changePage={changePage} />;
+    return <Receipt changePage={changePage} orderNum={orderNum} />;
   }
 }
 

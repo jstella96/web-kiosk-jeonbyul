@@ -16,7 +16,7 @@ export class OptionsService {
         await this.temperatureOptionsRepository.getAllTemperatureOption();
       option['temperature'] = temperature.reduce((acc, cur) => {
         const { foodId, cool, hot } = cur;
-        acc[foodId] = { cool, hot };
+        acc[foodId] = { c: cool, h: hot };
         return acc;
       }, {});
     }

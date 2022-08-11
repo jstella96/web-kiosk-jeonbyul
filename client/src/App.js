@@ -1,28 +1,48 @@
-import React, { useEffect, useState } from 'react';
 import './App.scss';
-
 import Router from './Router/Router.js';
-import { requestGetOption } from './api/api';
-import OptionStore from 'store/OptionContext';
-import { CartItemsProvider } from 'store/CartItemsContext';
+import { OptionContext, OptionProvider } from 'context/optionContext';
+import { useCartItemState } from './hooks/useCartItemState';
+import { CartItemsContext } from 'hooks/useCartItems';
+import { CartItemsDispatchContext } from 'hooks/useCartItemsDispatch';
+import { useEffect, useState } from 'react';
+import { requestGetCategories, requestGetFoods, requestGetOption } from 'api/api';
 
 function App() {
-  const [optionByFood, setOptionByFood] = useState({});
-  const fetchAndSetOptionData = async () => {
-    const optionByFood = await requestGetOption();
-    setOptionByFood(optionByFood);
-  };
+  const { cartItems, cartItemsDispatch, totalCount, totalPrice } = useCartItemState();
+  const [options, setOptions] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [foodByCategory, setFoodByCategory] = useState([]);
+
   useEffect(() => {
-    fetchAndSetOptionData();
+    fetchAndSetOPtions();
+    fetchAndSetCategories();
+    fetchAndSetFoods();
   }, []);
+
+  const fetchAndSetOPtions = async () => {
+    const options = await requestGetOption();
+    setOptions(options);
+  };
+
+  const fetchAndSetCategories = async () => {
+    const categoriesData = await requestGetCategories();
+    setCategories(categoriesData);
+  };
+
+  const fetchAndSetFoods = async () => {
+    const foodByCategory = await requestGetFoods();
+    setFoodByCategory(foodByCategory);
+  };
 
   return (
     <div className="App">
-      <CartItemsProvider>
-        <OptionStore>
-          <Router></Router>
-        </OptionStore>
-      </CartItemsProvider>
+      <CartItemsContext.Provider value={{ cartItems, totalCount, totalPrice }}>
+        <CartItemsDispatchContext.Provider value={{ cartItemsDispatch }}>
+          <OptionContext.Provider value={options}>
+            <Router categories={categories} foodByCategory={foodByCategory}></Router>
+          </OptionContext.Provider>
+        </CartItemsDispatchContext.Provider>
+      </CartItemsContext.Provider>
     </div>
   );
 }

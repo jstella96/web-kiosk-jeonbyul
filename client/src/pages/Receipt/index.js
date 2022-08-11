@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import './index.scss';
-const Receipt = ({ changePage }) => {
+const Receipt = ({ changePage, orderNum }) => {
+  console.log(orderNum);
   const countRef = useRef(null);
 
   const printCount = () => {
@@ -9,7 +10,7 @@ const Receipt = ({ changePage }) => {
       countRef.current.innerHTML = current;
       if (current === 0) {
         clearInterval(timerId);
-        changePage('home')(); //??
+        changePage('home')();
         return;
       }
       current--;
@@ -19,14 +20,14 @@ const Receipt = ({ changePage }) => {
   };
   useEffect(() => {
     printCount();
-  });
+  }, []);
 
   return (
     <div className="receipt">
       <main className="receipt_content">
         <div className="receipt_icon">큰 아이콘</div>
         <h2 className="receipt_ordernum">
-          주문번호 <span>6933</span>
+          주문번호 <span>{orderNum}</span>
         </h2>
         <span>주문이 완료되었습니다</span>
       </main>

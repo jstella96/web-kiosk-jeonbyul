@@ -2,22 +2,23 @@ import React from 'react';
 
 import './index.scss';
 import CartItem from '../CartItem';
-import { useCartItems, useCartItemsDispatch } from 'store/CartItemsContext';
+import { useCartItems } from 'hooks/useCartItems';
+import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
 
 const CartContainer = ({ changePage }) => {
   const { cartItems, totalPrice, totalCount } = useCartItems();
-  const cartItemDispatch = useCartItemsDispatch();
+  const { cartItemsDispatch } = useCartItemsDispatch();
 
   const deleteCartItem = (index) => {
-    cartItemDispatch({ type: 'delete', index });
+    cartItemsDispatch({ type: 'delete', index });
   };
 
   const changeCartItemCount = (nextCount, index) => {
-    cartItemDispatch({ type: 'changeCount', nextCount, index });
+    cartItemsDispatch({ type: 'changeCount', nextCount, index });
   };
 
   const cleanCartItems = () => {
-    cartItemDispatch({ type: 'clean' });
+    cartItemsDispatch({ type: 'clean' });
   };
 
   return (

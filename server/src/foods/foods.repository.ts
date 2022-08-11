@@ -13,6 +13,13 @@ export class FoodsRepository {
   getAllFoods(): Promise<Food[]> {
     return this.foodRepository.find({});
   }
+
+  getFoodsByCategory(categoryId): Promise<Food[]> {
+    return this.foodRepository.find({
+      where: { categoryId },
+    });
+  }
+
   getFood(id): Promise<Food> {
     return this.foodRepository.findOne({
       where: { id },

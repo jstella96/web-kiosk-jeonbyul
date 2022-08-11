@@ -54,13 +54,15 @@ export class OrderService {
           );
         }),
       );
+
       await queryRunner.commitTransaction();
-    } catch {
+      return nextOrderNum;
+    } catch (err) {
       await queryRunner.rollbackTransaction();
-    } finally {
       await queryRunner.release();
+      console.log(err);
+      return 0;
     }
-    return '';
   }
 
   calculateTotalPrice(foods) {

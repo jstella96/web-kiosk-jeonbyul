@@ -1,11 +1,13 @@
 import OrderItem from 'components/OrderItem';
-import { useCartItems, useCartItemsDispatch } from 'store/CartItemsContext';
+import { useCartItems } from 'hooks/useCartItems';
+import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
+
 import './index.scss';
 const Order = ({ changePage }) => {
-  const cartItemDispatch = useCartItemsDispatch();
+  const { cartItemsDispatch } = useCartItemsDispatch();
   const { cartItems, totalPrice } = useCartItems();
   const changeCartItemCount = (nextCount, index) => {
-    cartItemDispatch({ type: 'changeCount', nextCount, index });
+    cartItemsDispatch({ type: 'changeCount', nextCount, index });
   };
 
   return (
@@ -18,7 +20,7 @@ const Order = ({ changePage }) => {
       </header>
       <main className="order-item-list">
         {cartItems.map((item, index) => (
-          <OrderItem setCount={changeCartItemCount} orderItem={item} index={index} />
+          <OrderItem key={index} setCount={changeCartItemCount} orderItem={item} index={index} />
         ))}
       </main>
       <button className="order-button" onClick={changePage('payment')}>

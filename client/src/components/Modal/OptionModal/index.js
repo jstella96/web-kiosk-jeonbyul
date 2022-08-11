@@ -3,10 +3,10 @@ import { convertOptionKeyToLabel } from 'utils/option';
 import FoodCount from 'components/common/FoodCount';
 import './index.scss';
 import OptionSelect from 'components/Modal/OptionSelect';
-import { useCartItems, useCartItemsDispatch } from 'store/CartItemsContext';
+import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
 
 const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food }) => {
-  const cartItemsDispatch = useCartItemsDispatch();
+  const { cartItemsDispatch } = useCartItemsDispatch();
 
   const convertedTemperatureOptions = convertOptionKeyToLabel(temperatureOptions, 'temprature');
   const convertedSizeOptions = convertOptionKeyToLabel(sizeOptions, 'size');

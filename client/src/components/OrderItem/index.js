@@ -7,7 +7,8 @@ const OrderItem = ({ orderItem, index, setCount }) => {
   const calculateTotalPrice = () => {
     const temperatureAdditionalPrice = temperatureOption?.additionalPrice || 0;
     const sizeAdditionalPrice = sizeOption?.additionalPrice || 0;
-    const totalPrice = (food.basePrice + sizeAdditionalPrice + temperatureAdditionalPrice) * count;
+    const totalPrice =
+      (+food.basePrice + +sizeAdditionalPrice + +temperatureAdditionalPrice) * +count;
     return totalPrice;
   };
   const itemTotalPrice = calculateTotalPrice();
