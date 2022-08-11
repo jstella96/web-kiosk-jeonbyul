@@ -1,10 +1,12 @@
 import { requestPostOrder } from 'api/api';
+import Loding from 'components/common/Loding';
 import { useCartItems } from 'hooks/useCartItems';
+import { useState } from 'react';
 import './index.scss';
 const PaymentMethod = ({ changePage, setOrderNum }) => {
   const { cartItems } = useCartItems();
+  const [isLoding, setIsLoding] = useState(false);
   const order = async (method) => {
-    console.log(method);
     const foods = cartItems.map((item) => {
       const { count, food, sizeOption, temperatureOption } = item;
       const orderFood = {
@@ -27,7 +29,15 @@ const PaymentMethod = ({ changePage, setOrderNum }) => {
     };
     const orderNum = await requestPostOrder(result);
     setOrderNum(orderNum);
-    changePage('receipt')();
+    startLoding();
+  };
+
+  const startLoding = () => {
+    setIsLoding(true);
+    setTimeout(() => {
+      setIsLoding(false);
+      changePage('receipt')();
+    }, 3000);
   };
 
   return (
@@ -48,6 +58,7 @@ const PaymentMethod = ({ changePage, setOrderNum }) => {
           </button>
         </div>
       </main>
+      <Loding isLoding={isLoding} />
     </div>
   );
 };
