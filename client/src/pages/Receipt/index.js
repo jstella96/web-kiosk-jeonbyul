@@ -43,8 +43,8 @@ const Receipt = ({ changePage, orderNum, payInfo }) => {
           <div>결제 금액 : {payInfo.totalPrice.toLocaleString()}원</div>
           {payInfo.method === 'cash' ? (
             <>
-              <div>투입 금액 : {payInfo.input}</div>
-              <div>거스름돈 : {payInfo.input - payInfo.totalPrice}</div>{' '}
+              <div>투입 금액 : {payInfo.input.toLocaleString()}</div>
+              <div>거스름돈 : {(payInfo.input - payInfo.totalPrice).toLocaleString()}</div>{' '}
             </>
           ) : (
             <></>
