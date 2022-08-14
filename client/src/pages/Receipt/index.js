@@ -1,31 +1,31 @@
 import { useEffect, useRef } from 'react';
 import './index.scss';
 
+const START_COUNT_NUMBER = 10;
+
 const Receipt = ({ changePage, orderNum, payInfo }) => {
   const countRef = useRef(null);
 
   useEffect(() => {
-    displayCount();
+    const timerId = startCountDown();
+    return () => {
+      clearInterval(timerId);
+    };
   }, []);
 
-  const displayCount = () => {
-    let currentCount = 10;
-
-    const print = () => {
-      if (countRef.current) countRef.current.innerText = currentCount;
-      currentCount--;
-    };
+  const startCountDown = () => {
+    let countNumber = START_COUNT_NUMBER;
 
     const countDown = () => {
-      if (currentCount === 0) {
-        clearInterval(counter);
+      if (countNumber === 0) {
         changePage('home')();
       }
-      print();
+      countRef.current.innerText = countNumber;
+      countNumber--;
     };
 
-    print();
-    let counter = setInterval(countDown, 1000);
+    const timerId = setInterval(countDown, 1000);
+    return timerId;
   };
 
   return (
@@ -55,6 +55,7 @@ const Receipt = ({ changePage, orderNum, payInfo }) => {
         <span className="receipt_footer-text">
           이 화면은 <span ref={countRef}></span>초 뒤에 자동으로 사라집니다.
         </span>
+        <div onClick={changePage('home')}> 홈으로 이동 </div>
       </footer>
     </div>
   );
