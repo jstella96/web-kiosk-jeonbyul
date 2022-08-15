@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
 
 export const OptionContext = createContext({
-  size: { 1: { s: 123, m: 213, l: 123 }, 2: { s: 123, m: 213, l: 123 } },
-  temperature: { 1: { h: 1000, c: 400 }, 2: { h: 400, c: 300 } }
+  size: { 1: { s: 0, m: 500, l: 1000 }, 2: { s: 0, m: 1000, l: 2000 } },
+  temperature: { 1: { h: 0, c: 500 }, 2: { h: 0, c: 500 } }
 });
 
 export function useOptions() {

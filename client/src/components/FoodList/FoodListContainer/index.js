@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import OptionContext, { useOptions } from 'context/optionContext';
+import React, { useEffect, useRef, useState } from 'react';
+import { useOptions } from 'context/optionContext';
 import OptionModal from 'components/Modal/OptionModal';
 import FoodList from 'components/FoodList/FoodList';
 import './index.scss';
+import { useOrderInfo } from 'context/orderInfoContext';
 
 const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) => {
   const options = useOptions();
@@ -12,6 +13,7 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) 
   const interval = foodListRef.current?.clientWidth;
   const [isOptionModalOpen, setIsOptionMadalOpen] = useState(false);
   const [selectedFood, setSelectedFood] = useState({});
+  const { orderInfoDispatch } = useOrderInfo();
 
   const openOptionModal = (food) => () => {
     setIsOptionMadalOpen(true);
@@ -88,6 +90,7 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) 
         isOpen={isOptionModalOpen}
         close={closeOptionModal}
         food={selectedFood}
+        orderInfoDispatch={orderInfoDispatch}
       />
     </div>
   );

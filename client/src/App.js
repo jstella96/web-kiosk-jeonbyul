@@ -1,14 +1,14 @@
 import './App.scss';
 import Router from './Router/Router.js';
-import { OptionContext, OptionProvider } from 'context/optionContext';
-import { useCartItemState } from './hooks/useCartItemState';
-import { CartItemsContext } from 'hooks/useCartItems';
-import { CartItemsDispatchContext } from 'hooks/useCartItemsDispatch';
+import { OptionContext } from 'context/optionContext';
 import { useEffect, useState } from 'react';
 import { requestGetCategories, requestGetFoods, requestGetOption } from 'api/api';
+import { OrderInfoContext } from 'context/orderInfoContext';
+import { useOrderInfoState } from 'hooks/orderInfoState';
 
 function App() {
-  const { cartItems, cartItemsDispatch, totalCount, totalPrice } = useCartItemState();
+  const { orderInfo, orderInfoDispatch, totalCount, totalPrice } = useOrderInfoState();
+
   const [options, setOptions] = useState({});
   const [categories, setCategories] = useState([]);
   const [foodByCategory, setFoodByCategory] = useState([]);
@@ -36,13 +36,11 @@ function App() {
 
   return (
     <div className="App">
-      <CartItemsContext.Provider value={{ cartItems, totalCount, totalPrice }}>
-        <CartItemsDispatchContext.Provider value={{ cartItemsDispatch }}>
-          <OptionContext.Provider value={options}>
-            <Router categories={categories} foodByCategory={foodByCategory}></Router>
-          </OptionContext.Provider>
-        </CartItemsDispatchContext.Provider>
-      </CartItemsContext.Provider>
+      <OrderInfoContext.Provider value={{ orderInfo, orderInfoDispatch, totalCount, totalPrice }}>
+        <OptionContext.Provider value={options}>
+          <Router categories={categories} foodByCategory={foodByCategory}></Router>
+        </OptionContext.Provider>
+      </OrderInfoContext.Provider>
     </div>
   );
 }

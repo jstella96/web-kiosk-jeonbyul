@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { convertOptionKeyToLabel } from 'utils/option';
 import FoodCount from 'components/common/FoodCount';
 import './index.scss';
 import OptionSelect from 'components/Modal/OptionSelect';
-import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
 
-const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food }) => {
-  const { cartItemsDispatch } = useCartItemsDispatch();
-
+const OptionModal = ({
+  sizeOptions,
+  orderInfoDispatch,
+  temperatureOptions,
+  isOpen,
+  close,
+  food
+}) => {
   const convertedTemperatureOptions = convertOptionKeyToLabel(temperatureOptions, 'temprature');
   const convertedSizeOptions = convertOptionKeyToLabel(sizeOptions, 'size');
 
@@ -33,9 +37,11 @@ const OptionModal = ({ sizeOptions, temperatureOptions, isOpen, close, food }) =
       sizeOption: convertedSizeOptions[selectedSizeIdx],
       temperatureOption: convertedTemperatureOptions[selectedTemperatureIdx]
     };
-    cartItemsDispatch({
-      type: 'add',
-      cartItem: newCartItem
+    orderInfoDispatch({
+      type: 'add-cartItem',
+      payload: {
+        cartItem: newCartItem
+      }
     });
     initOption();
     close();

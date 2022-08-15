@@ -1,14 +1,12 @@
-import CashModal from 'components/Modal/CashModal';
 import OrderItem from 'components/OrderItem';
-import { useCartItems } from 'hooks/useCartItems';
-import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
+import { useOrderInfo } from 'context/orderInfoContext';
 
 import './index.scss';
 const Order = ({ changePage }) => {
-  const { cartItemsDispatch } = useCartItemsDispatch();
-  const { cartItems, totalPrice } = useCartItems();
+  const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
+  const { cartItems } = orderInfo;
   const changeCartItemCount = (nextCount, index) => {
-    cartItemsDispatch({ type: 'changeCount', nextCount, index });
+    orderInfoDispatch({ type: 'update-count', payload: { nextCount, index } });
   };
 
   return (

@@ -1,9 +1,13 @@
+import { useOrderInfo } from 'context/orderInfoContext';
 import { useEffect, useRef } from 'react';
 import './index.scss';
 
 const START_COUNT_NUMBER = 10;
 
-const Receipt = ({ changePage, orderNum, payInfo }) => {
+const Receipt = ({ changePage, orderNum }) => {
+  const { orderInfo, totalPrice } = useOrderInfo();
+  const { paymentMethod, inputAccount } = orderInfo;
+
   const countRef = useRef(null);
 
   useEffect(() => {
@@ -39,12 +43,12 @@ const Receipt = ({ changePage, orderNum, payInfo }) => {
           <div className="receipt_ordernum">
             주문 번호 : <span>{orderNum}</span>
           </div>
-          <div>결제 수단 : {payInfo.method === 'cash' ? '현금' : '카드'}</div>
-          <div>결제 금액 : {payInfo.totalPrice.toLocaleString()}원</div>
-          {payInfo.method === 'cash' ? (
+          <div>결제 수단 : {paymentMethod === 'cash' ? '현금' : '카드'}</div>
+          <div>결제 금액 : {totalPrice.toLocaleString()}원</div>
+          {paymentMethod === 'cash' ? (
             <>
-              <div>투입 금액 : {payInfo.input.toLocaleString()}</div>
-              <div>거스름돈 : {(payInfo.input - payInfo.totalPrice).toLocaleString()}</div>{' '}
+              <div>투입 금액 : {inputAccount.toLocaleString()}</div>
+              <div>거스름돈 : {(inputAccount - totalPrice).toLocaleString()}</div>{' '}
             </>
           ) : (
             <></>

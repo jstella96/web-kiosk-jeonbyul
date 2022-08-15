@@ -5,21 +5,16 @@ import Main from 'pages/Main';
 import Order from 'pages/Order';
 import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
-import { useCartItemsDispatch } from 'hooks/useCartItemsDispatch';
-
 function Router({ categories, foodByCategory }) {
   const [orderNum, setOrderNum] = useState();
   const [page, setPage] = useState('home');
   const [payInfo, setPayInfo] = useState({ method: '', input: 0, totalPrice: 0 });
-  const { cartItemsDispatch } = useCartItemsDispatch();
 
   const changePage = (page) => () => {
     setPage(page);
   };
 
   if (page === 'home') {
-    cartItemsDispatch({ type: 'clean' });
-
     return <Home changePage={changePage}></Home>;
   }
   if (page === 'main') {
