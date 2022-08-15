@@ -24,7 +24,7 @@ const Receipt = ({ orderNum }) => {
 
     const countDown = () => {
       if (countNumber === 0) {
-        movePage('home')();
+        movePage('home');
       }
       countRef.current.innerText = countNumber;
       countNumber--;
@@ -61,7 +61,7 @@ const Receipt = ({ orderNum }) => {
         <span className="receipt_footer-text">
           이 화면은 <span ref={countRef}></span>초 뒤에 자동으로 사라집니다.
         </span>
-        <div onClick={movePage('home')}> 홈으로 이동 </div>
+        <div onClick={() => movePage('home')}> 홈으로 이동 </div>
       </footer>
     </div>
   );

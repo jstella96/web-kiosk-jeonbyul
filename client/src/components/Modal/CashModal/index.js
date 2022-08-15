@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.scss';
 
-const CashModal = ({ isOpen, totalPrice, order }) => {
+const CashModal = ({ isOpen, totalPrice, orderFoods }) => {
   const [sum, setSum] = useState(0);
-  if (sum >= +totalPrice) {
-    order('cash', sum);
-  }
+  useEffect(() => {
+    if (sum >= +totalPrice) {
+      orderFoods('cash', sum);
+    }
+  }, [sum]);
   return (
     <div className={isOpen ? 'openModal modal' : 'modal'}>
       <section>

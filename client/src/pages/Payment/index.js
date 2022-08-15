@@ -12,7 +12,7 @@ const PaymentMethod = ({ setOrderNum }) => {
   const [isLoding, setIsLoding] = useState(false);
   const [showCashModal, setShowCashModal] = useState(false);
 
-  const order = async (method, input) => {
+  const orderFoods = async (method, input) => {
     const foods = cartItems.map((item) => {
       const { count, food, sizeOption, temperatureOption } = item;
       const orderFood = {
@@ -63,7 +63,7 @@ const PaymentMethod = ({ setOrderNum }) => {
       </header>
       <main>
         <div className="payment_wrapper">
-          <button className="payment_item" onClick={() => order('card', totalPrice)}>
+          <button className="payment_item" onClick={() => orderFoods('card', totalPrice)}>
             카드결제
           </button>
           <button className="payment_item" onClick={() => setShowCashModal(true)}>
@@ -72,7 +72,7 @@ const PaymentMethod = ({ setOrderNum }) => {
         </div>
       </main>
       <Loding isLoding={isLoding} />
-      <CashModal isOpen={showCashModal} order={order} totalPrice={totalPrice}></CashModal>
+      <CashModal isOpen={showCashModal} orderFoods={orderFoods} totalPrice={totalPrice}></CashModal>
     </div>
   );
 };
