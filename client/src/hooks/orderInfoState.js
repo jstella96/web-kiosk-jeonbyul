@@ -22,7 +22,8 @@ export const ORDER_INFO_ACTIONS = {
   DELETE_CARTITEM: 'delete-cartItem',
   CLEAN_CARTITEM: 'clean-cartItem',
   UPDATE_PAYMENT_METHOD: 'update-paymentMethod',
-  UPDATE_INPUT_ACCOUNT: 'update-inputAccount'
+  UPDATE_INPUT_ACCOUNT: 'update-inputAccount',
+  CLEAN_ORDERINFO: 'clean-orederinfo'
 };
 
 function orderInfoReducer(orderInfo, action) {
@@ -95,7 +96,7 @@ function orderInfoReducer(orderInfo, action) {
       };
     }
 
-    case ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD: {
+    case ORDER_INFO_ACTIONS.CLEAN_ORDERINFO: {
       return { ...initialOrderInfo };
     }
 
