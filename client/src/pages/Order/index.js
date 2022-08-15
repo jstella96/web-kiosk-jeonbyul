@@ -1,6 +1,7 @@
 import OrderItem from 'components/OrderItem';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
+import { ORDER_INFO_ACTIONS } from 'hooks/orderInfoState';
 
 import './index.scss';
 const Order = () => {
@@ -8,7 +9,7 @@ const Order = () => {
   const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
   const { cartItems } = orderInfo;
   const changeCartItemCount = (nextCount, index) => {
-    orderInfoDispatch({ type: 'update-count', payload: { nextCount, index } });
+    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.UPDATE_COUNT, payload: { nextCount, index } });
   };
 
   return (

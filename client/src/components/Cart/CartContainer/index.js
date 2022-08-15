@@ -4,6 +4,7 @@ import './index.scss';
 import CartItem from '../CartItem';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
+import { ORDER_INFO_ACTIONS } from 'hooks/orderInfoState';
 
 const CartContainer = () => {
   const { movePage } = usePage();
@@ -11,15 +12,15 @@ const CartContainer = () => {
   const { cartItems } = orderInfo;
 
   const deleteCartItem = (index) => {
-    orderInfoDispatch({ type: 'delete-cartItem', payload: { index } });
+    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.DELETE_CARTITEM, payload: { index } });
   };
 
   const changeCartItemCount = (nextCount, index) => {
-    orderInfoDispatch({ type: 'update-count', payload: { nextCount, index } });
+    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.UPDATE_COUNT, payload: { nextCount, index } });
   };
 
   const cleanCartItems = () => {
-    orderInfoDispatch({ type: 'clean-cartItem' });
+    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.CLEAN_CARTITEM });
   };
 
   const tryOrder = () => {

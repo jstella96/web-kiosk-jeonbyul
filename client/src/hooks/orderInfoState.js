@@ -1,5 +1,4 @@
 import { useMemo, useReducer } from 'react';
-
 const initialOrderInfo = {
   paymentMethod: '',
   inputAccount: 0,
@@ -17,9 +16,18 @@ function isEqualCartItem(cartItem, newCartItem) {
   return true;
 }
 
+export const ORDER_INFO_ACTIONS = {
+  ADD_CARTITEM: 'add-cartItem',
+  UPDATE_COUNT: 'update-count',
+  DELETE_CARTITEM: 'delete-cartItem',
+  CLEAN_CARTITEM: 'clean-cartItem',
+  UPDATE_PAYMENT_METHOD: 'update-paymentMethod',
+  UPDATE_INPUT_ACCOUNT: 'update-inputAccount'
+};
+
 function orderInfoReducer(orderInfo, action) {
   switch (action.type) {
-    case 'add-cartItem': {
+    case ORDER_INFO_ACTIONS.ADD_CARTITEM: {
       const { count = 0, food, sizeOption, temperatureOption } = action.payload.cartItem;
       const { cartItems } = orderInfo;
       const newCartItem = {
@@ -41,7 +49,7 @@ function orderInfoReducer(orderInfo, action) {
       return { ...orderInfo, cartItems: [...cartItems, newCartItem] };
     }
 
-    case 'update-count': {
+    case ORDER_INFO_ACTIONS.UPDATE_COUNT: {
       const { index, nextCount } = action.payload;
       const { cartItems } = orderInfo;
       return {
@@ -54,7 +62,7 @@ function orderInfoReducer(orderInfo, action) {
       };
     }
 
-    case 'delete-cartItem': {
+    case ORDER_INFO_ACTIONS.DELETE_CARTITEM: {
       const { cartItems } = orderInfo;
       const { index } = action.payload;
       return {
@@ -63,14 +71,14 @@ function orderInfoReducer(orderInfo, action) {
       };
     }
 
-    case 'clean-cartItem': {
+    case ORDER_INFO_ACTIONS.CLEAN_CARTITEM: {
       return {
         ...orderInfo,
         cartItems: []
       };
     }
 
-    case 'update-paymentMethod': {
+    case ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD: {
       const { paymentMethod } = action.payload;
 
       return {
@@ -79,7 +87,7 @@ function orderInfoReducer(orderInfo, action) {
       };
     }
 
-    case 'update-inputAccount': {
+    case ORDER_INFO_ACTIONS.UPDATE_INPUT_ACCOUNT: {
       const { inputAccount } = action.payload;
       return {
         ...orderInfo,
@@ -87,7 +95,7 @@ function orderInfoReducer(orderInfo, action) {
       };
     }
 
-    case 'clean-orderinfo': {
+    case ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD: {
       return { ...initialOrderInfo };
     }
 
