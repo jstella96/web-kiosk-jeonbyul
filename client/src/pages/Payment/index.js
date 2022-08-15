@@ -2,9 +2,11 @@ import { requestPostOrder } from 'api/api';
 import Loding from 'components/common/Loding';
 import CashModal from 'components/Modal/CashModal';
 import { useOrderInfo } from 'context/orderInfoContext';
+import { usePage } from 'context/pageContext';
 import { useState } from 'react';
 import './index.scss';
-const PaymentMethod = ({ changePage, setOrderNum }) => {
+const PaymentMethod = ({ setOrderNum }) => {
+  const { movePage } = usePage();
   const { orderInfo, totalPrice, orderInfoDispatch } = useOrderInfo();
   const { cartItems } = orderInfo;
   const [isLoding, setIsLoding] = useState(false);
@@ -47,14 +49,14 @@ const PaymentMethod = ({ changePage, setOrderNum }) => {
     setIsLoding(true);
     setTimeout(() => {
       setIsLoding(false);
-      changePage('receipt')();
+      movePage('receipt');
     }, 3000);
   };
 
   return (
     <div className="payment">
       <header className="payment_header">
-        <button onClick={changePage('main')}>뒤로가기</button>
+        <button onClick={() => movePage('main')}>뒤로가기</button>
         <h1>
           <span>결제 방법</span>을 확인해주세요
         </h1>

@@ -3,8 +3,10 @@ import React from 'react';
 import './index.scss';
 import CartItem from '../CartItem';
 import { useOrderInfo } from 'context/orderInfoContext';
+import { usePage } from 'context/pageContext';
 
-const CartContainer = ({ changePage }) => {
+const CartContainer = () => {
+  const { movePage } = usePage();
   const { orderInfo, totalPrice, totalCount, orderInfoDispatch } = useOrderInfo();
   const { cartItems } = orderInfo;
 
@@ -22,7 +24,7 @@ const CartContainer = ({ changePage }) => {
 
   const tryOrder = () => {
     if (cartItems.length === 0) return;
-    changePage('order')();
+    movePage('order');
   };
 
   return (

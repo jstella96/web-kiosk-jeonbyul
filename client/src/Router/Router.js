@@ -1,35 +1,32 @@
-import React, { useEffect, useState, createContext } from 'react';
-import { requestGetCategories, requestGetFoods, requestGetOption } from 'api/api';
+import React, { useState } from 'react';
 import Home from 'pages/Home';
 import Main from 'pages/Main';
 import Order from 'pages/Order';
 import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
+import { usePage } from 'context/pageContext';
 function Router({ categories, foodByCategory }) {
+  const { page } = usePage();
   const [orderNum, setOrderNum] = useState();
-  const [page, setPage] = useState('home');
-  const [payInfo, setPayInfo] = useState({ method: '', input: 0, totalPrice: 0 });
-
-  const changePage = (page) => () => {
-    setPage(page);
-  };
-
-  if (page === 'home') {
-    return <Home changePage={changePage}></Home>;
-  }
-  if (page === 'main') {
-    return (
-      <Main changePage={changePage} categories={categories} foodByCategory={foodByCategory}></Main>
-    );
-  }
-  if (page === 'order') {
-    return <Order changePage={changePage} />;
-  }
-  if (page === 'payment') {
-    return <Payment changePage={changePage} setOrderNum={setOrderNum} setPayInfo={setPayInfo} />;
-  }
-  if (page === 'receipt') {
-    return <Receipt payInfo={payInfo} changePage={changePage} orderNum={orderNum} />;
+  switch (page) {
+    case 'home': {
+      return <Home></Home>;
+    }
+    case 'main': {
+      return <Main categories={categories} foodByCategory={foodByCategory}></Main>;
+    }
+    case 'order': {
+      return <Order />;
+    }
+    case 'payment': {
+      return <Payment setOrderNum={setOrderNum} />;
+    }
+    case 'receipt': {
+      return <Receipt orderNum={orderNum} />;
+    }
+    default: {
+      return <Home></Home>;
+    }
   }
 }
 

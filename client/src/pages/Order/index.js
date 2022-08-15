@@ -1,8 +1,10 @@
 import OrderItem from 'components/OrderItem';
 import { useOrderInfo } from 'context/orderInfoContext';
+import { usePage } from 'context/pageContext';
 
 import './index.scss';
-const Order = ({ changePage }) => {
+const Order = () => {
+  const { movePage } = usePage();
   const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
   const { cartItems } = orderInfo;
   const changeCartItemCount = (nextCount, index) => {
@@ -12,7 +14,7 @@ const Order = ({ changePage }) => {
   return (
     <div className="order">
       <header className="order-header">
-        <button onClick={changePage('main')}>뒤로가기</button>
+        <button onClick={() => movePage('main')}>뒤로가기</button>
         <h1>
           <span>주문 내역</span>을 확인해주세요
         </h1>
@@ -22,7 +24,7 @@ const Order = ({ changePage }) => {
           <OrderItem key={index} setCount={changeCartItemCount} orderItem={item} index={index} />
         ))}
       </main>
-      <button className="order-button" onClick={changePage('payment')}>
+      <button className="order-button" onClick={() => movePage('payment')}>
         <span>₩ {totalPrice.toLocaleString()}</span>
         <span> 결제하기</span>
       </button>

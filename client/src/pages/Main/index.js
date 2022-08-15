@@ -5,7 +5,7 @@ import CartContainer from 'components/Cart/CartContainer';
 import Footer from 'components/Footer';
 import './index.scss';
 const MaxItem = 4;
-const Main = ({ categories, foodByCategory, changePage }) => {
+const Main = ({ categories, foodByCategory }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [nowStartIndex, setNowStartIndex] = useState(0);
 
@@ -43,8 +43,8 @@ const Main = ({ categories, foodByCategory, changePage }) => {
         foodByCategory={foodByCategory}
         selectedIndex={selectedIndex}
       />
-      <CartContainer changePage={changePage} />
-      <Footer changePage={changePage} />
+      <CartContainer />
+      <Footer />
     </div>
   );
 };
