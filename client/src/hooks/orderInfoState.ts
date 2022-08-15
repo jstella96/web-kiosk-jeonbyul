@@ -1,11 +1,33 @@
-import { useMemo, useReducer } from 'react';
-const initialOrderInfo = {
-  paymentMethod: '',
-  inputAccount: 0,
-  cartItems: []
-};
+import React, { useMemo, useReducer } from 'react';
 
-function isEqualCartItem(cartItem, newCartItem) {
+interface Food {
+  id: number;
+  name: string;
+  imgUrl: string;
+  categoryId: number;
+  basePrice: number;
+}
+interface Option {
+  label: string;
+  additionalPrice: string;
+  key: string;
+}
+
+interface CartItem {
+  id: string;
+  count: number;
+  food: Food;
+  sizeOption: Option;
+  temperatureOption: Option;
+}
+
+interface OrderInfo {
+  paymentMethod: string;
+  inputAccount: number;
+  cartItems: CartItem[];
+}
+
+function isEqualCartItem(cartItem: CartItem, newCartItem: CartItem) {
   if (
     cartItem.food.id === newCartItem.food.id &&
     cartItem.sizeOption?.key === newCartItem.sizeOption?.key &&
@@ -26,7 +48,9 @@ export const ORDER_INFO_ACTIONS = {
   CLEAN_ORDERINFO: 'clean-orederinfo'
 };
 
-function orderInfoReducer(orderInfo, action) {
+type OrderAction = { type: keyof typeof ORDER_INFO_ACTIONS; payload: any };
+
+function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo {
   switch (action.type) {
     case ORDER_INFO_ACTIONS.ADD_CARTITEM: {
       const { count = 0, food, sizeOption, temperatureOption } = action.payload.cartItem;
@@ -51,7 +75,7 @@ function orderInfoReducer(orderInfo, action) {
     }
 
     case ORDER_INFO_ACTIONS.UPDATE_COUNT: {
-      const { index, nextCount } = action.payload;
+      const { index, nextCount } = action.payload as { index: number; nextCount: number };
       const { cartItems } = orderInfo;
       return {
         ...orderInfo,
@@ -59,6 +83,7 @@ function orderInfoReducer(orderInfo, action) {
           if (cartItemIndex === index) {
             return { ...cartItem, count: nextCount };
           }
+          return cartItem;
         })
       };
     }
@@ -106,12 +131,18 @@ function orderInfoReducer(orderInfo, action) {
   }
 }
 
+const initialOrderInfo: OrderInfo = {
+  paymentMethod: '',
+  inputAccount: 0,
+  cartItems: []
+};
+
 export const useOrderInfoState = () => {
   const [orderInfo, orderInfoDispatch] = useReducer(orderInfoReducer, initialOrderInfo);
   const { cartItems } = orderInfo;
   const totalCount = useMemo(() => {
     return cartItems.reduce((acc, curr) => {
-      return (acc += curr.count);
+      return acc + curr.count;
     }, 0);
   }, [cartItems]);
 
