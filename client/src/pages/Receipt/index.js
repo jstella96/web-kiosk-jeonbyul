@@ -8,7 +8,7 @@ const START_COUNT_NUMBER = 10;
 const Receipt = ({ orderNum }) => {
   const { movePage } = usePage();
   const { orderInfo, totalPrice } = useOrderInfo();
-  const { paymentMethod, inputAccount } = orderInfo;
+  const { paymentMethod, inputAmount } = orderInfo;
 
   const countRef = useRef(null);
 
@@ -49,8 +49,8 @@ const Receipt = ({ orderNum }) => {
           <div>결제 금액 : {totalPrice.toLocaleString()}원</div>
           {paymentMethod === 'cash' ? (
             <>
-              <div>투입 금액 : {inputAccount.toLocaleString()}</div>
-              <div>거스름돈 : {(inputAccount - totalPrice).toLocaleString()}</div>{' '}
+              <div>투입 금액 : {inputAmount.toLocaleString()}</div>
+              <div>거스름돈 : {(inputAmount - totalPrice).toLocaleString()}</div>{' '}
             </>
           ) : (
             <></>

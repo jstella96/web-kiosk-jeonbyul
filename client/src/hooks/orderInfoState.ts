@@ -14,7 +14,7 @@ interface Option {
 }
 
 interface CartItem {
-  id: string;
+  id?: string;
   count: number;
   food: Food;
   sizeOption: Option;
@@ -23,9 +23,69 @@ interface CartItem {
 
 interface OrderInfo {
   paymentMethod: string;
-  inputAccount: number;
+  inputAmount: number;
   cartItems: CartItem[];
 }
+
+export const ORDER_INFO_ACTIONS = {
+  ADD_CARTITEM: 'add-cartItem',
+  UPDATE_COUNT: 'update-count',
+  DELETE_CARTITEM: 'delete-cartItem',
+  CLEAR_CART: 'clear-cart',
+  UPDATE_PAYMENT_METHOD: 'update-paymentMethod',
+  UPDATE_INPUT_ACCOUNT: 'update-inputAmount',
+  CLEAR_ORDERINFO: 'clear-orederinfo'
+};
+
+export const addCartItem = (payload: CartItem) => {
+  return {
+    type: ORDER_INFO_ACTIONS.ADD_CARTITEM,
+    ...payload
+  };
+};
+export const updateCount = (payload: { index: number; nextCount: number }) => {
+  return {
+    type: ORDER_INFO_ACTIONS.UPDATE_COUNT,
+    ...payload
+  };
+};
+export const deleteCartItem = (payload: { index: number }) => {
+  return {
+    type: ORDER_INFO_ACTIONS.DELETE_CARTITEM,
+    ...payload
+  };
+};
+export const clearCart = () => {
+  return {
+    type: ORDER_INFO_ACTIONS.CLEAR_CART
+  };
+};
+export const updatePaymentMethod = (payload: { paymentMethod: string }) => {
+  return {
+    type: ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD,
+    ...payload
+  };
+};
+export const updateInputAmount = (payload: { inputAmount: number }) => {
+  return {
+    type: ORDER_INFO_ACTIONS.UPDATE_INPUT_ACCOUNT,
+    ...payload
+  };
+};
+export const clearOrderInfo = () => {
+  return {
+    type: ORDER_INFO_ACTIONS.CLEAR_ORDERINFO
+  };
+};
+
+export type OrderInfoAction =
+  | ReturnType<typeof addCartItem>
+  | ReturnType<typeof updateCount>
+  | ReturnType<typeof deleteCartItem>
+  | ReturnType<typeof clearCart>
+  | ReturnType<typeof updatePaymentMethod>
+  | ReturnType<typeof updateInputAmount>
+  | ReturnType<typeof clearOrderInfo>;
 
 function isEqualCartItem(cartItem: CartItem, newCartItem: CartItem) {
   if (
@@ -33,27 +93,16 @@ function isEqualCartItem(cartItem: CartItem, newCartItem: CartItem) {
     cartItem.sizeOption?.key === newCartItem.sizeOption?.key &&
     cartItem.temperatureOption?.key === newCartItem.temperatureOption?.key
   ) {
-    return false;
+    return true;
   }
-  return true;
+  return false;
 }
 
-export const ORDER_INFO_ACTIONS = {
-  ADD_CARTITEM: 'add-cartItem',
-  UPDATE_COUNT: 'update-count',
-  DELETE_CARTITEM: 'delete-cartItem',
-  CLEAN_CARTITEM: 'clean-cartItem',
-  UPDATE_PAYMENT_METHOD: 'update-paymentMethod',
-  UPDATE_INPUT_ACCOUNT: 'update-inputAccount',
-  CLEAN_ORDERINFO: 'clean-orederinfo'
-};
-
-type OrderAction = { type: keyof typeof ORDER_INFO_ACTIONS; payload: any };
-
-function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo {
+function orderInfoReducer(orderInfo: OrderInfo, action: OrderInfoAction): OrderInfo {
   switch (action.type) {
     case ORDER_INFO_ACTIONS.ADD_CARTITEM: {
-      const { count = 0, food, sizeOption, temperatureOption } = action.payload.cartItem;
+      const { type, ...payload } = action as ReturnType<typeof addCartItem>;
+      const { count = 0, food, sizeOption, temperatureOption } = payload;
       const { cartItems } = orderInfo;
       const newCartItem = {
         id: new Date().getTime().toString(16),
@@ -62,7 +111,6 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo 
         sizeOption,
         temperatureOption
       };
-
       const nextCartItems = [...cartItems];
       for (let cartItem of nextCartItems) {
         if (isEqualCartItem(cartItem, newCartItem)) {
@@ -70,12 +118,12 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo 
           return { ...orderInfo, cartItems: nextCartItems };
         }
       }
-
       return { ...orderInfo, cartItems: [...cartItems, newCartItem] };
     }
 
     case ORDER_INFO_ACTIONS.UPDATE_COUNT: {
-      const { index, nextCount } = action.payload as { index: number; nextCount: number };
+      const { type, ...payload } = action as ReturnType<typeof updateCount>;
+      const { index, nextCount } = payload;
       const { cartItems } = orderInfo;
       return {
         ...orderInfo,
@@ -89,15 +137,17 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo 
     }
 
     case ORDER_INFO_ACTIONS.DELETE_CARTITEM: {
+      const { type, ...payload } = action as ReturnType<typeof deleteCartItem>;
+      const { index } = payload;
+      console.log(index);
       const { cartItems } = orderInfo;
-      const { index } = action.payload;
       return {
         ...orderInfo,
         cartItems: cartItems.filter((cartItem, cartItemIndex) => cartItemIndex !== index)
       };
     }
 
-    case ORDER_INFO_ACTIONS.CLEAN_CARTITEM: {
+    case ORDER_INFO_ACTIONS.CLEAR_CART: {
       return {
         ...orderInfo,
         cartItems: []
@@ -105,8 +155,8 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo 
     }
 
     case ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD: {
-      const { paymentMethod } = action.payload;
-
+      const { type, ...payload } = action as ReturnType<typeof updatePaymentMethod>;
+      const { paymentMethod } = payload;
       return {
         ...orderInfo,
         paymentMethod
@@ -114,14 +164,15 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo 
     }
 
     case ORDER_INFO_ACTIONS.UPDATE_INPUT_ACCOUNT: {
-      const { inputAccount } = action.payload;
+      const { type, ...payload } = action as ReturnType<typeof updateInputAmount>;
+      const { inputAmount } = payload;
       return {
         ...orderInfo,
-        inputAccount
+        inputAmount
       };
     }
 
-    case ORDER_INFO_ACTIONS.CLEAN_ORDERINFO: {
+    case ORDER_INFO_ACTIONS.CLEAR_ORDERINFO: {
       return { ...initialOrderInfo };
     }
 
@@ -133,7 +184,7 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderAction): OrderInfo 
 
 const initialOrderInfo: OrderInfo = {
   paymentMethod: '',
-  inputAccount: 0,
+  inputAmount: 0,
   cartItems: []
 };
 

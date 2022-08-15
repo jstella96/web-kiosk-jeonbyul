@@ -3,7 +3,7 @@ import { convertOptionKeyToLabel } from 'utils/option';
 import FoodCount from 'components/common/FoodCount';
 import './index.scss';
 import OptionSelect from 'components/Modal/OptionSelect';
-import { ORDER_INFO_ACTIONS } from 'hooks/orderInfoState';
+import { addCartItem } from 'hooks/orderInfoState';
 
 const OptionModal = ({
   sizeOptions,
@@ -38,12 +38,7 @@ const OptionModal = ({
       sizeOption: convertedSizeOptions[selectedSizeIdx],
       temperatureOption: convertedTemperatureOptions[selectedTemperatureIdx]
     };
-    orderInfoDispatch({
-      type: ORDER_INFO_ACTIONS.ADD_CARTITEM,
-      payload: {
-        cartItem: newCartItem
-      }
-    });
+    orderInfoDispatch(addCartItem(newCartItem));
     initOption();
     close();
   };

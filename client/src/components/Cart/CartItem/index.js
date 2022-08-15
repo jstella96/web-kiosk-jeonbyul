@@ -3,11 +3,11 @@ import FoodCount from 'components/common/FoodCount';
 import OptionTag from 'components/common/OptionTag';
 import './index.scss';
 
-const CartItem = ({ cartItem, index, setCount, deleteCartItem }) => {
+const CartItem = ({ cartItem, index, onChangeCount, onDelete }) => {
   const { food, count, sizeOption, temperatureOption } = cartItem;
   return (
     <div className="cart-item-container" key={food.id}>
-      <button className="cart-item-remove" onClick={() => deleteCartItem(index)}>
+      <button className="cart-item-remove" onClick={() => onDelete(index)}>
         x
       </button>
       <img src={food.imgUrl} className="cart-item-image"></img>
@@ -17,7 +17,7 @@ const CartItem = ({ cartItem, index, setCount, deleteCartItem }) => {
         <OptionTag option={temperatureOption}></OptionTag>
       </div>
       <div className="cart-item-footer">
-        <FoodCount count={count} setCount={setCount} index={index} />
+        <FoodCount count={count} setCount={onChangeCount} index={index} />
       </div>
     </div>
   );

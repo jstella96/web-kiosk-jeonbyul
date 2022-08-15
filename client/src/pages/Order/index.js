@@ -1,15 +1,16 @@
 import OrderItem from 'components/OrderItem';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { ORDER_INFO_ACTIONS } from 'hooks/orderInfoState';
+import { updateCount } from 'hooks/orderInfoState';
 
 import './index.scss';
 const Order = () => {
   const { movePage } = usePage();
   const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
   const { cartItems } = orderInfo;
-  const changeCartItemCount = (nextCount, index) => {
-    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.UPDATE_COUNT, payload: { nextCount, index } });
+
+  const onChangeCartItemCount = (nextCount, index) => {
+    orderInfoDispatch(updateCount({ nextCount, index }));
   };
 
   return (
@@ -22,7 +23,7 @@ const Order = () => {
       </header>
       <main className="order-item-list">
         {cartItems.map((item, index) => (
-          <OrderItem key={index} setCount={changeCartItemCount} orderItem={item} index={index} />
+          <OrderItem key={index} setCount={onChangeCartItemCount} orderItem={item} index={index} />
         ))}
       </main>
       <button className="order-button" onClick={() => movePage('payment')}>

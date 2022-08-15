@@ -4,26 +4,26 @@ import './index.scss';
 import CartItem from '../CartItem';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { ORDER_INFO_ACTIONS } from 'hooks/orderInfoState';
+import { clearCart, deleteCartItem, updateCount } from 'hooks/orderInfoState';
 
 const CartContainer = () => {
   const { movePage } = usePage();
   const { orderInfo, totalPrice, totalCount, orderInfoDispatch } = useOrderInfo();
   const { cartItems } = orderInfo;
 
-  const deleteCartItem = (index) => {
-    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.DELETE_CARTITEM, payload: { index } });
+  const onDeleteCartItem = (index) => {
+    orderInfoDispatch(deleteCartItem({ index }));
   };
 
-  const changeCartItemCount = (nextCount, index) => {
-    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.UPDATE_COUNT, payload: { nextCount, index } });
+  const onChangeCartItemCount = (nextCount, index) => {
+    orderInfoDispatch(updateCount({ nextCount, index }));
   };
 
-  const cleanCartItems = () => {
-    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.CLEAN_CARTITEM });
+  const onClearCart = () => {
+    orderInfoDispatch(clearCart());
   };
 
-  const tryOrder = () => {
+  const order = () => {
     if (cartItems.length === 0) return;
     movePage('order');
   };
@@ -46,15 +46,15 @@ const CartContainer = () => {
               key={index}
               cartItem={cartItem}
               index={index}
-              setCount={changeCartItemCount}
-              deleteCartItem={deleteCartItem}
+              onChangeCount={onChangeCartItemCount}
+              onDelete={onDeleteCartItem}
             />
           ))}
         </div>
       </div>
       <div className="cart-button">
-        <button onClick={cleanCartItems}>전체취소</button>
-        <button onClick={tryOrder}>주문하기</button>
+        <button onClick={onClearCart}>전체취소</button>
+        <button onClick={order}>주문하기</button>
       </div>
     </div>
   );

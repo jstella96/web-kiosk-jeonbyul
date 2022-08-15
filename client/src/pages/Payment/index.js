@@ -3,7 +3,7 @@ import Loding from 'components/common/Loding';
 import CashModal from 'components/Modal/CashModal';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { ORDER_INFO_ACTIONS } from 'hooks/orderInfoState';
+import { updateInputAmount, updatePaymentMethod } from 'hooks/orderInfoState';
 import { useState } from 'react';
 import './index.scss';
 const PaymentMethod = ({ setOrderNum }) => {
@@ -41,12 +41,9 @@ const PaymentMethod = ({ setOrderNum }) => {
     startLoding();
   };
 
-  const setPayInfo = (paymentMethod, inputAccount) => {
-    orderInfoDispatch({ type: ORDER_INFO_ACTIONS.UPDATE_INPUT_ACCOUNT, payload: { inputAccount } });
-    orderInfoDispatch({
-      type: ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD,
-      payload: { paymentMethod }
-    });
+  const setPayInfo = (paymentMethod, inputAmount) => {
+    orderInfoDispatch(updateInputAmount({ inputAmount }));
+    orderInfoDispatch(updatePaymentMethod({ paymentMethod }));
   };
 
   const startLoding = () => {

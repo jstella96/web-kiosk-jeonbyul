@@ -25,7 +25,7 @@ interface OrderInfoDispatch extends React.DispatchWithoutAction {}
 interface OrderInfo {
   orderInfo: {
     paymentMethod: string;
-    inputAccount: number;
+    inputAmount: number;
     cartItems: CartItem[];
   };
   orderInfoDispatch: OrderInfoDispatch;
