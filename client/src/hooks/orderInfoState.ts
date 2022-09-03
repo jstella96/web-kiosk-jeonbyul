@@ -139,7 +139,6 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderInfoAction): OrderI
     case ORDER_INFO_ACTIONS.DELETE_CARTITEM: {
       const { type, ...payload } = action as ReturnType<typeof deleteCartItem>;
       const { index } = payload;
-      console.log(index);
       const { cartItems } = orderInfo;
       return {
         ...orderInfo,

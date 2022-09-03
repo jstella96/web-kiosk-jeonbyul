@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 import React from 'react';
-import { ReactComponent as LeftArrow } from 'assets/icon/left.svg';
-import { ReactComponent as RightArrow } from 'assets/icon/right.svg';
+
 import NavbarItemList from 'components/Navbar/NavbarItemList';
 import NavbarLine from 'components/Navbar/NavbarLine';
 import { CategoryType } from 'types/category';
 import COLORS from 'constants/color';
+import { LeftArrow, RightArrow } from 'assets/icon';
 
 interface NavbarProps {
   categories: CategoryType[];
@@ -16,7 +16,7 @@ interface NavbarProps {
 
 const Navbar = ({ categories, selectedIndex, changeSelectedIndex, nowStartIndex }: NavbarProps) => {
   return (
-    <Wrapper>
+    <Container>
       <NavbarContent>
         <LeftButton onClick={() => changeSelectedIndex(selectedIndex - 1)}>
           <LeftArrow width="20" height="20" />
@@ -31,12 +31,12 @@ const Navbar = ({ categories, selectedIndex, changeSelectedIndex, nowStartIndex 
         </RightButton>
       </NavbarContent>
       <NavbarLine selectedIndex={selectedIndex - nowStartIndex} />
-    </Wrapper>
+    </Container>
   );
 };
 export default Navbar;
 
-const Wrapper = styled.nav`
+const Container = styled.nav`
   display: flex;
   flex-direction: column;
   padding: 1rem 0;

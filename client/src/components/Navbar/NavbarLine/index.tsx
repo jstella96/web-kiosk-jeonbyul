@@ -38,7 +38,6 @@ const SeletedLine = styled.div<{ translateX: number }>`
   background: ${COLORS.primary};
   transition: all 0.4s;
   ${({ translateX }) => {
-    console.log(translateX);
     return css`
       transform: translateX(${`${translateX}px`});
     `;

@@ -5,14 +5,7 @@ import './index.scss';
 import OptionSelect from 'components/Modal/OptionSelect';
 import { addCartItem } from 'hooks/orderInfoState';
 
-const OptionModal = ({
-  sizeOptions,
-  orderInfoDispatch,
-  temperatureOptions,
-  isOpen,
-  close,
-  food
-}) => {
+const OptionModal = ({ sizeOptions, orderInfoDispatch, temperatureOptions, close, food }) => {
   const convertedTemperatureOptions = convertOptionKeyToLabel(temperatureOptions, 'temprature');
   const convertedSizeOptions = convertOptionKeyToLabel(sizeOptions, 'size');
 
@@ -44,7 +37,7 @@ const OptionModal = ({
   };
 
   return (
-    <div className={isOpen ? 'openModal modal' : 'modal'}>
+    <div className={'openModal modal'}>
       <section>
         <main>
           <div className="food-detail">

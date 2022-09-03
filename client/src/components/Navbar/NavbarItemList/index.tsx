@@ -48,9 +48,7 @@ const Wrapper = styled.div`
 
 const ItemList = styled.div<{ translateX: number }>`
   transition: all 0.4s;
-
   ${({ translateX }) => {
-    console.log(translateX);
     return css`
       transform: translateX(${`${translateX}px`});
     `;

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Navbar from 'components/Navbar/Navbar';
-import FoodListContainer from 'components/FoodList/FoodListContainer';
+import FoodListContainer from 'components/FoodList';
 import CartContainer from 'components/Cart/CartContainer';
 import Footer from 'components/Footer';
 import './index.scss';
