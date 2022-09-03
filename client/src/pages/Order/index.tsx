@@ -9,7 +9,7 @@ const Order = () => {
   const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
   const { cartItems } = orderInfo;
 
-  const onChangeCartItemCount = (nextCount, index) => {
+  const onChangeCartItemCount = (nextCount: number, index: number) => {
     orderInfoDispatch(updateCount({ nextCount, index }));
   };
 

@@ -5,7 +5,7 @@ import FoodList from 'components/FoodList/FoodList';
 import './index.scss';
 import { useOrderInfo } from 'context/orderInfoContext';
 
-const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) => {
+const FoodListContainer = ({ foodsByCategory, selectedIndex, changeSelectedIndex }) => {
   const options = useOptions();
   const foodListRef = useRef(null);
   const foodListWrapperRef = useRef(null);
@@ -41,13 +41,13 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) 
     const touches = evt.changedTouches;
     const diff = startX - touches[0].clientX;
     if (diff < 0 && selectedIndex === 0) return;
-    if (diff > 0 && selectedIndex === foodByCategory.length - 1) return;
+    if (diff > 0 && selectedIndex === foodsByCategory.length - 1) return;
     if (diff > 20) {
       removeEvent();
-      setSelectedIndex(selectedIndex + 1)();
+      changeSelectedIndex(selectedIndex + 1);
     } else if (diff < -20) {
       removeEvent();
-      setSelectedIndex(selectedIndex - 1)();
+      changeSelectedIndex(selectedIndex - 1);
     } else {
       foodListWrapperRef.current.style.transform = `translateX(${-interval * selectedIndex}px)`;
     }
@@ -57,7 +57,7 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) 
     const touches = evt.changedTouches;
     const diff = startX - touches[0].clientX;
     if (diff < 0 && selectedIndex === 0) return;
-    if (diff > 0 && selectedIndex === foodByCategory.length - 1) return;
+    if (diff > 0 && selectedIndex === foodsByCategory.length - 1) return;
     foodListWrapperRef.current.style.transform = `translateX(${
       -interval * selectedIndex - diff
     }px)`;
@@ -75,7 +75,7 @@ const FoodListContainer = ({ foodByCategory, selectedIndex, setSelectedIndex }) 
         className="foodlist-wrapper"
         style={{ transform: `translateX(${-interval * selectedIndex}px)` }}
       >
-        {foodByCategory.map((item, index) => (
+        {foodsByCategory.map((item, index) => (
           <FoodList
             key={item.id}
             openOptionModal={openOptionModal}

@@ -6,14 +6,19 @@ import { usePage } from 'context/pageContext';
 import { updateInputAmount, updatePaymentMethod } from 'hooks/orderInfoState';
 import { useState } from 'react';
 import './index.scss';
-const PaymentMethod = ({ setOrderNum }) => {
+
+interface PaymentMethodProps {
+  setOrderNum: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const PaymentMethod = ({ setOrderNum }: PaymentMethodProps) => {
   const { movePage } = usePage();
   const { orderInfo, totalPrice, orderInfoDispatch } = useOrderInfo();
   const { cartItems } = orderInfo;
   const [isLoding, setIsLoding] = useState(false);
   const [showCashModal, setShowCashModal] = useState(false);
 
-  const orderFoods = async (method, input) => {
+  const orderFoods = async (method: string, input: number) => {
     const foods = cartItems.map((item) => {
       const { count, food, sizeOption, temperatureOption } = item;
       const orderFood = {
@@ -41,7 +46,7 @@ const PaymentMethod = ({ setOrderNum }) => {
     startLoding();
   };
 
-  const setPayInfo = (paymentMethod, inputAmount) => {
+  const setPayInfo = (paymentMethod: string, inputAmount: number) => {
     orderInfoDispatch(updateInputAmount({ inputAmount }));
     orderInfoDispatch(updatePaymentMethod({ paymentMethod }));
   };

@@ -1,39 +1,14 @@
+import { OrderInfo, OrderInfoAction } from 'hooks/orderInfoState';
 import { createContext, useContext } from 'react';
-interface Food {
-  id: number;
-  name: string;
-  imgUrl: string;
-  categoryId: number;
-  basePrice: string;
-}
 
-interface OptionInterface {
-  label: string;
-  additionalPrice: string;
-  key: string;
-}
-
-interface CartItem {
-  count: string;
-  food: Food;
-  sizeOption: OptionInterface;
-  temperatureOption: OptionInterface;
-}
-
-interface OrderInfoDispatch extends React.DispatchWithoutAction {}
-
-interface OrderInfo {
-  orderInfo: {
-    paymentMethod: string;
-    inputAmount: number;
-    cartItems: CartItem[];
-  };
-  orderInfoDispatch: OrderInfoDispatch;
+interface OrderDetailInfo {
+  orderInfo: OrderInfo;
+  orderInfoDispatch: React.Dispatch<OrderInfoAction>;
   totalCount: number;
   totalPrice: number;
 }
 
-export const OrderInfoContext = createContext<OrderInfo | null>(null);
+export const OrderInfoContext = createContext<OrderDetailInfo | null>(null);
 
 export function useOrderInfo(component?: string) {
   const context = useContext(OrderInfoContext);

@@ -9,9 +9,9 @@ import { PageContext } from 'context/pageContext';
 
 function App() {
   const [page, setPage] = useState('home');
-  const [options, setOptions] = useState({});
+  const [options, setOptions] = useState(null);
   const [categories, setCategories] = useState([]);
-  const [foodByCategory, setFoodByCategory] = useState([]);
+  const [foodsByCategory, setFoodsByCategory] = useState([]);
   const { orderInfo, orderInfoDispatch, totalCount, totalPrice } = useOrderInfoState();
 
   useEffect(() => {
@@ -31,8 +31,8 @@ function App() {
   };
 
   const fetchAndSetFoods = async () => {
-    const foodByCategory = await requestGetFoods();
-    setFoodByCategory(foodByCategory);
+    const foodsByCategory = await requestGetFoods();
+    setFoodsByCategory(foodsByCategory);
   };
 
   return (
@@ -40,7 +40,7 @@ function App() {
       <PageContext.Provider value={{ page, movePage: setPage }}>
         <OrderInfoContext.Provider value={{ orderInfo, orderInfoDispatch, totalCount, totalPrice }}>
           <OptionContext.Provider value={options}>
-            <Router categories={categories} foodByCategory={foodByCategory}></Router>
+            <Router categories={categories} foodsByCategory={foodsByCategory}></Router>
           </OptionContext.Provider>
         </OrderInfoContext.Provider>
       </PageContext.Provider>

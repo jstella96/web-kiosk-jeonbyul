@@ -14,16 +14,15 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: configService.get('DB_HOST'),
-        port: configService.get('DB_PORT'),
-        username: configService.get('USERNAME'),
-        password: configService.get('PASSWORD'),
-        database: configService.get('DATABASE'),
+        host: configService.get('MYSQL_HOST'),
+        port: configService.get('MYSQL_PORT'),
+        username: configService.get('MYSQL_USER'),
+        password: configService.get('MYSQL_PASSWORD'),
+        database: configService.get('MYSQL_DATABASE'),
         synchronize: true, //프로덕션에서는 사용하면 안됨.
         namingStrategy: new SnakeNamingStrategy(),
         autoLoadEntities: true,
         //dropSchema: true,
-
       }),
       inject: [ConfigService],
     }),

@@ -1,19 +1,19 @@
 import React, { useMemo, useReducer } from 'react';
 
-interface Food {
+export interface Food {
   id: number;
   name: string;
   imgUrl: string;
   categoryId: number;
   basePrice: number;
 }
-interface Option {
+export interface Option {
   label: string;
   additionalPrice: string;
   key: string;
 }
 
-interface CartItem {
+export interface CartItem {
   id?: string;
   count: number;
   food: Food;
@@ -21,7 +21,7 @@ interface CartItem {
   temperatureOption: Option;
 }
 
-interface OrderInfo {
+export interface OrderInfo {
   paymentMethod: string;
   inputAmount: number;
   cartItems: CartItem[];

@@ -13,7 +13,7 @@ export class FoodsService {
     const categories = await this.categoryRepository.getAllCategory();
     const newCategories = await Promise.all(
       categories.map(async (category, index) => {
-        const foods = await this.getFoodByCategory(category.id);
+        const foods = await this.getFoodsByCategory(category.id);
         category.foods = foods;
         return category;
       }),
@@ -25,7 +25,7 @@ export class FoodsService {
     return this.foodRepository.getFood(id);
   }
 
-  getFoodByCategory(categoryId) {
+  getFoodsByCategory(categoryId) {
     return this.foodRepository.getFoodsByCategory(categoryId);
   }
 }

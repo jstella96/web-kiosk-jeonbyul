@@ -4,13 +4,15 @@ import { useEffect, useRef } from 'react';
 import './index.scss';
 
 const START_COUNT_NUMBER = 10;
-
-const Receipt = ({ orderNum }) => {
+interface ReceiptProps {
+  orderNum: number;
+}
+const Receipt = ({ orderNum }: ReceiptProps) => {
   const { movePage } = usePage();
   const { orderInfo, totalPrice } = useOrderInfo();
   const { paymentMethod, inputAmount } = orderInfo;
 
-  const countRef = useRef(null);
+  const countRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     const timerId = startCountDown();
@@ -26,7 +28,8 @@ const Receipt = ({ orderNum }) => {
       if (countNumber === 0) {
         movePage('home');
       }
-      countRef.current.innerText = countNumber;
+      if (!countRef.current) return;
+      countRef.current.innerText = String(countNumber);
       countNumber--;
     };
 

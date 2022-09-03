@@ -8,9 +8,11 @@ import './index.scss';
 const Home = () => {
   const { movePage } = usePage();
   const { orderInfoDispatch } = useOrderInfo();
+
   useEffect(() => {
     orderInfoDispatch(clearOrderInfo());
-  }, []);
+  }, [orderInfoDispatch]);
+
   return (
     <div className="home">
       <h2>Le Cordon Bleu</h2>
