@@ -26,7 +26,8 @@ const FoodListContainer = ({
   const [selectedFood, setSelectedFood] = useState<FoodType>();
   const { orderInfoDispatch } = useOrderInfo();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const openOptionModal = (food: any) => () => {
+  const openOptionModal = (food: any) => {
+    console.log('dd');
     setSelectedFood(food);
     setIsOpenModal(true);
   };
@@ -41,7 +42,7 @@ const FoodListContainer = ({
         {foodsByCategory.map((category, index) => (
           <FoodList key={category.id} {...(index === 0 ? { ref: sliderRef } : {})}>
             {category.foods.map((food) => (
-              <Food key={food.id} onClick={openOptionModal(food)}>
+              <Food key={food.id} onClick={() => openOptionModal(food)}>
                 <img alt={food.name} src={food.imgUrl}></img>
                 <h2>{food.name}</h2>
                 <span>{(+food.basePrice).toLocaleString()}원</span>
@@ -54,7 +55,7 @@ const FoodListContainer = ({
         <OptionModal
           sizeOptions={options.size[selectedFood ? selectedFood.id : 0] || {}}
           temperatureOptions={options.temperature[selectedFood ? selectedFood.id : 0] || {}}
-          close={setIsOpenModal(false)}
+          close={() => setIsOpenModal(false)}
           food={selectedFood}
           orderInfoDispatch={orderInfoDispatch}
         />

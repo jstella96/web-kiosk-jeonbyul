@@ -1,7 +1,8 @@
+import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
 import { useEffect, useRef } from 'react';
-import './index.scss';
+import styled from 'styled-components';
 
 const START_COUNT_NUMBER = 10;
 interface ReceiptProps {
@@ -38,13 +39,13 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
   };
 
   return (
-    <div className="receipt">
-      <main className="receipt_content">
-        <div className="receipt_icon">
+    <div>
+      <Main>
+        <Icon>
           <img src="https://cdn.icon-icons.com/icons2/2493/PNG/512/coffee_bar_icon_150224.png" />
-        </div>
+        </Icon>
 
-        <div className="receipt-detail">
+        <Detail>
           <div className="receipt_ordernum">
             주문 번호 : <span>{orderNum}</span>
           </div>
@@ -58,15 +59,50 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
           ) : (
             <></>
           )}
-        </div>
-      </main>
-      <footer className="receipt_footer">
+        </Detail>
+      </Main>
+      <Footer className="receipt_footer">
         <span className="receipt_footer-text">
           이 화면은 <span ref={countRef}></span>초 뒤에 자동으로 사라집니다.
         </span>
         <div onClick={() => movePage('home')}> 홈으로 이동 </div>
-      </footer>
+      </Footer>
     </div>
   );
 };
+
+const Detail = styled.div`
+  display: flex;
+  flex-direction: column;
+  div {
+    margin: 0.4rem;
+    font-weight: 700;
+  }
+`;
+
+const Icon = styled.div`
+  margin-bottom: 3rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+
+  img {
+    margin: auto;
+    width: 10rem;
+  }
+`;
+
+const Main = styled.div`
+  font-size: 1.2rem;
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span {
+    color: ${COLORS.grayDark};
+    margin-bottom: 2rem;
+  }
+`;
 export default Receipt;

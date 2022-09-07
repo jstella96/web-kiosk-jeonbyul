@@ -3,9 +3,10 @@ import Navbar from 'components/Navbar/Navbar';
 import FoodListContainer from 'components/FoodList';
 import CartContainer from 'components/Cart/CartContainer';
 import Footer from 'components/Footer';
-import './index.scss';
 import { CategoryType } from 'types/category';
 import { FoodsByCategoryType } from 'types/food';
+import styled from 'styled-components';
+import COLORS from 'constants/color';
 const MaxItem = 4;
 
 interface MainProps {
@@ -39,7 +40,7 @@ const Main = ({ categories, foodsByCategory }: MainProps) => {
     setSelectedIndex(nextIndex);
   };
   return (
-    <div className="main">
+    <MainLayout>
       <Navbar
         nowStartIndex={nowStartIndex}
         categories={categories}
@@ -53,7 +54,14 @@ const Main = ({ categories, foodsByCategory }: MainProps) => {
       />
       <CartContainer />
       <Footer />
-    </div>
+    </MainLayout>
   );
 };
 export default Main;
+
+const MainLayout = styled.div`
+  height: 100vh;
+  color: ${COLORS.primary};
+  display: grid;
+  grid-template-rows: 0.4fr 6fr 2.8fr 0.2fr;
+`;

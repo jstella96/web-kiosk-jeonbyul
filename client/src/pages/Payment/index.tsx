@@ -1,12 +1,12 @@
 import { requestPostOrder } from 'api/api';
 import Loding from 'components/common/Loding';
 import CashModal from 'components/Modal/CashModal';
+import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
 import { updateInputAmount, updatePaymentMethod } from 'hooks/orderInfoState';
 import { useState } from 'react';
-import './index.scss';
-
+import styled from 'styled-components';
 interface PaymentMethodProps {
   setOrderNum: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -60,7 +60,7 @@ const PaymentMethod = ({ setOrderNum }: PaymentMethodProps) => {
   };
 
   return (
-    <div className="payment">
+    <PaymentMethodLayout>
       <header className="payment_header">
         <button onClick={() => movePage('main')}>뒤로가기</button>
         <h1>
@@ -79,7 +79,37 @@ const PaymentMethod = ({ setOrderNum }: PaymentMethodProps) => {
       </main>
       <Loding isLoding={isLoding} />
       <CashModal isOpen={showCashModal} orderFoods={orderFoods} totalPrice={totalPrice}></CashModal>
-    </div>
+    </PaymentMethodLayout>
   );
 };
 export default PaymentMethod;
+
+const PaymentMethodLayout = styled.div`
+  height: 100vh;
+  color: ${COLORS.primary};
+  display: grid;
+  grid-template-rows: 0.5fr 7fr;
+
+  .payment_header {
+    padding: 1.7rem;
+    h1 {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+    span {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+  }
+  .payment_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .payment_item {
+    padding: 3rem;
+    border: 1px solid $color-primary;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+`;
