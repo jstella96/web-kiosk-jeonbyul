@@ -27,7 +27,7 @@ const FoodCount = ({ count = 0, setCount, index = 0 }: FoodCountProps) => {
 export default FoodCount;
 
 const Container = styled.div`
-  padding: 0.6rem;
+  padding: 0.4rem;
   width: 100%;
   display: flex;
   justify-content: center;

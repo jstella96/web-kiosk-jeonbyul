@@ -5,6 +5,7 @@ import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
 import { clearCart, deleteCartItem, updateCount } from 'hooks/orderInfoState';
 import CartItem from '../CartItem';
+import { FlexboxRow, flexRow } from 'styles/common';
 
 const CartContainer = () => {
   const { movePage } = usePage();
@@ -32,12 +33,12 @@ const CartContainer = () => {
     <Container>
       <CartMain>
         <CartHeader>
-          <div>
+          <FlexboxRow>
             <span>주문수량 </span>
             <Count>{totalCount}</Count>
-          </div>
+          </FlexboxRow>
           <div>
-            <span>총 주문금액 ₩ {totalPrice.toLocaleString()}</span>
+            <span>총 주문금액 {totalPrice.toLocaleString()}원</span>
           </div>
         </CartHeader>
         <CartItemList>
@@ -67,17 +68,17 @@ const Container = styled.div`
 `;
 
 const CartMain = styled.div`
-  height: 80%;
+  height: 82%;
   padding: 1rem;
   background-color: ${COLORS.gray};
 `;
 
 const CartHeader = styled.div`
-  display: flex;
+  ${flexRow}
   justify-content: space-between;
   color: ${COLORS.black};
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 const CartItemList = styled.div`
@@ -92,20 +93,20 @@ const CartItemList = styled.div`
 `;
 
 const Count = styled.span`
+  margin-left: 0.2rem;
   background-color: ${COLORS.primary};
   color: ${COLORS.white};
-  padding: 0.1rem 1.2rem;
+  padding: 0.2rem 0.8rem;
   border-radius: 0.2rem;
-  font-size: 1rem;
 `;
 
 const CartFooter = styled.footer`
   display: flex;
-  height: 20%;
+  height: 18%;
   button {
-    flex: 1 1 40%;
+    flex: 1;
     color: ${COLORS.white};
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
   }
   button:nth-child(1) {

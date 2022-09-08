@@ -7,6 +7,7 @@ import { usePage } from 'context/pageContext';
 import { updateInputAmount, updatePaymentMethod } from 'hooks/orderInfoState';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { FlexboxColumn } from 'styles/common';
 interface PaymentMethodProps {
   setOrderNum: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -68,14 +69,14 @@ const PaymentMethod = ({ setOrderNum }: PaymentMethodProps) => {
         </h1>
       </header>
       <main>
-        <div className="payment_wrapper">
+        <FlexboxColumn>
           <button className="payment_item" onClick={() => orderFoods('card', totalPrice)}>
             카드결제
           </button>
           <button className="payment_item" onClick={() => setShowCashModal(true)}>
             현금결제
           </button>
-        </div>
+        </FlexboxColumn>
       </main>
       <Loding isLoding={isLoding} />
       <CashModal isOpen={showCashModal} orderFoods={orderFoods} totalPrice={totalPrice}></CashModal>
@@ -89,27 +90,23 @@ const PaymentMethodLayout = styled.div`
   color: ${COLORS.primary};
   display: grid;
   grid-template-rows: 0.5fr 7fr;
-
+  padding: 0 1.2rem;
   .payment_header {
-    padding: 1.7rem;
+    padding: 1.7rem 0rem;
     h1 {
       margin-top: 1rem;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
     span {
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
   }
-  .payment_wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
   .payment_item {
-    padding: 3rem;
-    border: 1px solid $color-primary;
-    border-radius: 1rem;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid ${COLORS.primary};
+    border-radius: 0.2rem;
     margin-bottom: 1rem;
   }
 `;

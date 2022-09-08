@@ -36,10 +36,13 @@ const SeletedLine = styled.div<{ translateX: number }>`
   height: inherit;
   width: 20%;
   background: ${COLORS.primary};
-  transition: all 0.4s;
+  transition: all 0.25s;
   ${({ translateX }) => {
     return css`
       transform: translateX(${`${translateX}px`});
     `;
   }}
+  @media (max-width: 767px) {
+    width: calc(80% / 3);
+  }
 `;

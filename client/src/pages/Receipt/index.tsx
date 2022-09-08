@@ -3,6 +3,7 @@ import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { flexColumn } from 'styles/common';
 
 const START_COUNT_NUMBER = 10;
 interface ReceiptProps {
@@ -39,12 +40,8 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
   };
 
   return (
-    <div>
+    <ReceiptLayout>
       <Main>
-        <Icon>
-          <img src="https://cdn.icon-icons.com/icons2/2493/PNG/512/coffee_bar_icon_150224.png" />
-        </Icon>
-
         <Detail>
           <div className="receipt_ordernum">
             주문 번호 : <span>{orderNum}</span>
@@ -53,8 +50,8 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
           <div>결제 금액 : {totalPrice.toLocaleString()}원</div>
           {paymentMethod === 'cash' ? (
             <>
-              <div>투입 금액 : {inputAmount.toLocaleString()}</div>
-              <div>거스름돈 : {(inputAmount - totalPrice).toLocaleString()}</div>{' '}
+              <div>투입 금액 : {inputAmount.toLocaleString()}원</div>
+              <div>거스름 돈 : {(inputAmount - totalPrice).toLocaleString()}원</div>
             </>
           ) : (
             <></>
@@ -67,10 +64,17 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
         </span>
         <div onClick={() => movePage('home')}> 홈으로 이동 </div>
       </Footer>
-    </div>
+    </ReceiptLayout>
   );
 };
 
+const ReceiptLayout = styled.div`
+  ${flexColumn}
+  justify-content: center;
+  gap: 2rem;
+  height: 100vh;
+  padding: 0 10%;
+`;
 const Detail = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,20 +84,14 @@ const Detail = styled.div`
   }
 `;
 
-const Icon = styled.div`
-  margin-bottom: 3rem;
-  width: 100%;
-  align-items: center;
-  display: flex;
-
-  img {
-    margin: auto;
-    width: 10rem;
-  }
-`;
-
 const Main = styled.div`
   font-size: 1.2rem;
+  border: 1px solid ${COLORS.primary};
+  border-radius: 0.2rem;
+  width: 100%;
+  height: 20%;
+  ${flexColumn}
+  justify-content: center;
 `;
 
 const Footer = styled.footer`

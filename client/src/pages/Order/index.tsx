@@ -28,7 +28,7 @@ const Order = () => {
         ))}
       </ItemWrapper>
       <OrderButton onClick={() => movePage('payment')}>
-        <span>₩ {totalPrice.toLocaleString()}</span>
+        <span>{totalPrice.toLocaleString()}원</span>
         <span> 결제하기</span>
       </OrderButton>
     </OrderLayout>
@@ -47,16 +47,17 @@ const Header = styled.header`
   padding: 1.7rem;
   h1 {
     margin-top: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   span {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 `;
 
 const ItemWrapper = styled.main`
   overflow: scroll;
+  padding: 0 1rem;
 `;
 
 const OrderButton = styled.button`

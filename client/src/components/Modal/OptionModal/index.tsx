@@ -5,6 +5,7 @@ import OptionSelect from 'components/Modal/OptionSelect';
 import { addCartItem } from 'hooks/orderInfoState';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
+import { modal } from 'styles/common';
 
 interface OptionModalProps {
   sizeOptions: any;
@@ -58,7 +59,7 @@ const OptionModal = ({
           <FoodDetail>
             <img alt={food.name} src={food.imgUrl} />
             <h2>{food.name}</h2>
-            <span>{food.basePrice} 원</span>
+            <span>{food.basePrice}원</span>
           </FoodDetail>
           <OptionContainer>
             <OptionSelect
@@ -82,6 +83,10 @@ const OptionModal = ({
     </Modal>
   );
 };
+const Modal = styled.div`
+  ${modal}
+  display: flex;
+`;
 const Section = styled.section`
   width: 90%;
   max-width: 40rem;
@@ -97,17 +102,7 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
 `;
-const Modal = styled.div`
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.6);
-`;
+
 const FoodDetail = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,14 +111,14 @@ const FoodDetail = styled.div`
     width: 15rem;
   }
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
   }
   span {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
   }
 `;
 

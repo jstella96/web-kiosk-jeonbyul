@@ -3,6 +3,7 @@ import OptionTag from 'components/common/OptionTag';
 import COLORS from 'constants/color';
 import { CartItem } from 'hooks/orderInfoState';
 import styled from 'styled-components';
+import { flexRow } from 'styles/common';
 
 interface OrderItemProps {
   orderItem: CartItem;
@@ -29,7 +30,7 @@ const OrderItem = ({ orderItem, index, setCount }: OrderItemProps) => {
         <div className="order-item-top">
           <h2 className="order-item-name">
             {food.name}
-            <span className="order-item-price"> ₩ {itemTotalPrice.toLocaleString()}</span>
+            <span className="order-item-price"> {itemTotalPrice.toLocaleString()}원</span>
           </h2>
 
           <OptionTagWrapper>
@@ -37,11 +38,11 @@ const OrderItem = ({ orderItem, index, setCount }: OrderItemProps) => {
             <OptionTag option={sizeOption} />
           </OptionTagWrapper>
         </div>
-        <div className="order-item-bottom">
-          <div className="order-food-count">
+        <FlexboxRow>
+          <div>
             <FoodCount count={count} setCount={setCount} index={index} />
           </div>
-        </div>
+        </FlexboxRow>
       </div>
     </Container>
   );
@@ -50,7 +51,6 @@ export default OrderItem;
 
 const OptionTagWrapper = styled.div`
   display: flex;
-  height: 2rem;
 `;
 
 const Container = styled.div`
@@ -67,7 +67,7 @@ const Container = styled.div`
     object-fit: cover;
   }
   .order-item-name {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 0.4rem;
   }
@@ -81,16 +81,13 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
   }
-  .order-food-count {
-    width: 40%;
-  }
-  .order-item-bottom {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
   .order-item-top {
     display: flex;
     flex-direction: column;
   }
+`;
+
+const FlexboxRow = styled.div`
+  ${flexRow}
+  justify-content: end;
 `;

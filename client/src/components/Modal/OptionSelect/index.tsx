@@ -37,9 +37,16 @@ const OptionWrapper = styled.div`
   justify-content: center;
 `;
 const Button = styled.button<{ isSelected: boolean }>`
+  @media (max-width: 767px) {
+    font-size: 0.6rem;
+    width: 5rem;
+  }
+  font-size: 0.7rem;
+  width: 7rem;
   display: flex;
   justify-content: space-between;
-  width: 7rem;
+  align-items: center;
+
   padding: 0.6em;
   margin: 0.5rem 0.2rem;
   border-radius: 0.2rem;

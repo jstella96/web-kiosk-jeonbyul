@@ -5,6 +5,7 @@ import { useOrderInfo } from 'context/orderInfoContext';
 import styled, { css } from 'styled-components';
 import { FoodsByCategoryType, FoodType } from 'types/food';
 import { useSlider } from 'hooks/useSlider';
+import COLORS from 'constants/color';
 
 interface FoodListContainerProps {
   foodsByCategory: FoodsByCategoryType[];
@@ -27,7 +28,6 @@ const FoodListContainer = ({
   const { orderInfoDispatch } = useOrderInfo();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openOptionModal = (food: any) => {
-    console.log('dd');
     setSelectedFood(food);
     setIsOpenModal(true);
   };
@@ -85,7 +85,6 @@ const FoodListWrapper = styled.div<{ translateX: number }>`
   }}
 `;
 const FoodList = styled.div`
-  padding: 20px 40px;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -108,13 +107,14 @@ const FoodList = styled.div`
 `;
 
 const Food = styled.div`
-  margin: 1rem;
-  color: $color-primary;
+  margin: 0.8rem;
+  color: ${COLORS.primary};
   font-weight: 700;
   display: flex;
   flex-direction: column;
   img {
-    width: 9rem;
+    width: 100%;
+    max-width: 9rem;
     margin: auto;
     object-fit: cover;
   }
@@ -122,7 +122,7 @@ const Food = styled.div`
     font-size: 1rem;
     display: block;
     text-align: center;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.2rem;
   }
   span {
     display: block;

@@ -7,7 +7,6 @@ import { CategoryType } from 'types/category';
 import { FoodsByCategoryType } from 'types/food';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
-const MaxItem = 4;
 
 interface MainProps {
   categories: CategoryType[];
@@ -20,6 +19,8 @@ const Main = ({ categories, foodsByCategory }: MainProps) => {
 
   //코드 리팩토링!
   const changeSelectedIndex = (nextIndex: number) => {
+    const MaxItem = window.innerWidth <= 767 ? 3 : 4;
+
     const categoriesLen = categories.length;
     let nextStartIndex = nowStartIndex;
     if (nextIndex < 0 || categoriesLen - 1 < nextIndex) return;
@@ -63,5 +64,5 @@ const MainLayout = styled.div`
   height: 100vh;
   color: ${COLORS.primary};
   display: grid;
-  grid-template-rows: 0.4fr 6fr 2.8fr 0.2fr;
+  grid-template-rows: 0.4fr 6fr 16rem 3rem;
 `;

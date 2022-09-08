@@ -1,6 +1,7 @@
 import COLORS from 'constants/color';
 import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { flexColumn, modal } from 'styles/common';
 
 interface CashModalProps {
   isOpen: boolean;
@@ -17,81 +18,63 @@ const CashModal = ({ isOpen, totalPrice, orderFoods }: CashModalProps) => {
   }, [sum]);
   return (
     <Modal isOpen={isOpen}>
-      <section>
-        <main className="cash-select-button">
+      <Section>
+        <ButtonBox>
           <button onClick={() => setSum(sum + 500)}>500 원</button>
           <button onClick={() => setSum(sum + 1000)}>1,000 원</button>
           <button onClick={() => setSum(sum + 5000)}>5,000 원</button>
           <button onClick={() => setSum(sum + 10000)}>10,000 원</button>
           <button onClick={() => setSum(sum + 50000)}>50,000 원</button>
-        </main>
-        <footer className="cash-footer">
+        </ButtonBox>
+        <Footer>
           <div>
-            투입 금액 <span>{sum.toLocaleString()}</span>
+            투입 금액: <span>{sum.toLocaleString()}원</span>
           </div>
           <div>
-            결제 금액 <span>{totalPrice.toLocaleString()}</span>
+            결제 금액: <span>{totalPrice.toLocaleString()}원</span>
           </div>
-        </footer>
-      </section>
+        </Footer>
+      </Section>
     </Modal>
   );
 };
-
+const Section = styled.section`
+  width: 90%;
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: ${COLORS.white};
+`;
+const ButtonBox = styled.main`
+  ${flexColumn}
+  padding: 2rem;
+  button {
+    border: 1px solid ${COLORS.black};
+    border-radius: 0.2rem;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+`;
 const Modal = styled.div<{ isOpen: Boolean }>`
+  ${modal}
   display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.6);
   ${({ isOpen }) => {
     if (isOpen) {
       return css`
         display: flex;
-        align-items: center;
       `;
     }
   }}
+`;
 
-  section {
-    max-width: 40rem;
-    margin: 0 auto;
-    background-color: ${COLORS.white};
-  }
-
-  main {
-    padding: 2rem;
-    display: flex;
-    flex-direction: center;
-    align-items: center;
-  }
-  .cash-footer {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    background-color: ${COLORS.black};
-    color: ${COLORS.white};
-    padding-right: 1rem;
-    div {
-      margin-left: 1rem;
-    }
-  }
-  .cash-select-button {
-    display: flex;
-    button {
-      border: 1px solid ${COLORS.black};
-      border-radius: 0.2rem;
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-    button:hover {
-      background-color: ${COLORS.grayLight};
-    }
-  }
+const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-color: ${COLORS.black};
+  color: ${COLORS.white};
+  padding: 0.5rem;
+  gap: 0.5rem;
 `;
 
 export default CashModal;

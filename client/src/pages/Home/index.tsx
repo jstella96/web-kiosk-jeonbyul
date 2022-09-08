@@ -15,11 +15,7 @@ const Home = () => {
 
   return (
     <HomeLayout>
-      <h2>
-        Le <br />
-        Cordon <br />
-        Bleu
-      </h2>
+      <h2>별다방</h2>
       <ButtonBox>
         <button onClick={() => movePage('main')}>매장이용</button>
         <button onClick={() => movePage('main')}>포장</button>
