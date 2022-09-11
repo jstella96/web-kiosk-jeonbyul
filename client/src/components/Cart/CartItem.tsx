@@ -3,8 +3,9 @@ import FoodCount from 'components/common/FoodCount';
 import OptionTag from 'components/common/OptionTag';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
-import { CartItem as CartItemType } from 'hooks/orderInfoState';
+
 import { flexColumn } from 'styles/common';
+import { CartItemType } from 'types/cart';
 
 interface CartItemProps {
   cartItem: CartItemType;

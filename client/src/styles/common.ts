@@ -71,3 +71,15 @@ export const FlexboxRow = styled.div`
 export const FlexboxColumn = styled.div`
   ${flexColumn}
 `;
+
+export const Header = styled.header`
+  margin: 1.5rem 1rem;
+  h1 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+  span {
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+`;

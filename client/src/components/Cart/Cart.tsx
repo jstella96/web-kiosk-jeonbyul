@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { clearCart, deleteCartItem, updateCount } from 'hooks/orderInfoState';
-import CartItem from '../CartItem';
+import { clearCart, deleteCartItem, updateCount } from 'reducer/orderInfo';
+import CartItem from './CartItem';
 import { FlexboxRow, flexRow } from 'styles/common';
 
 const CartContainer = () => {
@@ -68,7 +68,7 @@ const Container = styled.div`
 `;
 
 const CartMain = styled.div`
-  height: 82%;
+  height: 83%;
   padding: 1rem;
   background-color: ${COLORS.gray};
 `;
@@ -102,7 +102,7 @@ const Count = styled.span`
 
 const CartFooter = styled.footer`
   display: flex;
-  height: 18%;
+  height: 17%;
   button {
     flex: 1;
     color: ${COLORS.white};

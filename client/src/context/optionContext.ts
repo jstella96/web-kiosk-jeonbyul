@@ -1,24 +1,7 @@
 import { createContext, useContext } from 'react';
+import { OptionType } from 'types/option';
 
-interface SizeOptionInterface {
-  s: number;
-  m: number;
-  l: number;
-}
-
-interface TemperatureOptionInterface {
-  h: number;
-  c: number;
-}
-
-interface OptionInterface {
-  size: { [key: string]: SizeOptionInterface };
-  temperature: {
-    [key: string]: TemperatureOptionInterface;
-  };
-}
-
-export const OptionContext = createContext<OptionInterface | null>(null);
+export const OptionContext = createContext<OptionType | null>(null);
 
 export function useOptions(component?: string) {
   const context = useContext(OptionContext);

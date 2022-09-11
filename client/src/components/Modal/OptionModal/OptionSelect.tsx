@@ -1,10 +1,10 @@
 import COLORS from 'constants/color';
-import { Option } from 'hooks/orderInfoState';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { FoodOptionType } from 'types/food';
 
 interface OptionSelectProps {
-  options: Option[];
+  options: FoodOptionType[];
   selectedIdx: number;
   setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -12,19 +12,18 @@ interface OptionSelectProps {
 const OptionSelect = ({ options = [], selectedIdx, setSelectedIdx }: OptionSelectProps) => {
   return (
     <OptionWrapper>
-      {options.map((option, index) =>
-        option.additionalPrice ? (
-          <Button
-            onClick={() => setSelectedIdx(index)}
-            key={index}
-            isSelected={selectedIdx === index ? true : false}
-          >
-            <span>{option.label}</span>
-            <span>+{+option.additionalPrice.toLocaleString()}원</span>
-          </Button>
-        ) : (
-          <></>
-        )
+      {options.map(
+        (option, index) =>
+          option.additionalPrice && (
+            <Button
+              onClick={() => setSelectedIdx(index)}
+              key={index}
+              isSelected={selectedIdx === index ? true : false}
+            >
+              <span>{option.label}</span>
+              <span>+{+option.additionalPrice.toLocaleString()}원</span>
+            </Button>
+          )
       )}
     </OptionWrapper>
   );

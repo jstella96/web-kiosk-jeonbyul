@@ -1,11 +1,11 @@
 import COLORS from 'constants/color';
-import { Option } from 'hooks/orderInfoState';
 import React from 'react';
 import styled from 'styled-components';
 import { flexRow } from 'styles/common';
+import { FoodOptionType } from 'types/food';
 
 interface OptionTagProps {
-  option: Option;
+  option: FoodOptionType;
 }
 const OptionTag = ({ option }: OptionTagProps) => {
   if (!option || !option.additionalPrice) return <></>;

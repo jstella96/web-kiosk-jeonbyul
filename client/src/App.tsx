@@ -2,45 +2,43 @@ import './App.scss';
 import Router from './Router/Router.js';
 import { OptionContext } from 'context/optionContext';
 import { useEffect, useState } from 'react';
-import { requestGetCategories, requestGetFoods, requestGetOption } from 'api/api';
+import { requestGetOption } from 'api/api';
 import { OrderInfoContext } from 'context/orderInfoContext';
-import { useOrderInfoState } from 'hooks/orderInfoState';
 import { PageContext } from 'context/pageContext';
+import { useOrderInfoState } from 'hooks/useOrderInfoState';
+import { OptionType } from 'types/option';
 
 function App() {
   const [page, setPage] = useState('home');
-  const [options, setOptions] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const [foodsByCategory, setFoodsByCategory] = useState([]);
+  const [options, setOptions] = useState<OptionType | null>(null);
   const { orderInfo, orderInfoDispatch, totalCount, totalPrice } = useOrderInfoState();
 
   useEffect(() => {
+    const fetchAndSetOPtions = async () => {
+      const optionsData = await requestGetOption();
+      setOptions(optionsData);
+    };
     fetchAndSetOPtions();
-    fetchAndSetCategories();
-    fetchAndSetFoods();
   }, []);
 
-  const fetchAndSetOPtions = async () => {
-    const options = await requestGetOption();
-    setOptions(options);
+  /* 모바일기기 100vh 이슈 해결을 위한 로직  */
+  const setScreenSize = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
 
-  const fetchAndSetCategories = async () => {
-    const categoriesData = await requestGetCategories();
-    setCategories(categoriesData);
-  };
+  window.addEventListener('resize', () => setScreenSize());
 
-  const fetchAndSetFoods = async () => {
-    const foodsByCategory = await requestGetFoods();
-    setFoodsByCategory(foodsByCategory);
-  };
+  useEffect(() => {
+    setScreenSize();
+  }, []);
 
   return (
     <div className="App">
       <PageContext.Provider value={{ page, movePage: setPage }}>
         <OrderInfoContext.Provider value={{ orderInfo, orderInfoDispatch, totalCount, totalPrice }}>
           <OptionContext.Provider value={options}>
-            <Router categories={categories} foodsByCategory={foodsByCategory}></Router>
+            <Router></Router>
           </OptionContext.Provider>
         </OrderInfoContext.Provider>
       </PageContext.Provider>

@@ -1,12 +1,12 @@
 import FoodCount from 'components/common/FoodCount';
 import OptionTag from 'components/common/OptionTag';
 import COLORS from 'constants/color';
-import { CartItem } from 'hooks/orderInfoState';
 import styled from 'styled-components';
 import { flexRow } from 'styles/common';
+import { CartItemType } from 'types/cart';
 
 interface OrderItemProps {
-  orderItem: CartItem;
+  orderItem: CartItemType;
   index: number;
   setCount: (nextCount: number, index: number) => void;
 }

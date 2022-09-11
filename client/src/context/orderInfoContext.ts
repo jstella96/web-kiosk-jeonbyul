@@ -1,8 +1,9 @@
-import { OrderInfo, OrderInfoAction } from 'hooks/orderInfoState';
+import { OrderInfoAction } from 'reducer/orderInfo';
 import { createContext, useContext } from 'react';
+import { OrderInfoType } from 'types/order';
 
 interface OrderDetailInfo {
-  orderInfo: OrderInfo;
+  orderInfo: OrderInfoType;
   orderInfoDispatch: React.Dispatch<OrderInfoAction>;
   totalCount: number;
   totalPrice: number;
@@ -18,4 +19,4 @@ export function useOrderInfo(component?: string) {
   return context;
 }
 
-OrderInfoContext.displayName = 'OrderContext';
+OrderInfoContext.displayName = 'OrderInfoContext';

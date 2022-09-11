@@ -1,43 +1,22 @@
-import React, { useMemo, useReducer } from 'react';
+import { CartItemType } from 'types/cart';
+import { OrderInfoType } from 'types/order';
 
-export interface Food {
-  id: number;
-  name: string;
-  imgUrl: string;
-  categoryId: number;
-  basePrice: number;
-}
-export interface Option {
-  label: string;
-  additionalPrice: string;
-  key: string;
-}
-
-export interface CartItem {
-  id?: string;
-  count: number;
-  food: Food;
-  sizeOption: Option;
-  temperatureOption: Option;
-}
-
-export interface OrderInfo {
-  paymentMethod: string;
-  inputAmount: number;
-  cartItems: CartItem[];
-}
+export const initialOrderInfo: OrderInfoType = {
+  paymentMethod: '',
+  inputAmount: 0,
+  cartItems: []
+};
 
 export const ORDER_INFO_ACTIONS = {
   ADD_CARTITEM: 'add-cartItem',
   UPDATE_COUNT: 'update-count',
   DELETE_CARTITEM: 'delete-cartItem',
   CLEAR_CART: 'clear-cart',
-  UPDATE_PAYMENT_METHOD: 'update-paymentMethod',
-  UPDATE_INPUT_ACCOUNT: 'update-inputAmount',
-  CLEAR_ORDERINFO: 'clear-orederinfo'
+  CLEAR_ORDERINFO: 'clear-orederinfo',
+  UPDATE_METHOD_AND_ACCOUNT: 'update_method_and_account'
 };
 
-export const addCartItem = (payload: CartItem) => {
+export const addCartItem = (payload: CartItemType) => {
   return {
     type: ORDER_INFO_ACTIONS.ADD_CARTITEM,
     ...payload
@@ -60,18 +39,13 @@ export const clearCart = () => {
     type: ORDER_INFO_ACTIONS.CLEAR_CART
   };
 };
-export const updatePaymentMethod = (payload: { paymentMethod: string }) => {
+export const updateMethodAndAccount = (payload: { inputAmount: number; paymentMethod: string }) => {
   return {
-    type: ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD,
+    type: ORDER_INFO_ACTIONS.UPDATE_METHOD_AND_ACCOUNT,
     ...payload
   };
 };
-export const updateInputAmount = (payload: { inputAmount: number }) => {
-  return {
-    type: ORDER_INFO_ACTIONS.UPDATE_INPUT_ACCOUNT,
-    ...payload
-  };
-};
+
 export const clearOrderInfo = () => {
   return {
     type: ORDER_INFO_ACTIONS.CLEAR_ORDERINFO
@@ -83,11 +57,10 @@ export type OrderInfoAction =
   | ReturnType<typeof updateCount>
   | ReturnType<typeof deleteCartItem>
   | ReturnType<typeof clearCart>
-  | ReturnType<typeof updatePaymentMethod>
-  | ReturnType<typeof updateInputAmount>
+  | ReturnType<typeof updateMethodAndAccount>
   | ReturnType<typeof clearOrderInfo>;
 
-function isEqualCartItem(cartItem: CartItem, newCartItem: CartItem) {
+function isEqualCartItem(cartItem: CartItemType, newCartItem: CartItemType) {
   if (
     cartItem.food.id === newCartItem.food.id &&
     cartItem.sizeOption?.key === newCartItem.sizeOption?.key &&
@@ -98,7 +71,7 @@ function isEqualCartItem(cartItem: CartItem, newCartItem: CartItem) {
   return false;
 }
 
-function orderInfoReducer(orderInfo: OrderInfo, action: OrderInfoAction): OrderInfo {
+export function orderInfoReducer(orderInfo: OrderInfoType, action: OrderInfoAction): OrderInfoType {
   switch (action.type) {
     case ORDER_INFO_ACTIONS.ADD_CARTITEM: {
       const { type, ...payload } = action as ReturnType<typeof addCartItem>;
@@ -153,21 +126,13 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderInfoAction): OrderI
       };
     }
 
-    case ORDER_INFO_ACTIONS.UPDATE_PAYMENT_METHOD: {
-      const { type, ...payload } = action as ReturnType<typeof updatePaymentMethod>;
-      const { paymentMethod } = payload;
+    case ORDER_INFO_ACTIONS.UPDATE_METHOD_AND_ACCOUNT: {
+      const { type, ...payload } = action as ReturnType<typeof updateMethodAndAccount>;
+      const { inputAmount, paymentMethod } = payload;
       return {
         ...orderInfo,
+        inputAmount,
         paymentMethod
-      };
-    }
-
-    case ORDER_INFO_ACTIONS.UPDATE_INPUT_ACCOUNT: {
-      const { type, ...payload } = action as ReturnType<typeof updateInputAmount>;
-      const { inputAmount } = payload;
-      return {
-        ...orderInfo,
-        inputAmount
       };
     }
 
@@ -180,31 +145,3 @@ function orderInfoReducer(orderInfo: OrderInfo, action: OrderInfoAction): OrderI
     }
   }
 }
-
-const initialOrderInfo: OrderInfo = {
-  paymentMethod: '',
-  inputAmount: 0,
-  cartItems: []
-};
-
-export const useOrderInfoState = () => {
-  const [orderInfo, orderInfoDispatch] = useReducer(orderInfoReducer, initialOrderInfo);
-  const { cartItems } = orderInfo;
-  const totalCount = useMemo(() => {
-    return cartItems.reduce((acc, curr) => {
-      return acc + curr.count;
-    }, 0);
-  }, [cartItems]);
-
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce((acc, curr) => {
-      const temperatureAdditionalPrice = curr.temperatureOption?.additionalPrice || 0;
-      const sizeAdditionalPrice = curr.sizeOption?.additionalPrice || 0;
-      const basePrice = curr?.food.basePrice || 0;
-      const total = +basePrice + +temperatureAdditionalPrice + +sizeAdditionalPrice;
-      return acc + total * curr.count;
-    }, 0);
-  }, [cartItems]);
-
-  return { orderInfo, orderInfoDispatch, totalCount, totalPrice };
-};

@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
-import React from 'react';
-
-import NavbarItemList from 'components/Navbar/NavbarItemList';
+import NavbarItemList from 'components/Navbar/NavbarItem';
 import NavbarLine from 'components/Navbar/NavbarLine';
 import { CategoryType } from 'types/category';
 import COLORS from 'constants/color';

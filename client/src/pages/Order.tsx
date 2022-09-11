@@ -1,15 +1,15 @@
-import OrderItem from 'components/OrderItem';
+import OrderItem from 'components/OrderItem/OrderItem';
 import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { updateCount } from 'hooks/orderInfoState';
+import { updateCount } from 'reducer/orderInfo';
 import styled from 'styled-components';
+import { Header } from 'styles/common';
 
 const Order = () => {
   const { movePage } = usePage();
   const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
   const { cartItems } = orderInfo;
-
   const onChangeCartItemCount = (nextCount: number, index: number) => {
     orderInfoDispatch(updateCount({ nextCount, index }));
   };
@@ -22,11 +22,11 @@ const Order = () => {
           <span>주문 내역</span>을 확인해주세요
         </h1>
       </Header>
-      <ItemWrapper>
+      <ItemBox>
         {cartItems.map((item, index) => (
           <OrderItem key={index} setCount={onChangeCartItemCount} orderItem={item} index={index} />
         ))}
-      </ItemWrapper>
+      </ItemBox>
       <OrderButton onClick={() => movePage('payment')}>
         <span>{totalPrice.toLocaleString()}원</span>
         <span> 결제하기</span>
@@ -37,25 +37,13 @@ const Order = () => {
 export default Order;
 
 const OrderLayout = styled.div`
-  height: 100vh;
+  height: 100%;
   color: ${COLORS.primary};
   display: grid;
   grid-template-rows: 0.5fr 6fr 1fr;
 `;
 
-const Header = styled.header`
-  padding: 1.7rem;
-  h1 {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-  }
-  span {
-    font-weight: 700;
-    font-size: 1.4rem;
-  }
-`;
-
-const ItemWrapper = styled.main`
+const ItemBox = styled.main`
   overflow: scroll;
   padding: 0 1rem;
 `;

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useOptions } from 'context/optionContext';
-import OptionModal from 'components/Modal/OptionModal';
+import OptionModal from 'components/Modal/OptionModal/OptionModal';
 import { useOrderInfo } from 'context/orderInfoContext';
 import styled, { css } from 'styled-components';
 import { FoodsByCategoryType, FoodType } from 'types/food';
 import { useSlider } from 'hooks/useSlider';
 import COLORS from 'constants/color';
+import FoodItem from './FoodItem';
 
 interface FoodListContainerProps {
-  foodsByCategory: FoodsByCategoryType[];
+  foodsByCategory: FoodsByCategoryType[] | [];
   selectedIndex: number;
   changeSelectedIndex: (index: number) => void;
 }
@@ -42,11 +43,7 @@ const FoodListContainer = ({
         {foodsByCategory.map((category, index) => (
           <FoodList key={category.id} {...(index === 0 ? { ref: sliderRef } : {})}>
             {category.foods.map((food) => (
-              <Food key={food.id} onClick={() => openOptionModal(food)}>
-                <img alt={food.name} src={food.imgUrl}></img>
-                <h2>{food.name}</h2>
-                <span>{(+food.basePrice).toLocaleString()}원</span>
-              </Food>
+              <FoodItem food={food} key={food.id} onClickFood={openOptionModal}></FoodItem>
             ))}
           </FoodList>
         ))}

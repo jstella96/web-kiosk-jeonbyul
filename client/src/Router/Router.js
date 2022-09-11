@@ -5,7 +5,7 @@ import Order from 'pages/Order';
 import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
 import { usePage } from 'context/pageContext';
-function Router({ categories, foodsByCategory }) {
+function Router() {
   const { page } = usePage();
   const [orderNum, setOrderNum] = useState(0);
   switch (page) {
@@ -13,7 +13,7 @@ function Router({ categories, foodsByCategory }) {
       return <Home></Home>;
     }
     case 'main': {
-      return <Main categories={categories} foodsByCategory={foodsByCategory}></Main>;
+      return <Main></Main>;
     }
     case 'order': {
       return <Order />;

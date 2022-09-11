@@ -1,11 +1,11 @@
 import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { clearOrderInfo } from 'hooks/orderInfoState';
+import { clearOrderInfo } from 'reducer/orderInfo';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const Home = () => {
+const Home = ({ categories }: { categories: any }) => {
   const { movePage } = usePage();
   const { orderInfoDispatch } = useOrderInfo();
 
@@ -26,10 +26,10 @@ const Home = () => {
 export default Home;
 
 const HomeLayout = styled.div`
+  height: 100%;
   background-color: ${COLORS.primary};
   padding: 3rem;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { convertOptionKeyToLabel } from 'utils/option';
 import FoodCount from 'components/common/FoodCount';
-import OptionSelect from 'components/Modal/OptionSelect';
-import { addCartItem } from 'hooks/orderInfoState';
+import OptionSelect from 'components/Modal/OptionModal/OptionSelect';
+import { addCartItem } from 'reducer/orderInfo';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
 import { modal } from 'styles/common';
