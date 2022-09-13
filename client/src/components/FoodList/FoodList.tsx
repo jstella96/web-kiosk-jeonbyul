@@ -5,8 +5,8 @@ import { useOrderInfo } from 'context/orderInfoContext';
 import styled, { css } from 'styled-components';
 import { FoodsByCategoryType, FoodType } from 'types/food';
 import { useSlider } from 'hooks/useSlider';
-import COLORS from 'constants/color';
 import FoodItem from './FoodItem';
+import { foodListLayout } from './FoodListLayout';
 
 interface FoodListContainerProps {
   foodsByCategory: FoodsByCategoryType[] | [];
@@ -82,49 +82,9 @@ const FoodListWrapper = styled.div<{ translateX: number }>`
   }}
 `;
 const FoodList = styled.div`
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  ${foodListLayout}
   overflow: hidden;
-  flex-basis: 100%;
-  flex-shrink: 0;
-  @media (max-width: 767px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media (min-width: 768px) and (max-width: 1023px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
   &::-webkit-scrollbar {
     display: none;
-  }
-`;
-
-const Food = styled.div`
-  margin: 0.8rem;
-  color: ${COLORS.primary};
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  img {
-    width: 100%;
-    max-width: 9rem;
-    margin: auto;
-    object-fit: cover;
-  }
-  h2 {
-    font-size: 1rem;
-    display: block;
-    text-align: center;
-    margin-bottom: 0.2rem;
-  }
-  span {
-    display: block;
-    font-size: 0.8rem;
-    text-align: center;
-    font-weight: 400;
   }
 `;

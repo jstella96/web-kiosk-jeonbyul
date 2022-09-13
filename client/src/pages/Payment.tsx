@@ -9,6 +9,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { FlexboxColumn, Header } from 'styles/common';
 import { convertCartItemsTofoods } from 'utils/order';
+import { PAGE_URL } from 'constants/pageUrl';
 interface PaymentMethodProps {
   setOrderNum: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -35,14 +36,14 @@ const PaymentMethod = ({ setOrderNum }: PaymentMethodProps) => {
   const startLoding = () => {
     setIsLoding(true);
     setTimeout(() => {
-      movePage('receipt');
+      movePage(PAGE_URL.RECEIPT);
     }, 3000);
   };
 
   return (
     <PaymentMethodLayout>
       <Header>
-        <button onClick={() => movePage('order')}>뒤로가기</button>
+        <button onClick={() => movePage(PAGE_URL.ORDER)}>뒤로가기</button>
         <h1>
           <span>결제 방법</span>을 확인해주세요
         </h1>

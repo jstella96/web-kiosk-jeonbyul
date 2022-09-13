@@ -5,23 +5,25 @@ import Order from 'pages/Order';
 import Payment from 'pages/Payment';
 import Receipt from 'pages/Receipt';
 import { usePage } from 'context/pageContext';
+import { PAGE_URL } from 'constants/pageUrl';
+
 function Router() {
   const { page } = usePage();
   const [orderNum, setOrderNum] = useState(0);
   switch (page) {
-    case 'home': {
+    case PAGE_URL.HOME: {
       return <Home></Home>;
     }
-    case 'main': {
+    case PAGE_URL.MAIN: {
       return <Main></Main>;
     }
-    case 'order': {
+    case PAGE_URL.ORDER: {
       return <Order />;
     }
-    case 'payment': {
+    case PAGE_URL.PAYMENT: {
       return <Payment setOrderNum={setOrderNum} />;
     }
-    case 'receipt': {
+    case PAGE_URL.RECEIPT: {
       return <Receipt orderNum={orderNum} />;
     }
     default: {

@@ -1,7 +1,8 @@
 import COLORS from 'constants/color';
+import { PAGE_URL } from 'constants/pageUrl';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
-import { useEffect, useRef } from 'react';
+import { useTimer } from 'hooks/useTimer';
 import styled from 'styled-components';
 import { flexColumn } from 'styles/common';
 
@@ -13,31 +14,7 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
   const { movePage } = usePage();
   const { orderInfo, totalPrice } = useOrderInfo();
   const { paymentMethod, inputAmount } = orderInfo;
-
-  const countRef = useRef<HTMLSpanElement | null>(null);
-
-  useEffect(() => {
-    const startCountDown = () => {
-      let countNumber = START_COUNT_NUMBER - 1;
-
-      const countDown = () => {
-        if (countNumber === 0) {
-          movePage('home');
-        }
-        if (!countRef.current) return;
-        countRef.current.innerText = String(countNumber);
-        countNumber--;
-      };
-
-      const timerId = setInterval(countDown, 1000);
-      return timerId;
-    };
-
-    const timerId = startCountDown();
-    return () => {
-      clearInterval(timerId);
-    };
-  }, [movePage]);
+  const time = useTimer({ seconds: START_COUNT_NUMBER, onTimeout: () => movePage(PAGE_URL.HOME) });
 
   return (
     <ReceiptLayout>
@@ -58,9 +35,9 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
       </Main>
       <Footer>
         <span>
-          이 화면은 <span ref={countRef}>{START_COUNT_NUMBER}</span>초 뒤에 자동으로 사라집니다.
+          이 화면은 <span>{time}</span>초 뒤에 자동으로 사라집니다.
         </span>
-        <div onClick={() => movePage('home')}> 홈으로 이동 </div>
+        <div onClick={() => movePage(PAGE_URL.HOME)}> 홈으로 이동 </div>
       </Footer>
     </ReceiptLayout>
   );

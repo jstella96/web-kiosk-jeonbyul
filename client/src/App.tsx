@@ -1,16 +1,16 @@
 import './App.scss';
-import Router from './Router/Router.js';
+import Router from './Router/Router';
 import { OptionContext } from 'context/optionContext';
 import { useEffect, useState } from 'react';
 import { requestGetOption } from 'api/api';
 import { OrderInfoContext } from 'context/orderInfoContext';
 import { PageContext } from 'context/pageContext';
 import { useOrderInfoState } from 'hooks/useOrderInfoState';
-import { OptionType } from 'types/option';
+import { initialOptionType, OptionType } from 'types/option';
 
 function App() {
   const [page, setPage] = useState('home');
-  const [options, setOptions] = useState<OptionType | null>(null);
+  const [options, setOptions] = useState<OptionType>(initialOptionType);
   const { orderInfo, orderInfoDispatch, totalCount, totalPrice } = useOrderInfoState();
 
   useEffect(() => {

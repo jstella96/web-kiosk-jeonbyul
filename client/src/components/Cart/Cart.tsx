@@ -6,6 +6,7 @@ import { usePage } from 'context/pageContext';
 import { clearCart, deleteCartItem, updateCount } from 'reducer/orderInfo';
 import CartItem from './CartItem';
 import { FlexboxRow, flexRow } from 'styles/common';
+import { PAGE_URL } from 'constants/pageUrl';
 
 const CartContainer = () => {
   const { movePage } = usePage();
@@ -26,7 +27,7 @@ const CartContainer = () => {
 
   const order = () => {
     if (cartItems.length === 0) return;
-    movePage('order');
+    movePage(PAGE_URL.ORDER);
   };
 
   return (
@@ -55,7 +56,9 @@ const CartContainer = () => {
       </CartMain>
       <CartFooter>
         <button onClick={onClearCart}>전체취소</button>
-        <button onClick={order}>주문하기</button>
+        <button disabled={cartItems.length === 0} onClick={order}>
+          주문하기
+        </button>
       </CartFooter>
     </Container>
   );
@@ -114,5 +117,9 @@ const CartFooter = styled.footer`
   }
   button:nth-child(2) {
     background-color: ${COLORS.primary};
+  }
+  button:nth-child(2):disabled {
+    background: ${COLORS.disabled};
+    color: ${COLORS.gray};
   }
 `;

@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import COLORS from 'constants/color';
 import { Exit, Search } from 'assets/icon';
 import { flexRow } from 'styles/common';
+import { PAGE_URL } from 'constants/pageUrl';
 
 const Footer = () => {
   const { movePage } = usePage();
   return (
     <Container>
-      <button onClick={() => movePage('home')}>
+      <button onClick={() => movePage(PAGE_URL.HOME)}>
         <Exit />
         <span>나가기</span>
       </button>

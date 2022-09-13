@@ -15,3 +15,8 @@ export interface OptionType {
     [key: string]: TemperatureOptionType;
   };
 }
+
+export const initialOptionType = {
+  size: {},
+  temperature: {}
+};

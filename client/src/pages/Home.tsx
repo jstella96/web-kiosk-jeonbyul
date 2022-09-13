@@ -2,10 +2,11 @@ import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
 import { clearOrderInfo } from 'reducer/orderInfo';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
+import { PAGE_URL } from 'constants/pageUrl';
 
-const Home = ({ categories }: { categories: any }) => {
+const Home = () => {
   const { movePage } = usePage();
   const { orderInfoDispatch } = useOrderInfo();
 
@@ -17,8 +18,8 @@ const Home = ({ categories }: { categories: any }) => {
     <HomeLayout>
       <h2>별다방</h2>
       <ButtonBox>
-        <button onClick={() => movePage('main')}>매장이용</button>
-        <button onClick={() => movePage('main')}>포장</button>
+        <button onClick={() => movePage(PAGE_URL.MAIN)}>매장이용</button>
+        <button onClick={() => movePage(PAGE_URL.MAIN)}>포장</button>
       </ButtonBox>
     </HomeLayout>
   );

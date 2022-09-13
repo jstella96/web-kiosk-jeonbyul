@@ -1,5 +1,6 @@
 import OrderItem from 'components/OrderItem/OrderItem';
 import COLORS from 'constants/color';
+import { PAGE_URL } from 'constants/pageUrl';
 import { useOrderInfo } from 'context/orderInfoContext';
 import { usePage } from 'context/pageContext';
 import { updateCount } from 'reducer/orderInfo';
@@ -17,7 +18,7 @@ const Order = () => {
   return (
     <OrderLayout>
       <Header>
-        <button onClick={() => movePage('main')}>뒤로가기</button>
+        <button onClick={() => movePage(PAGE_URL.MAIN)}>뒤로가기</button>
         <h1>
           <span>주문 내역</span>을 확인해주세요
         </h1>
@@ -27,7 +28,7 @@ const Order = () => {
           <OrderItem key={index} setCount={onChangeCartItemCount} orderItem={item} index={index} />
         ))}
       </ItemBox>
-      <OrderButton onClick={() => movePage('payment')}>
+      <OrderButton onClick={() => movePage(PAGE_URL.PAYMENT)}>
         <span>{totalPrice.toLocaleString()}원</span>
         <span> 결제하기</span>
       </OrderButton>
