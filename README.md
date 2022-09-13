@@ -1,5 +1,6 @@
 # web-kiosk-jeonbyul
-2022.08.01 ~ 2022.08.12
+* 데모링크 : http://52.79.251.179
+* 개발기간: 2022.08.01 ~ 2022.08.12
 ## 시연 
 ### 메인화면
 ![1번gif](https://user-images.githubusercontent.com/76844355/184734702-ab67da0d-19f2-44b4-b9be-b2e799fb5d22.gif)
@@ -32,13 +33,12 @@ REACT_APP_BACK_BASE_URL=
 
 # server root에 .env 파일 생성
 
-DB_HOST=
-USERNAME=
-PASSWORD=
-DATABASE=
-DB_PORT=
+MYSQL_HOST=
+MYSQL_USER=
+MYSQL_PASSWORD=
+MYSQL_DATABASE=
+MYSQL_PORT=
 PORT=
-
 ```
 
 ### 3. Run Application
