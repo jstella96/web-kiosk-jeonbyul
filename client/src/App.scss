@@ -1,9 +1,0 @@
-@import './assets/style/_reset.scss';
-/* css */
-html {
-  scroll-behavior: smooth;
-}
-
-.App {
-  height: calc(calc(var(--vh, 1vh) * 100));
-}
