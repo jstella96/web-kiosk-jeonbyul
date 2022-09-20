@@ -13,7 +13,7 @@ export const ORDER_INFO_ACTIONS = {
   DELETE_CARTITEM: 'delete-cartItem',
   CLEAR_CART: 'clear-cart',
   CLEAR_ORDERINFO: 'clear-orederinfo',
-  UPDATE_METHOD_AND_ACCOUNT: 'update_method_and_account'
+  UPDATE_METHOD_AND_AMOUNT: 'update_method_and_account'
 };
 
 export const addCartItem = (payload: CartItemType) => {
@@ -39,9 +39,9 @@ export const clearCart = () => {
     type: ORDER_INFO_ACTIONS.CLEAR_CART
   };
 };
-export const updateMethodAndAccount = (payload: { inputAmount: number; paymentMethod: string }) => {
+export const updateMethodAndAmount = (payload: { inputAmount: number; paymentMethod: string }) => {
   return {
-    type: ORDER_INFO_ACTIONS.UPDATE_METHOD_AND_ACCOUNT,
+    type: ORDER_INFO_ACTIONS.UPDATE_METHOD_AND_AMOUNT,
     ...payload
   };
 };
@@ -57,25 +57,14 @@ export type OrderInfoAction =
   | ReturnType<typeof updateCount>
   | ReturnType<typeof deleteCartItem>
   | ReturnType<typeof clearCart>
-  | ReturnType<typeof updateMethodAndAccount>
+  | ReturnType<typeof updateMethodAndAmount>
   | ReturnType<typeof clearOrderInfo>;
-
-function isEqualCartItem(cartItem: CartItemType, newCartItem: CartItemType) {
-  if (
-    cartItem.food.id === newCartItem.food.id &&
-    cartItem.sizeOption?.key === newCartItem.sizeOption?.key &&
-    cartItem.temperatureOption?.key === newCartItem.temperatureOption?.key
-  ) {
-    return true;
-  }
-  return false;
-}
 
 export function orderInfoReducer(orderInfo: OrderInfoType, action: OrderInfoAction): OrderInfoType {
   switch (action.type) {
     case ORDER_INFO_ACTIONS.ADD_CARTITEM: {
       const { type, ...payload } = action as ReturnType<typeof addCartItem>;
-      const { count = 0, food, sizeOption, temperatureOption } = payload;
+      const { count = 1, food, sizeOption, temperatureOption } = payload;
       const { cartItems } = orderInfo;
       const newCartItem = {
         id: new Date().getTime().toString(16),
@@ -84,13 +73,6 @@ export function orderInfoReducer(orderInfo: OrderInfoType, action: OrderInfoActi
         sizeOption,
         temperatureOption
       };
-      const nextCartItems = [...cartItems];
-      for (let cartItem of nextCartItems) {
-        if (isEqualCartItem(cartItem, newCartItem)) {
-          cartItem.count += newCartItem.count;
-          return { ...orderInfo, cartItems: nextCartItems };
-        }
-      }
       return { ...orderInfo, cartItems: [...cartItems, newCartItem] };
     }
 
@@ -98,6 +80,7 @@ export function orderInfoReducer(orderInfo: OrderInfoType, action: OrderInfoActi
       const { type, ...payload } = action as ReturnType<typeof updateCount>;
       const { index, nextCount } = payload;
       const { cartItems } = orderInfo;
+
       return {
         ...orderInfo,
         cartItems: cartItems.map((cartItem, cartItemIndex) => {
@@ -126,8 +109,8 @@ export function orderInfoReducer(orderInfo: OrderInfoType, action: OrderInfoActi
       };
     }
 
-    case ORDER_INFO_ACTIONS.UPDATE_METHOD_AND_ACCOUNT: {
-      const { type, ...payload } = action as ReturnType<typeof updateMethodAndAccount>;
+    case ORDER_INFO_ACTIONS.UPDATE_METHOD_AND_AMOUNT: {
+      const { type, ...payload } = action as ReturnType<typeof updateMethodAndAmount>;
       const { inputAmount, paymentMethod } = payload;
       return {
         ...orderInfo,

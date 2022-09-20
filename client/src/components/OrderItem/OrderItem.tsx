@@ -1,4 +1,4 @@
-import FoodCount from 'components/common/FoodCount';
+import FoodCounter from 'components/common/FoodCounter/FoodCounter';
 import OptionTag from 'components/common/OptionTag';
 import COLORS from 'constants/color';
 import styled from 'styled-components';
@@ -7,11 +7,10 @@ import { CartItemType } from 'types/cart';
 
 interface OrderItemProps {
   orderItem: CartItemType;
-  index: number;
-  setCount: (nextCount: number, index: number) => void;
+  onEditCount: (nextCount: number) => void;
 }
 
-const OrderItem = ({ orderItem, index, setCount }: OrderItemProps) => {
+const OrderItem = ({ orderItem, onEditCount }: OrderItemProps) => {
   const { food, count, temperatureOption, sizeOption } = orderItem;
 
   const calculateTotalPrice = () => {
@@ -21,7 +20,6 @@ const OrderItem = ({ orderItem, index, setCount }: OrderItemProps) => {
       (+food.basePrice + +sizeAdditionalPrice + +temperatureAdditionalPrice) * +count;
     return totalPrice;
   };
-  const itemTotalPrice = calculateTotalPrice();
 
   return (
     <Container>
@@ -30,7 +28,7 @@ const OrderItem = ({ orderItem, index, setCount }: OrderItemProps) => {
         <div className="order-item-top">
           <h2 className="order-item-name">
             {food.name}
-            <span className="order-item-price"> {itemTotalPrice.toLocaleString()}원</span>
+            <span className="order-item-price"> {calculateTotalPrice().toLocaleString()}원</span>
           </h2>
 
           <OptionTagWrapper>
@@ -40,7 +38,7 @@ const OrderItem = ({ orderItem, index, setCount }: OrderItemProps) => {
         </div>
         <FlexboxRow>
           <div>
-            <FoodCount count={count} setCount={setCount} index={index} />
+            <FoodCounter initalValue={count} onChange={onEditCount} />
           </div>
         </FlexboxRow>
       </div>

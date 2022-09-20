@@ -36,7 +36,7 @@ const ModalOverlay = styled.div`
   display: flex;
 `;
 const ModalSection = styled.section`
-  width: 70%;
+  width: 85%;
   max-width: 40rem;
   margin: 0 auto;
   border-radius: 0.2rem;

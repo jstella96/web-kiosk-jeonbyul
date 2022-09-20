@@ -6,7 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: S.ButtonColor;
 }
 
-const Button = ({ children, size = 'large', color = 'default', ...props }: ButtonProps) => {
+const Button = ({ children, size = 'small', color = 'default', ...props }: ButtonProps) => {
   return (
     <S.BaseButton $size={size} $color={color} {...props}>
       {children}

@@ -16,7 +16,7 @@ const Navbar = ({ categories, selectedIndex, changeSelectedIndex, nowStartIndex 
   return (
     <Container>
       <NavbarContent>
-        <LeftButton onClick={() => changeSelectedIndex(selectedIndex - 1)}>
+        <LeftButton data-test="navbar-left" onClick={() => changeSelectedIndex(selectedIndex - 1)}>
           <LeftArrow width="20" height="20" />
         </LeftButton>
         <NavbarItemList
@@ -24,7 +24,10 @@ const Navbar = ({ categories, selectedIndex, changeSelectedIndex, nowStartIndex 
           selectedIndex={nowStartIndex}
           changeSelectedIndex={changeSelectedIndex}
         />
-        <RightButton onClick={() => changeSelectedIndex(selectedIndex + 1)}>
+        <RightButton
+          data-test="navbar-right"
+          onClick={() => changeSelectedIndex(selectedIndex + 1)}
+        >
           <RightArrow width="20" height="20" />
         </RightButton>
       </NavbarContent>

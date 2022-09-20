@@ -2,23 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
 import { useOrderInfo } from 'context/orderInfoContext';
-import { usePage } from 'context/pageContext';
 import { clearCart, deleteCartItem, updateCount } from 'reducer/orderInfo';
 import CartItem from './CartItem';
 import { FlexboxRow, flexRow } from 'styles/common';
 import { PAGE_URL } from 'constants/pageUrl';
+import { useNavigate } from 'react-router-dom';
 
 const CartContainer = () => {
-  const { movePage } = usePage();
   const { orderInfo, totalPrice, totalCount, orderInfoDispatch } = useOrderInfo();
   const { cartItems } = orderInfo;
-
+  const navigate = useNavigate();
   const onDeleteCartItem = (index: number) => {
     orderInfoDispatch(deleteCartItem({ index }));
   };
 
-  const onEditCount = (nextCount: number, index: number) => {
-    orderInfoDispatch(updateCount({ nextCount, index }));
+  const onEditCount = (index: number) => (nextCount: number) => {
+    orderInfoDispatch(updateCount({ index, nextCount }));
   };
 
   const onClearCart = () => {
@@ -27,7 +26,7 @@ const CartContainer = () => {
 
   const order = () => {
     if (cartItems.length === 0) return;
-    movePage(PAGE_URL.ORDER);
+    navigate(PAGE_URL.ORDER, { replace: true });
   };
 
   return (
@@ -47,9 +46,8 @@ const CartContainer = () => {
             <CartItem
               key={index}
               cartItem={cartItem}
-              index={index}
-              onEditCount={onEditCount}
-              onDelete={onDeleteCartItem}
+              onEditCount={onEditCount(index)}
+              onDelete={() => onDeleteCartItem(index)}
             />
           ))}
         </CartItemList>

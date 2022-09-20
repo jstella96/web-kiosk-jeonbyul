@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { useOptions } from 'context/optionContext';
-import OptionModal from 'components/Modal/OptionModal/OptionModal';
-import { useOrderInfo } from 'context/orderInfoContext';
+import React from 'react';
 import styled, { css } from 'styled-components';
-import { FoodsByCategoryType, FoodType } from 'types/food';
+import { FoodsByCategoryType } from 'types/food';
 import { useSlider } from 'hooks/useSlider';
 import FoodItem from './FoodItem';
 import { foodListLayout } from './FoodListLayout';
@@ -24,14 +21,6 @@ const FoodListContainer = ({
     changeSelectedIndex,
     foodsByCategory.length - 1
   );
-  const options = useOptions();
-  const [selectedFood, setSelectedFood] = useState<FoodType>();
-  const { orderInfoDispatch } = useOrderInfo();
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const openOptionModal = (food: any) => {
-    setSelectedFood(food);
-    setIsOpenModal(true);
-  };
 
   return (
     <Slider
@@ -39,24 +28,19 @@ const FoodListContainer = ({
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
     >
-      <FoodListWrapper translateX={translateX}>
+      <FoodListWrapper data-test="food-list-full" translateX={translateX}>
         {foodsByCategory.map((category, index) => (
-          <FoodList key={category.id} {...(index === 0 ? { ref: sliderRef } : {})}>
+          <FoodList
+            data-test="food-list"
+            key={category.id}
+            {...(index === 0 ? { ref: sliderRef } : {})}
+          >
             {category.foods.map((food) => (
-              <FoodItem food={food} key={food.id} onClickFood={openOptionModal}></FoodItem>
+              <FoodItem food={food} key={food.id}></FoodItem>
             ))}
           </FoodList>
         ))}
       </FoodListWrapper>
-      {isOpenModal && (
-        <OptionModal
-          sizeOptions={options.size[selectedFood ? selectedFood.id : 0] || {}}
-          temperatureOptions={options.temperature[selectedFood ? selectedFood.id : 0] || {}}
-          close={() => setIsOpenModal(false)}
-          food={selectedFood}
-          orderInfoDispatch={orderInfoDispatch}
-        />
-      )}
     </Slider>
   );
 };

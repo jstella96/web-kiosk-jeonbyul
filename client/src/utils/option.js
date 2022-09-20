@@ -1,15 +1,7 @@
-const TEMPERATURE_LABLE_MAP = {
-  c: 'ICE',
-  h: 'HOT'
-};
-
-const SIZE_LABEL_MAP = {
-  s: '작은 컵',
-  m: '중간 컵',
-  l: '큰 컵'
-};
+import { SIZE_LABEL_MAP, TEMPERATURE_LABLE_MAP } from 'constants/option';
 
 export const convertOptionKeyToLabel = (options, type) => {
+  if (!options) return [];
   const LABEL_MAP = type === 'temprature' ? TEMPERATURE_LABLE_MAP : SIZE_LABEL_MAP;
   const optionKeys = Object.keys(options);
   const convertedOptions = optionKeys.reduce((acc, currKey) => {

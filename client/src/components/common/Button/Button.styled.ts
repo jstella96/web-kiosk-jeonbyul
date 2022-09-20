@@ -4,13 +4,18 @@ import styled, { css } from 'styled-components';
 const ButtonSizeStyles = {
   large: css`
     --button-text-size: 1rem;
-    --button-py: 1.8rem;
-    --button-px: 1.2rem;
+    --button-py: 1rem;
+    --button-px: 1rem;
+  `,
+  medium: css`
+    --button-text-size: 0.8rem;
+    --button-py: 0.8rem;
+    --button-px: 0.8rem;
   `,
   small: css`
     --button-text-size: 0.6rem;
-    --button-py: 1rem;
-    --button-px: 1.5rem;
+    --button-py: 0.5rem;
+    --button-px: 0.5rem;
   `,
   fullWidth: css`
     --button-text-size: 0.6rem;
@@ -59,8 +64,8 @@ export const BaseButton = styled.button<BaseButtonProps>`
       `;
   }}
   font-weight: 700;
-  transition: opacity 0.15s ease-in;
-  display: inline-flex;
+  transition: opacity 0.1s ease-in;
+  display: flex;
   align-items: center;
   justify-content: center;
   border: var(--button-border);

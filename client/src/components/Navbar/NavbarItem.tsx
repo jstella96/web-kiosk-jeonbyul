@@ -25,6 +25,7 @@ const NavbarItemList = ({
       <ItemList translateX={calculateXposition()}>
         {categories.map((category, index) => (
           <Item
+            data-test="navbar-category"
             {...(index === 0 ? { ref: buttonRef } : {})}
             key={category.id}
             onClick={() => changeSelectedIndex(index)}

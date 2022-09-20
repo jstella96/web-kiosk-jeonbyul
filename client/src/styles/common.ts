@@ -68,6 +68,10 @@ export const FlexboxRow = styled.div`
   ${flexRow};
 `;
 
+export const FlexRowCenter = styled.div`
+  ${flexCenter};
+`;
+
 export const FlexboxColumn = styled.div`
   ${flexColumn}
 `;

@@ -1,20 +1,24 @@
 import COLORS from 'constants/color';
 import { PAGE_URL } from 'constants/pageUrl';
 import { useOrderInfo } from 'context/orderInfoContext';
-import { usePage } from 'context/pageContext';
 import { useTimer } from 'hooks/useTimer';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { flexColumn } from 'styles/common';
 
 const START_COUNT_NUMBER = 10;
+
 interface ReceiptProps {
   orderNum: number;
 }
 const Receipt = ({ orderNum }: ReceiptProps) => {
-  const { movePage } = usePage();
   const { orderInfo, totalPrice } = useOrderInfo();
+  const navigate = useNavigate();
   const { paymentMethod, inputAmount } = orderInfo;
-  const time = useTimer({ seconds: START_COUNT_NUMBER, onTimeout: () => movePage(PAGE_URL.HOME) });
+  const time = useTimer({
+    seconds: START_COUNT_NUMBER,
+    onTimeout: () => navigate(PAGE_URL.HOME, { replace: true })
+  });
 
   return (
     <ReceiptLayout>
@@ -37,7 +41,7 @@ const Receipt = ({ orderNum }: ReceiptProps) => {
         <span>
           이 화면은 <span>{time}</span>초 뒤에 자동으로 사라집니다.
         </span>
-        <div onClick={() => movePage(PAGE_URL.HOME)}> 홈으로 이동 </div>
+        <Link to={PAGE_URL.HOME}>홈으로 이동</Link>
       </Footer>
     </ReceiptLayout>
   );

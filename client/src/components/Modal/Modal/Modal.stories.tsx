@@ -1,7 +1,6 @@
 import Modal from './Modal';
 import useModal from './useModal';
 import { Meta, Story } from '@storybook/react';
-import { Children } from 'react';
 
 export default {
   title: 'Components/Modal',
@@ -31,5 +30,3 @@ HeaderClose.args = {
   children: '상단 Close 버튼을 가진 모달',
   hasHeaderClose: true
 };
-
-//DefaultModalStory.args = {};

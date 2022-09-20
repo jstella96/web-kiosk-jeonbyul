@@ -1,19 +1,20 @@
 import React from 'react';
-import { usePage } from 'context/pageContext';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
 import { Exit, Search } from 'assets/icon';
 import { flexRow } from 'styles/common';
 import { PAGE_URL } from 'constants/pageUrl';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const { movePage } = usePage();
   return (
     <Container>
-      <button onClick={() => movePage(PAGE_URL.HOME)}>
-        <Exit />
-        <span>나가기</span>
-      </button>
+      <Link to={PAGE_URL.HOME}>
+        <button>
+          <Exit />
+          <span>나가기</span>
+        </button>
+      </Link>
       <button>
         <Search />
         <span>검색하기</span>

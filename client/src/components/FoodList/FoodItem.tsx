@@ -2,19 +2,30 @@ import styled from 'styled-components';
 import { FoodType } from 'types/food';
 import COLORS from 'constants/color';
 import { foodItemImageLayout, foodItemLayout } from './FoodListLayout';
+import OptionModal from 'components/Modal/OptionModal/OptionModal';
+import { useState } from 'react';
 
 interface FoodItmeProps {
   food: FoodType;
-  onClickFood: (food: FoodType) => void;
 }
 
-const FoodItem = ({ food, onClickFood }: FoodItmeProps) => {
+const FoodItem = ({ food }: FoodItmeProps) => {
+  const [showOptionModal, setShowOptionModal] = useState(false);
   return (
-    <Food key={food.id} onClick={() => onClickFood(food)}>
-      <Img alt={food.name} src={food.imgUrl}></Img>
-      <Title>{food.name}</Title>
-      <Text>{food.basePrice.toLocaleString()}원</Text>
-    </Food>
+    <>
+      <Food data-test="food-item" key={food.id} onClick={() => setShowOptionModal(true)}>
+        <Img alt={food.name} src={food.imgUrl}></Img>
+        <Title>{food.name}</Title>
+        <Text>{food.basePrice.toLocaleString()}원</Text>
+      </Food>
+      {showOptionModal && (
+        <OptionModal
+          isShowing={showOptionModal}
+          hide={() => setShowOptionModal(false)}
+          food={food}
+        />
+      )}
+    </>
   );
 };
 export default FoodItem;

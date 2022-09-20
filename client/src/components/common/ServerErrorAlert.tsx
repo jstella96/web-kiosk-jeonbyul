@@ -1,16 +1,18 @@
 import { CoffeeCup } from 'assets/icon';
 import COLORS from 'constants/color';
 import { PAGE_URL } from 'constants/pageUrl';
-import { usePage } from 'context/pageContext';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTimer } from 'hooks/useTimer';
 import styled from 'styled-components';
 import { modal } from 'styles/common';
 
 const START_COUNT_NUMBER = 10;
 export const ServerErrorAlert = () => {
-  const time = useTimer({ seconds: START_COUNT_NUMBER, onTimeout: () => movePage(PAGE_URL.HOME) });
-
-  const { movePage } = usePage();
+  const navigate = useNavigate();
+  const time = useTimer({
+    seconds: START_COUNT_NUMBER,
+    onTimeout: () => navigate(PAGE_URL.HOME, { replace: true })
+  });
   return (
     <Modal>
       <Section>
@@ -23,11 +25,11 @@ export const ServerErrorAlert = () => {
             <br />
             서버와의 통신에러가 발생했습니다
           </p>
-          <Button onClick={() => movePage(PAGE_URL.HOME)}>
-            <p>
+          <Link to={PAGE_URL.HOME}>
+            <Button>
               홈 화면으로 이동 <strong>({time})</strong>
-            </p>
-          </Button>
+            </Button>
+          </Link>
         </Main>
       </Section>
     </Modal>

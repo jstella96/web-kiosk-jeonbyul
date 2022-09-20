@@ -1,5 +1,5 @@
 import React from 'react';
-import FoodCount from 'components/common/FoodCount';
+import FoodCounter from 'components/common/FoodCounter/FoodCounter';
 import OptionTag from 'components/common/OptionTag';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
@@ -9,16 +9,15 @@ import { CartItemType } from 'types/cart';
 
 interface CartItemProps {
   cartItem: CartItemType;
-  index: number;
-  onDelete: (index: number) => void;
-  onEditCount: (nextCount: number, index: number) => void;
+  onDelete: () => void;
+  onEditCount: (nextCount: number) => void;
 }
 
-const CartItem = ({ cartItem, index, onEditCount, onDelete }: CartItemProps) => {
+const CartItem = ({ cartItem, onEditCount, onDelete }: CartItemProps) => {
   const { food, count, sizeOption, temperatureOption } = cartItem;
   return (
     <Container>
-      <DeleteButton onClick={() => onDelete(index)}>x</DeleteButton>
+      <DeleteButton onClick={onDelete}>x</DeleteButton>
       <Image src={food.imgUrl} />
       <FlexboxColumn>
         <Name>{food.name}</Name>
@@ -28,7 +27,7 @@ const CartItem = ({ cartItem, index, onEditCount, onDelete }: CartItemProps) => 
         </OptionWrapper>
       </FlexboxColumn>
       <Footer>
-        <FoodCount count={count} setCount={onEditCount} index={index} />
+        <FoodCounter initalValue={count} onChange={onEditCount} />
       </Footer>
     </Container>
   );

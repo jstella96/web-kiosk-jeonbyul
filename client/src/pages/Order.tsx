@@ -2,36 +2,41 @@ import OrderItem from 'components/OrderItem/OrderItem';
 import COLORS from 'constants/color';
 import { PAGE_URL } from 'constants/pageUrl';
 import { useOrderInfo } from 'context/orderInfoContext';
-import { usePage } from 'context/pageContext';
+
+import { Link } from 'react-router-dom';
 import { updateCount } from 'reducer/orderInfo';
 import styled from 'styled-components';
 import { Header } from 'styles/common';
 
 const Order = () => {
-  const { movePage } = usePage();
   const { orderInfoDispatch, orderInfo, totalPrice } = useOrderInfo();
   const { cartItems } = orderInfo;
-  const onChangeCartItemCount = (nextCount: number, index: number) => {
-    orderInfoDispatch(updateCount({ nextCount, index }));
+
+  const onEditCount = (index: number) => (nextCount: number) => {
+    orderInfoDispatch(updateCount({ index, nextCount }));
   };
 
   return (
     <OrderLayout>
       <Header>
-        <button onClick={() => movePage(PAGE_URL.MAIN)}>뒤로가기</button>
+        <Link to={PAGE_URL.MAIN}>
+          <button>뒤로가기</button>
+        </Link>
         <h1>
           <span>주문 내역</span>을 확인해주세요
         </h1>
       </Header>
       <ItemBox>
         {cartItems.map((item, index) => (
-          <OrderItem key={index} setCount={onChangeCartItemCount} orderItem={item} index={index} />
+          <OrderItem key={index} onEditCount={onEditCount(index)} orderItem={item} />
         ))}
       </ItemBox>
-      <OrderButton onClick={() => movePage(PAGE_URL.PAYMENT)}>
-        <span>{totalPrice.toLocaleString()}원</span>
-        <span> 결제하기</span>
-      </OrderButton>
+      <Link to={PAGE_URL.PAYMENT}>
+        <OrderButton>
+          <span>{totalPrice.toLocaleString()}원</span>
+          <span> 결제하기</span>
+        </OrderButton>
+      </Link>
     </OrderLayout>
   );
 };
