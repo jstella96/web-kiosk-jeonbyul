@@ -32,7 +32,6 @@ const useCartItem = (food: FoodType) => {
 
   const addCart = () => {
     const { cartItems } = orderInfo;
-    console.log(cartItem);
     const index = getEqualCartItem(cartItems, cartItem);
     if (index === -1) {
       orderInfoDispatch(addCartItem(cartItem));

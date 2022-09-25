@@ -22,7 +22,7 @@ const OptionButton = ({
       onClick={onClick}
     >
       <span>{label}</span>
-      <span>{+additionalPrice.toLocaleString()}원</span>
+      <span data-test="option-button-additionalPrice">+{+additionalPrice.toLocaleString()}원</span>
     </ButtonStyled>
   );
 };

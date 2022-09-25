@@ -1,6 +1,6 @@
 describe('main page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/main');
+    cy.visit('http://localhost:3000/');
   });
   it('매장이용 버튼을 눌렀을때 메인화면으로 이동해야한다', () => {
     cy.getByData('dinein-button').click();

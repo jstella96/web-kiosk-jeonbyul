@@ -1,7 +1,7 @@
 import { TEMPERATURE_LABLE_MAP } from '../../src/constants/option';
 import { OptionType } from '../../src/types/option';
 
-describe('메인페이지 상품 장바구니 테스트', () => {
+describe('메인페이지 장바구니 기능 테스트', () => {
   beforeEach(() => {
     cy.intercept('GET', '/categories', { fixture: 'categories.json' }).as('getCategories');
     cy.intercept('GET', '/foods', { fixture: 'foods.json' }).as('getFoods');
@@ -43,7 +43,23 @@ describe('메인페이지 상품 장바구니 테스트', () => {
     });
   });
 
-  //it('상품 옵션 선택 후 담기 버튼을 클릭하면 장바구니에 담겨야한다.', () => {});
+  it('같은 상품, 같은 옵션 선택시 장바구니에서 합쳐져야 한다', () => {
+    cy.getByData('cart-item').should('have.length', '0');
+    let categoryIndex = 0;
+    let foodIndex = 0;
+    for (let i = 0; i < 2; i++) {
+      cy.clickFood(categoryIndex, foodIndex);
+      cy.clickOption({});
+      cy.getByData('option-modal-submit').click();
+    }
+    cy.getByData('cart-item')
+      .should('exist')
+      .find('[data-test=counter-value]')
+      .should('have.text', '2');
+    cy.getByData('cart-item').should('have.length', '1');
 
-  // it('같은 상품, 같은 옵션 선택시 장바구니에서 합쳐지는가', () => {});
+    foodIndex = 1;
+    cy.clickFood(categoryIndex, foodIndex);
+    cy.getByData('option-modal-submit').click();
+  });
 });

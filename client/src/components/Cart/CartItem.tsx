@@ -16,7 +16,7 @@ interface CartItemProps {
 const CartItem = ({ cartItem, onEditCount, onDelete }: CartItemProps) => {
   const { food, count, sizeOption, temperatureOption } = cartItem;
   return (
-    <Container>
+    <Container data-test="cart-item">
       <DeleteButton onClick={onDelete}>x</DeleteButton>
       <Image src={food.imgUrl} />
       <FlexboxColumn>
