@@ -27,8 +27,8 @@ const CashModal = ({ isOpen, isLoding, totalPrice, orderFoods, onClose }: CashMo
     <Modal isShowing={isOpen} hide={onClose} hasHeaderClose>
       <ModalContent>
         <ButtonBox>
-          {AMOUNT.map((item) => (
-            <AmountButton size="fullWidth" onClick={() => setSum(sum + item)}>
+          {AMOUNT.map((item, idx) => (
+            <AmountButton key={idx} size="fullWidth" onClick={() => setSum(sum + item)}>
               <span>{item.toLocaleString()}원</span>
             </AmountButton>
           ))}

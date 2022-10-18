@@ -13,7 +13,11 @@ const FoodItem = ({ food }: FoodItmeProps) => {
   const [showOptionModal, setShowOptionModal] = useState(false);
   return (
     <>
-      <Food data-test="food-item" key={food.id} onClick={() => setShowOptionModal(true)}>
+      <Food
+        data-test={`food-item-${food.id}`}
+        key={food.id}
+        onClick={() => setShowOptionModal(true)}
+      >
         <Img alt={food.name} src={food.imgUrl}></Img>
         <Title>{food.name}</Title>
         <Text>{food.basePrice.toLocaleString()}원</Text>
@@ -32,6 +36,8 @@ export default FoodItem;
 
 const Food = styled.div`
   ${foodItemLayout}
+  border: 1.5px solid ${COLORS.grayLight};
+  padding: 2rem 0;
   color: ${COLORS.primary};
   font-weight: 700;
 `;
@@ -39,6 +45,9 @@ const Img = styled.img`
   ${foodItemImageLayout}
   min-width: 9rem;
   object-fit: cover;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 const Title = styled.h2`
   font-size: 1rem;

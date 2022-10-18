@@ -1,4 +1,3 @@
-import { requestPostOrder } from 'api/api';
 import Loding from 'components/common/Loding';
 import CashModal from 'components/Modal/CashModal/CashModal';
 import COLORS from 'constants/color';
@@ -10,24 +9,40 @@ import { FlexboxColumn, Header } from 'styles/common';
 import { convertCartItemsTofoods } from 'utils/order';
 import { PAGE_URL } from 'constants/pageUrl';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { POST_ORDER } from 'gql/gql';
 interface PaymentMethodProps {
   setOrderNum: React.Dispatch<React.SetStateAction<number>>;
+}
+
+interface PostOrder {
+  postOrder: {
+    orderNumber: number;
+  };
 }
 
 const PaymentMethod = ({ setOrderNum }: PaymentMethodProps) => {
   const { orderInfo, totalPrice, orderInfoDispatch } = useOrderInfo();
   const [isLoding, setIsLoding] = useState(false);
   const [showCashModal, setShowCashModal] = useState(false);
+  const [postOrder] = useMutation<PostOrder>(POST_ORDER);
+
   const navigate = useNavigate();
 
   const orderFoods = async (paymentMethod: string, inputAmount: number) => {
     const { cartItems } = orderInfo;
     const foods = convertCartItemsTofoods(cartItems);
+    const { data } = await postOrder();
+    const orderNum = data ? data.postOrder.orderNumber : 1;
+    /* 
+    DB제거, graphql로 api 대체
+
     const orderNum = await requestPostOrder({
       foods,
       payment: paymentMethod,
       date: new Date()
     });
+    */
     orderInfoDispatch(updateMethodAndAmount({ paymentMethod, inputAmount }));
     setOrderNum(orderNum);
     startLoding();

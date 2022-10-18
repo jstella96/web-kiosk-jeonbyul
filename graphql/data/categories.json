@@ -1,0 +1,399 @@
+[
+  {
+    "id": 1,
+    "name": "커피",
+    "foods": [
+      {
+        "id": 1,
+        "name": "아메리카노",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647321089298.png",
+        "categoryId": 1,
+        "basePrice": "4000"
+      },
+      {
+        "id": 2,
+        "name": "카페라떼",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1645073350180.png",
+        "categoryId": 1,
+        "basePrice": "4500"
+      },
+      {
+        "id": 3,
+        "name": "카푸치노",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647321620627.png",
+        "categoryId": 1,
+        "basePrice": "5000"
+      },
+      {
+        "id": 4,
+        "name": "카페모카",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1645073399109.png",
+        "categoryId": 1,
+        "basePrice": "5000"
+      },
+      {
+        "id": 5,
+        "name": "카라멜 마끼야또",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647321212721.png",
+        "categoryId": 1,
+        "basePrice": "6000"
+      },
+      {
+        "id": 6,
+        "name": "흑당 콜드브루",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647320738273.png",
+        "categoryId": 1,
+        "basePrice": "5000"
+      },
+      {
+        "id": 7,
+        "name": "버블 흑당 콜드브루",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647324391707.png",
+        "categoryId": 1,
+        "basePrice": "6000"
+      },
+      {
+        "id": 8,
+        "name": "콜드브루 크림넛",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1645073503679.png",
+        "categoryId": 1,
+        "basePrice": "6000"
+      },
+      {
+        "id": 9,
+        "name": "아인슈페너",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647320061360.png",
+        "categoryId": 1,
+        "basePrice": "7000"
+      },
+      {
+        "id": 10,
+        "name": "크림샷 라떼",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1648684082157.png",
+        "categoryId": 1,
+        "basePrice": "6500"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "주스",
+    "foods": [
+      {
+        "id": 11,
+        "name": "토마토주스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1653350749118.png",
+        "categoryId": 2,
+        "basePrice": "5000"
+      },
+      {
+        "id": 12,
+        "name": "수박주스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1653637023220.png",
+        "categoryId": 2,
+        "basePrice": "6000"
+      },
+      {
+        "id": 13,
+        "name": "홍시주스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647324236558.png",
+        "categoryId": 2,
+        "basePrice": "5500"
+      },
+      {
+        "id": 14,
+        "name": "골드키위주스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647324243707.png",
+        "categoryId": 2,
+        "basePrice": "6000"
+      },
+      {
+        "id": 15,
+        "name": "딸기주스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647324249886.png",
+        "categoryId": 2,
+        "basePrice": "6000"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "에이드",
+    "foods": [
+      {
+        "id": 17,
+        "name": "자몽 에이드",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322422524.png",
+        "categoryId": 3,
+        "basePrice": "5000"
+      },
+      {
+        "id": 18,
+        "name": "청포도 에이드",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322445174.png",
+        "categoryId": 3,
+        "basePrice": "5000"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "허브티",
+    "foods": [
+      {
+        "id": 19,
+        "name": "루이보스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647324593188.png",
+        "categoryId": 4,
+        "basePrice": "3500"
+      },
+      {
+        "id": 20,
+        "name": "히비스커스",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322695193.png",
+        "categoryId": 4,
+        "basePrice": "3500"
+      },
+      {
+        "id": 21,
+        "name": "캐모마일",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322695193.png",
+        "categoryId": 4,
+        "basePrice": "3500"
+      },
+      {
+        "id": 22,
+        "name": "페퍼민트",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322800672.png",
+        "categoryId": 4,
+        "basePrice": "3500"
+      },
+      {
+        "id": 23,
+        "name": "그린티",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322822733.png",
+        "categoryId": 4,
+        "basePrice": "3500"
+      },
+      {
+        "id": 24,
+        "name": "피치얼그레이",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322847327.png",
+        "categoryId": 4,
+        "basePrice": "4000"
+      },
+      {
+        "id": 25,
+        "name": "제주청귤",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647324201132.png",
+        "categoryId": 4,
+        "basePrice": "5000"
+      },
+      {
+        "id": 26,
+        "name": "애플라임",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647323050118.png",
+        "categoryId": 4,
+        "basePrice": "5000"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "요거트",
+    "foods": [
+      {
+        "id": 27,
+        "name": "플레인 요거트",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322311675.png",
+        "categoryId": 5,
+        "basePrice": "5500"
+      },
+      {
+        "id": 28,
+        "name": "블루베리 요거트",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647322319410.png",
+        "categoryId": 5,
+        "basePrice": "6000"
+      },
+      {
+        "id": 29,
+        "name": "딸기 요거트",
+        "imgUrl": "https://www.ediya.com/files/menu/IMG_1647319753205.png",
+        "categoryId": 5,
+        "basePrice": "6000"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "마카롱",
+    "foods": [
+      {
+        "id": 30,
+        "name": "오레오 크림치즈 마카롱",
+        "imgUrl": "http://dessert39.com/data/product/27.png",
+        "categoryId": 6,
+        "basePrice": "2800"
+      },
+      {
+        "id": 31,
+        "name": "티라미수 마카롱",
+        "imgUrl": "http://dessert39.com/data/product/28.png",
+        "categoryId": 6,
+        "basePrice": "2800"
+      },
+      {
+        "id": 32,
+        "name": "황치즈 마카롱",
+        "imgUrl": "http://dessert39.com/data/product/29.png",
+        "categoryId": 6,
+        "basePrice": "2800"
+      },
+      {
+        "id": 33,
+        "name": "가나슈 마카롱",
+        "imgUrl": "http://dessert39.com/data/product/30.png",
+        "categoryId": 6,
+        "basePrice": "2800"
+      },
+      {
+        "id": 34,
+        "name": "딸기 마카롱",
+        "imgUrl": "http://dessert39.com/data/product/31.png",
+        "categoryId": 6,
+        "basePrice": "2800"
+      },
+      {
+        "id": 35,
+        "name": "쏠티카라멜 마카롱",
+        "imgUrl": "http://dessert39.com/data/product/66eI7Lm066Gx.png",
+        "categoryId": 6,
+        "basePrice": "2800"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "쿠키슈",
+    "foods": [
+      {
+        "id": 36,
+        "name": "우유 쿠키슈",
+        "imgUrl": "http://dessert39.com/data/product/74.png",
+        "categoryId": 7,
+        "basePrice": "3800"
+      },
+      {
+        "id": 37,
+        "name": "커스타드 쿠키슈",
+        "imgUrl": "http://dessert39.com/data/product/75.png",
+        "categoryId": 7,
+        "basePrice": "4200"
+      },
+      {
+        "id": 38,
+        "name": "크림치즈 쿠키슈",
+        "imgUrl": "http://dessert39.com/data/product/101.png",
+        "categoryId": 7,
+        "basePrice": "4200"
+      },
+      {
+        "id": 39,
+        "name": "가나슈 쿠키슈",
+        "imgUrl": "http://dessert39.com/data/product/76.png",
+        "categoryId": 7,
+        "basePrice": "4200"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "케이크",
+    "foods": [
+      {
+        "id": 40,
+        "name": "티라미수 크레이프",
+        "imgUrl": "http://dessert39.com/data/product/7IGY652g7Yuw65286647Iqk7YGs66CI7J207ZSE.png",
+        "categoryId": 8,
+        "basePrice": "5200"
+      },
+      {
+        "id": 41,
+        "name": "쿠키앤크림 크레이프",
+        "imgUrl": "http://dessert39.com/data/product/15.png",
+        "categoryId": 8,
+        "basePrice": "5200"
+      },
+      {
+        "id": 42,
+        "name": "밀크 크레이프",
+        "imgUrl": "http://dessert39.com/data/product/7IGY652g67CA7YGs7YGs66CI7J207ZSE.png",
+        "categoryId": 8,
+        "basePrice": "5500"
+      },
+      {
+        "id": 43,
+        "name": "당근 케익",
+        "imgUrl": "http://dessert39.com/data/product/43.png",
+        "categoryId": 8,
+        "basePrice": "5000"
+      },
+      {
+        "id": 44,
+        "name": "순수우유 케익",
+        "imgUrl": "http://dessert39.com/data/product/48.png",
+        "categoryId": 8,
+        "basePrice": "5000"
+      },
+      {
+        "id": 45,
+        "name": "레드벨벳 케익",
+        "imgUrl": "http://dessert39.com/data/product/100.png",
+        "categoryId": 8,
+        "basePrice": "5500"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "쿠키",
+    "foods": [
+      {
+        "id": 46,
+        "name": "초코 쿠키",
+        "imgUrl": "http://dessert39.com/data/product/39.png",
+        "categoryId": 9,
+        "basePrice": "1500"
+      },
+      {
+        "id": 47,
+        "name": "초코 크런키 쿠키",
+        "imgUrl": "http://dessert39.com/data/product/40.png",
+        "categoryId": 9,
+        "basePrice": "1500"
+      },
+      {
+        "id": 48,
+        "name": "화이트 쿠키",
+        "imgUrl": "http://dessert39.com/data/product/41.png",
+        "categoryId": 9,
+        "basePrice": "1500"
+      },
+      {
+        "id": 49,
+        "name": "앙버터 다쿠아즈",
+        "imgUrl": "http://dessert39.com/data/product/64uk7Lg7JWE7KaI_7JWZ67KE7YSw.png",
+        "categoryId": 9,
+        "basePrice": "3800"
+      },
+      {
+        "id": 50,
+        "name": "초코 다쿠아즈",
+        "imgUrl": "http://dessert39.com/data/product/7LCQ7LSI7L2U.png",
+        "categoryId": 9,
+        "basePrice": "3800"
+      }
+    ]
+  }
+]

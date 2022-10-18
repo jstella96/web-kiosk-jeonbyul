@@ -1,74 +1,28 @@
-import { useEffect, useState } from 'react';
 import Navbar from 'components/Navbar/Navbar';
 import FoodListContainer from 'components/FoodList/FoodList';
 import CartContainer from 'components/Cart/Cart';
 import Footer from 'components/Footer/Footer';
 import styled from 'styled-components';
 import COLORS from 'constants/color';
-import { calculateNextStartIndex } from 'utils/animation';
 import { ServerErrorAlert } from 'components/common/ServerErrorAlert';
-import { requestGetCategories, requestGetFoods } from 'api/api';
 import { CategoryType } from 'types/category';
-import { FoodsByCategoryType } from 'types/food';
-import { FoodListSkeleton } from 'components/FoodList/FoodListSkeleton';
+import { GET_CATEGORIES } from 'gql/gql';
+import { useQuery } from '@apollo/client';
+import { SliderProvider } from 'context/sliderContext';
 
-const MAIN_WIDTH = 767;
-
+interface CategoriesData {
+  allCategories: CategoryType[];
+}
 const Main = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [nowStartIndex, setNowStartIndex] = useState(0);
-  const [categories, setCategories] = useState<CategoryType[]>([]);
-  const [foodsByCategory, setFoodsByCategory] = useState<FoodsByCategoryType[]>([]);
-  const [hasError, setHasError] = useState(false);
-  const [isLoding, setIsLoding] = useState(false);
+  const { error, data } = useQuery<CategoriesData>(GET_CATEGORIES);
 
-  useEffect(() => {
-    const fetchAndSetInitData = async () => {
-      setIsLoding(true);
-      try {
-        const foodsByCategory = await requestGetFoods();
-        const categoriesData = await requestGetCategories();
-        setCategories(categoriesData);
-        setFoodsByCategory(foodsByCategory);
-        setIsLoding(false);
-      } catch (err) {
-        console.error(err);
-        setHasError(true);
-      }
-    };
-    fetchAndSetInitData();
-  }, []);
-
-  const changeSelectedIndex = (nextIndex: number) => {
-    const numVisibleItem = window.innerWidth <= MAIN_WIDTH ? 3 : 4;
-    if (nextIndex < 0 || categories.length - 1 < nextIndex) return;
-    const nextStartIndex = calculateNextStartIndex(
-      nextIndex,
-      nowStartIndex,
-      categories.length,
-      numVisibleItem
-    );
-    setNowStartIndex(nextStartIndex);
-    setSelectedIndex(nextIndex);
-  };
   return (
     <MainLayout>
-      {hasError && <ServerErrorAlert />}
-      <Navbar
-        nowStartIndex={nowStartIndex}
-        categories={categories}
-        selectedIndex={selectedIndex}
-        changeSelectedIndex={changeSelectedIndex}
-      />
-      {isLoding ? (
-        <FoodListSkeleton></FoodListSkeleton>
-      ) : (
-        <FoodListContainer
-          changeSelectedIndex={changeSelectedIndex}
-          foodsByCategory={foodsByCategory}
-          selectedIndex={selectedIndex}
-        />
-      )}
+      {error && <ServerErrorAlert />}
+      <SliderProvider length={data ? data.allCategories.length : 0}>
+        <Navbar categories={data?.allCategories} />
+        <FoodListContainer categories={data?.allCategories} />
+      </SliderProvider>
       <CartContainer />
       <Footer />
     </MainLayout>

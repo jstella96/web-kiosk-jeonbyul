@@ -28,13 +28,13 @@ const Container = styled.footer`
   padding: 0.1rem 0.2rem;
   width: 100%;
   background-color: ${COLORS.black};
-  text-align: right;
+  align-items: center;
   display: flex;
   justify-content: flex-end;
   button {
     font-size: 0.8rem;
     font-weight: 700;
-    padding: 0rem 0.4rem;
+    padding: 0rem 0.2rem;
     color: ${COLORS.white};
     ${flexRow}
     span {

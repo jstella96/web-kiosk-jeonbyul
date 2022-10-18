@@ -12,7 +12,7 @@ describe('메인페이지 장바구니 기능 테스트', () => {
   it('상품 선택시 모달이 보이고, 닫기 클릭시 모달이 사라져야 한다', () => {
     cy.wait(['@getFoods', '@getCategories']);
     cy.getByData('option-modal').should('not.exist');
-    cy.getByData('food-item').eq(0).click();
+    cy.getByDataLike('food-item').eq(0).click();
     cy.wait(['@getOptions']);
     cy.getByData('option-modal').should('exist');
     cy.getByData('option-modal-close').click();
@@ -20,7 +20,8 @@ describe('메인페이지 장바구니 기능 테스트', () => {
   });
 
   it('옵션에 값이 null인 상품은 표시가 되지 않아야 한다', () => {
-    cy.getByData('food-list').eq(1).find(`[data-test=food-item]`).eq(0).click();
+    cy.getByData('food-list').eq(1).find(`[data-test*=food-item]`).eq(0).click();
+
     cy.fixture('foods.json').then((foodsData) => {
       const { name, id } = foodsData[1].foods[0];
       cy.getByData('option-modal').contains(name);
@@ -45,10 +46,9 @@ describe('메인페이지 장바구니 기능 테스트', () => {
 
   it('같은 상품, 같은 옵션 선택시 장바구니에서 합쳐져야 한다', () => {
     cy.getByData('cart-item').should('have.length', '0');
-    let categoryIndex = 0;
-    let foodIndex = 0;
+    let foodId = 1;
     for (let i = 0; i < 2; i++) {
-      cy.clickFood(categoryIndex, foodIndex);
+      cy.getByData(`food-item-${foodId}`).click();
       cy.clickOption({});
       cy.getByData('option-modal-submit').click();
     }
@@ -58,8 +58,20 @@ describe('메인페이지 장바구니 기능 테스트', () => {
       .should('have.text', '2');
     cy.getByData('cart-item').should('have.length', '1');
 
-    foodIndex = 1;
-    cy.clickFood(categoryIndex, foodIndex);
+    foodId = 2;
+    cy.getByData(`food-item-${foodId}`).click();
     cy.getByData('option-modal-submit').click();
+  });
+
+  it('장바구니에 상품이 없을때는 주문하기 버튼이 비활성화 되어야 한다.', () => {
+    cy.getByData('cart-order-button').should('be.disabled');
+  });
+
+  it('장바구니에 상품이 있을때는 버튼을 누르면 다음페이지로 넘어가야 한다. ', () => {
+    const foodId = 1;
+    cy.getByData(`food-item-${foodId}`).click();
+    cy.getByData('option-modal-submit').click();
+    cy.getByData('cart-order-button').should('not.be.disabled');
+    //cy.getByData('cart-item').should('have.length', '0');
   });
 });

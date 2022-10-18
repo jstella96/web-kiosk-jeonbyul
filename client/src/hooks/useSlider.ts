@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export const useSlider = (
+export const useTouchSlider = (
   selectedIndex: number,
   changeSelectedIndex: (index: number) => void,
   max: number

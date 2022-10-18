@@ -2,7 +2,7 @@ import COLORS from 'constants/color';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 0.4rem;
+  padding: 0.4rem 0;
   width: 100%;
   display: flex;
   justify-content: center;

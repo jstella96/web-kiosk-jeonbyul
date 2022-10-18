@@ -4,6 +4,10 @@ Cypress.Commands.add('getByData', (selector) => {
   return cy.get(`[data-test=${selector}]`);
 });
 
+Cypress.Commands.add('getByDataLike', (selector, ...args) => {
+  return cy.get(`[data-test*=${selector}]`, ...args);
+});
+
 Cypress.Commands.add('clickFood', (categoryIndex, foodIndex) => {
   cy.getByData('food-list').eq(categoryIndex).find(`[data-test=food-item]`).eq(foodIndex).click();
 });

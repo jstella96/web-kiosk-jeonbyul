@@ -54,7 +54,7 @@ const CartContainer = () => {
       </CartMain>
       <CartFooter>
         <button onClick={onClearCart}>전체취소</button>
-        <button disabled={cartItems.length === 0} onClick={order}>
+        <button data-test="cart-order-button" disabled={cartItems.length === 0} onClick={order}>
           주문하기
         </button>
       </CartFooter>

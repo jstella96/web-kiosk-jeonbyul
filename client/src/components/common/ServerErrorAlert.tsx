@@ -62,7 +62,6 @@ const Main = styled.main`
 `;
 const Icon = styled.div`
   padding: 2rem;
-  // background-color: ${COLORS.primary};
   svg {
     width: 5rem;
     height: 5rem;

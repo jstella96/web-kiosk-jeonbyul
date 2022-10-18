@@ -29,7 +29,7 @@ const OptionButton = ({
 
 const ButtonStyled = styled(Button)`
   @media (max-width: 767px) {
-    width: 5.2rem;
+    width: 6rem;
     font-size: 0.5rem;
   }
   width: 7rem;

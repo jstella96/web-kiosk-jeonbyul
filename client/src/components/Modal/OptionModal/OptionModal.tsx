@@ -17,6 +17,7 @@ interface OptionModalProps {
 
 const OptionModal = ({ isShowing, hide, food }: OptionModalProps) => {
   const { sizeOptions, temperatureOptions, changeCartItem, addCart } = useCartItem(food);
+
   return (
     <Modal isShowing={isShowing} hide={hide}>
       <ModalContent data-test="option-modal">

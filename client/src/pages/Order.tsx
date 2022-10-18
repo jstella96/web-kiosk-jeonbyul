@@ -43,7 +43,7 @@ const Order = () => {
 export default Order;
 
 const OrderLayout = styled.div`
-  height: 100%;
+  height: 100vh;
   color: ${COLORS.primary};
   display: grid;
   grid-template-rows: 0.5fr 6fr 1fr;
@@ -56,6 +56,7 @@ const ItemBox = styled.main`
 
 const OrderButton = styled.button`
   padding: 1rem;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

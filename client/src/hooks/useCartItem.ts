@@ -1,16 +1,23 @@
+import { useQuery } from '@apollo/client';
 import { useOrderInfo } from 'context/orderInfoContext';
+import { GET_OPTIONS } from 'gql/gql';
 import { useEffect, useState } from 'react';
 import { addCartItem, updateCount } from 'reducer/orderInfo';
 import { CartItemType } from 'types/cart';
 import { FoodType } from 'types/food';
+import { OptionType } from 'types/option';
 import { convertOptionKeyToLabel } from 'utils/option';
-import useOption from './useOption';
-
+interface OptionData {
+  option: OptionType;
+}
 const useCartItem = (food: FoodType) => {
-  const { options } = useOption();
+  const { data } = useQuery<OptionData>(GET_OPTIONS, {
+    variables: { optionId: food.id } // variables: {email, password}
+  });
+
   const { orderInfoDispatch, orderInfo } = useOrderInfo();
-  const temperatureOptions = convertOptionKeyToLabel(options.temperature[food.id], 'temprature');
-  const sizeOptions = convertOptionKeyToLabel(options.size[food.id], 'size');
+  const temperatureOptions = convertOptionKeyToLabel(data?.option.temperature, 'temprature');
+  const sizeOptions = convertOptionKeyToLabel(data?.option.size, 'size');
 
   const initialCartItem = {
     food: food,
@@ -48,7 +55,7 @@ const useCartItem = (food: FoodType) => {
 
   useEffect(() => {
     setCartItem(initialCartItem);
-  }, [options]);
+  }, [data]);
 
   const getEqualCartItem = (cartItems: CartItemType[], newCartItem: CartItemType) => {
     for (let i = 0; i < cartItems.length; i++) {

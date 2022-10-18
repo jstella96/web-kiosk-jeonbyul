@@ -1,26 +1,21 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { FoodsByCategoryType } from 'types/food';
-import { useSlider } from 'hooks/useSlider';
+import { useTouchSlider } from 'hooks/useSlider';
 import FoodItem from './FoodItem';
 import { foodListLayout } from './FoodListLayout';
-
+import { FoodListSkeleton } from './FoodListSkeleton';
+import { CategoryType } from 'types/category';
+import { useSlider } from 'context/sliderContext';
 interface FoodListContainerProps {
-  foodsByCategory: FoodsByCategoryType[] | [];
-  selectedIndex: number;
-  changeSelectedIndex: (index: number) => void;
+  categories: CategoryType[] | undefined;
 }
 
-const FoodListContainer = ({
-  foodsByCategory,
-  selectedIndex,
-  changeSelectedIndex
-}: FoodListContainerProps) => {
-  const { handleTouchStart, handleTouchMove, handleTouchEnd, translateX, sliderRef } = useSlider(
-    selectedIndex,
-    changeSelectedIndex,
-    foodsByCategory.length - 1
-  );
+const FoodListContainer = ({ categories }: FoodListContainerProps) => {
+  const { selectedIndex, actions, length } = useSlider();
+  const { handleTouchStart, handleTouchMove, handleTouchEnd, translateX, sliderRef } =
+    useTouchSlider(selectedIndex, actions.selectIndex, length);
+
+  if (!categories) return <FoodListSkeleton />;
 
   return (
     <Slider
@@ -29,7 +24,7 @@ const FoodListContainer = ({
       onTouchMove={handleTouchMove}
     >
       <FoodListWrapper data-test="food-list-full" translateX={translateX}>
-        {foodsByCategory.map((category, index) => (
+        {categories.map((category, index) => (
           <FoodList
             data-test="food-list"
             key={category.id}

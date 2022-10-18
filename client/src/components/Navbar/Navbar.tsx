@@ -4,34 +4,30 @@ import NavbarLine from 'components/Navbar/NavbarLine';
 import { CategoryType } from 'types/category';
 import COLORS from 'constants/color';
 import { LeftArrow, RightArrow } from 'assets/icon';
+import { useSlider } from 'context/sliderContext';
 
 interface NavbarProps {
-  categories: CategoryType[];
-  selectedIndex: number;
-  changeSelectedIndex: (selectedIndex: number) => void;
-  nowStartIndex: number;
+  categories: CategoryType[] | undefined;
 }
 
-const Navbar = ({ categories, selectedIndex, changeSelectedIndex, nowStartIndex }: NavbarProps) => {
+const Navbar = ({ categories }: NavbarProps) => {
+  const { startIndex, selectedIndex, actions } = useSlider();
   return (
     <Container>
       <NavbarContent>
-        <LeftButton data-test="navbar-left" onClick={() => changeSelectedIndex(selectedIndex - 1)}>
+        <LeftButton data-test="navbar-left" onClick={actions.selectPrevIndex}>
           <LeftArrow width="20" height="20" />
         </LeftButton>
         <NavbarItemList
           categories={categories}
-          selectedIndex={nowStartIndex}
-          changeSelectedIndex={changeSelectedIndex}
+          selectedIndex={startIndex}
+          changeSelectedIndex={actions.selectIndex}
         />
-        <RightButton
-          data-test="navbar-right"
-          onClick={() => changeSelectedIndex(selectedIndex + 1)}
-        >
+        <RightButton data-test="navbar-right" onClick={actions.selectNextIndex}>
           <RightArrow width="20" height="20" />
         </RightButton>
       </NavbarContent>
-      <NavbarLine selectedIndex={selectedIndex - nowStartIndex} />
+      <NavbarLine selectedIndex={selectedIndex - startIndex} />
     </Container>
   );
 };

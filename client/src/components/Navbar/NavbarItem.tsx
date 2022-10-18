@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import SkeletonItem from 'styles/skeleton';
 import { CategoryType } from 'types/category';
 interface NavbarItemListProps {
-  categories: CategoryType[];
+  categories: CategoryType[] | undefined;
   selectedIndex: number;
   changeSelectedIndex: (selectedIndex: number) => void;
 }
@@ -23,22 +23,22 @@ const NavbarItemList = ({
   return (
     <Wrapper>
       <ItemList translateX={calculateXposition()}>
-        {categories.map((category, index) => (
-          <Item
-            data-test="navbar-category"
-            {...(index === 0 ? { ref: buttonRef } : {})}
-            key={category.id}
-            onClick={() => changeSelectedIndex(index)}
-          >
-            {category.name}
-          </Item>
-        ))}
-        {categories.length === 0 &&
-          Array.apply('', Array(4)).map((_, i) => (
-            <ItemSkeletonWrapper key={i}>
-              <ItemSkeleton />
-            </ItemSkeletonWrapper>
-          ))}
+        {categories
+          ? categories.map((category, index) => (
+              <Item
+                data-test="navbar-category"
+                {...(index === 0 ? { ref: buttonRef } : {})}
+                key={category.id}
+                onClick={() => changeSelectedIndex(index)}
+              >
+                {category.name}
+              </Item>
+            ))
+          : Array.apply('', Array(4)).map((_, i) => (
+              <ItemSkeletonWrapper key={i}>
+                <ItemSkeleton />
+              </ItemSkeletonWrapper>
+            ))}
       </ItemList>
     </Wrapper>
   );

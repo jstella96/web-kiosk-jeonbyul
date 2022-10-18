@@ -1,0 +1,20 @@
+{
+  "name": "web-kiosk-jeonbyul",
+  "version": "1.0.0",
+  "description": "* 데모링크 : http://52.79.251.179\r * 개발기간: 2022.08.01 ~ 2022.08.12\r ## 시연 \r ### 메인화면\r ![1번gif](https://user-images.githubusercontent.com/76844355/184734702-ab67da0d-19f2-44b4-b9be-b2e799fb5d22.gif)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woowa-techcamp-2022/web-kiosk-jeonbyul.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woowa-techcamp-2022/web-kiosk-jeonbyul/issues"
+  },
+  "homepage": "https://github.com/woowa-techcamp-2022/web-kiosk-jeonbyul#readme"
+}

@@ -74,6 +74,7 @@ export const FlexRowCenter = styled.div`
 
 export const FlexboxColumn = styled.div`
   ${flexColumn}
+  width: 100%;
 `;
 
 export const Header = styled.header`
